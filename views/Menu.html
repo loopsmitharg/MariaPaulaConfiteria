@@ -307,6 +307,188 @@
         
         /* Utility for hiding elements */
         .hidden { display: none; }
+
+        /* --- Order Summary FAB & Panel Styles --- */
+        .fab-order {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: var(--gold);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .fab-order:hover {
+            transform: scale(1.1);
+            background-color: var(--wood-dark);
+        }
+
+        .fab-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .order-panel {
+            position: fixed;
+            top: 0;
+            right: -400px; /* Hidden via position */
+            width: 380px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .order-panel.open {
+            right: 0;
+        }
+
+        .order-header {
+            padding: 25px;
+            background: var(--bg-beige);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .order-header h2 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--wood-dark);
+            font-size: 1.8rem;
+        }
+
+        .close-order-btn {
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: var(--wood-light);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .order-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            animation: slideIn 0.3s ease forwards;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .item-details { flex: 1; }
+        .item-name { 
+            font-weight: 700; 
+            color: var(--wood-dark); 
+            display: block;
+            margin-bottom: 4px;
+        }
+        .item-price { color: var(--gold); font-weight: 600; font-size: 0.9rem;}
+        
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-remove {
+            color: #ff6b6b;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .order-footer {
+            padding: 25px;
+            background: var(--white);
+            border-top: 1px solid #eee;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--wood-dark);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-checkout:hover {
+            background: var(--wood-dark);
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: var(--wood-light);
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        /* Responsive Fix for Panel */
+        @media (max-width: 480px) {
+            .order-panel { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -370,6 +552,7 @@
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-calientes')">☕ Calientes</button>
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-frias')">❄️ Frías</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-gaseosas')">🥤 Gaseosas</button>
 
                 <!-- Submenu Comidas -->
                 <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
@@ -2620,21 +2803,7 @@
             </div>
         </div>
         
-        <div class="menu-card-rich category-pasteleria category-tortas">
-            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                 <img src="../images/MariaPaulaLogo.png" alt="Agua con o sin gas 500 ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
-            </div>
-            <div class="card-content">
-                <div class="card-header">
-                    <h3 class="card-title">Agua con o sin gas 500 ml</h3>
-                    <span class="card-price">$3.000</span>
-                </div>
-                <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
-                    <span class="material-icons">add</span>
-                </button>
-            </div>
-        </div>
+
         
         <div class="menu-card-rich category-bebidas-frias category-licuados">
             <div class="card-img-container placeholder-img" style="height: 19rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
@@ -2874,6 +3043,116 @@
                     <span class="material-icons">add</span>
                 </button>
             </div>
+        <div class="menu-card-rich category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Coca Cola 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Coca Cola 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;">Común</p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Coca Cola Zero 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Coca Cola Zero 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Sprite 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Sprite 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;">Común</p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Sprite Zero 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Sprite Zero 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Fanta 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Fanta 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Agua Mineral 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Agua Mineral 500ml</h3>
+                    <span class="card-price">$2.200</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;">Con o sin gas</p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-card-rich category-bebidas category-bebidas-gaseosas">
+            <div class="card-img-container placeholder-img" style="height: 16rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                 <img src="../images/MariaPaulaLogo.png" alt="Agua Saborizada 500ml" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Agua Saborizada 500ml</h3>
+                    <span class="card-price">$2.500</span>
+                </div>
+                <p class="card-desc" style="min-height: 40px;">Pomelo / Manzana / Pera</p>
+                <button class="btn-icon-only">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
         </div>
         
         </div>
@@ -2965,7 +3244,7 @@
 
                 if (category === 'bebidas') {
                     subBebidas.forEach(el => el.classList.remove('hidden')); 
-                    filterItems(['bebidas-calientes', 'bebidas-frias']);
+                    filterItems(['bebidas-calientes', 'bebidas-frias', 'bebidas-gaseosas']);
                 } else if (category === 'comidas') {
                     subComidas.forEach(el => el.classList.remove('hidden'));
                     filterItems(['comidas']); 
@@ -3023,5 +3302,142 @@
 
 
 
+    <!-- Order FAB & Panel HTML -->
+    <button class="fab-order" onclick="toggleOrderPanel()">
+        <span class="material-icons" style="font-size: 32px;">shopping_bag</span>
+        <span class="fab-badge hidden" id="orderBadge">0</span>
+    </button>
+
+    <div class="order-panel" id="orderPanel">
+        <div class="order-header">
+            <h2>Tu Pedido</h2>
+            <button class="close-order-btn" onclick="toggleOrderPanel()">&times;</button>
+        </div>
+        <div class="order-items" id="orderItemsContainer">
+            <!-- Items will be injected here -->
+            <div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>
+        </div>
+        <div class="order-footer">
+            <div class="order-total">
+                <span>Total</span>
+                <span id="orderTotal">$0</span>
+            </div>
+            <button class="btn-checkout" onclick="alert('Funcionalidad de checkout pendiente de implementar según preferencia del cliente.')">
+                Confirmar Pedido <span class="material-icons">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" style="position: fixed; bottom: 100px; right: 30px; background: var(--wood-dark); color: white; padding: 12px 24px; border-radius: 50px; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 1002;">
+        ¡Agregado al pedido!
+    </div>
+
+
+    <script>
+        // Order State
+        let currentOrder = [];
+
+        // Order Logic
+        function addToOrder(name, priceString) {
+            // Clean price string (remove '$' and '.' to parse)
+            // Handle ranges like "$14.000 / $19.000" by taking the first one for simplicity, or we could ask user.
+            // For now, let's take the first price found.
+            let cleanPrice = priceString.split('/')[0].replace(/[^0-9]/g, '');
+            let price = parseInt(cleanPrice);
+
+            currentOrder.push({
+                id: Date.now(), // simple unique id
+                name: name,
+                price: price,
+                displayPrice: priceString.split('/')[0].trim()
+            });
+
+            renderOrder();
+            showToast();
+            updateBadge();
+        }
+
+        function removeFromOrder(id) {
+            currentOrder = currentOrder.filter(item => item.id !== id);
+            renderOrder();
+            updateBadge();
+        }
+
+        function renderOrder() {
+            const container = document.getElementById('orderItemsContainer');
+            const totalEl = document.getElementById('orderTotal');
+            
+            container.innerHTML = '';
+
+            if (currentOrder.length === 0) {
+                container.innerHTML = '<div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>';
+                totalEl.textContent = '$0';
+                return;
+            }
+
+            let total = 0;
+
+            currentOrder.forEach(item => {
+                total += item.price;
+                
+                const itemEl = document.createElement('div');
+                itemEl.className = 'order-item';
+                itemEl.innerHTML = `
+                    <div class="item-details">
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-price">${item.displayPrice}</span>
+                    </div>
+                    <button class="btn-remove" onclick="removeFromOrder(${item.id})">
+                        <span class="material-icons">delete</span>
+                    </button>
+                `;
+                container.appendChild(itemEl);
+            });
+
+            totalEl.textContent = '$' + total.toLocaleString('es-AR');
+        }
+
+        function updateBadge() {
+            const badge = document.getElementById('orderBadge');
+            if (currentOrder.length > 0) {
+                badge.textContent = currentOrder.length;
+                badge.classList.remove('hidden');
+                badge.classList.add('animate-bounce'); // customized animation class if needed
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleOrderPanel() {
+            const panel = document.getElementById('orderPanel');
+            panel.classList.toggle('open');
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Initialize Button Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Use event delegation for better performance and dynamic elements
+            document.body.addEventListener('click', (e) => {
+                const btn = e.target.closest('.btn-icon-only');
+                if (btn) {
+                    // Find parent card
+                    const card = btn.closest('.menu-card-rich');
+                    if (card) {
+                        const name = card.querySelector('.card-title').textContent;
+                        const price = card.querySelector('.card-price').textContent;
+                        addToOrder(name, price);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
