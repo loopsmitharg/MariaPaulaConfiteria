@@ -182,6 +182,8 @@ Limonada menta y jengibre (Jarra) — $13.500
 Limonada menta y jengibre (Vaso) — $4.200
 Pomelada (vaso) Chico/Grande — $4.600 / $8.500
 Exprimido de naranja (vaso) Chico/Grande — $4.600 / $8.500
+
+Gaseosas y Agua
 Gaseosa línea Coca Cola 500 ml — $3.900
 Agua saborizada 500 ml — $3.000
 Agua con o sin gas 500 ml — $3.000
@@ -230,7 +232,7 @@ category_map = {
     "Capuchinos": ("bebidas-calientes", "cafeteria"),
     "Otras bebidas calientes": ("bebidas-calientes", "cafeteria"),
     
-    "Promociones (cafetería)": ("desayuno", "promos"),
+    "Promociones": ("desayuno", "promos"),
     "Mañanas y tardes": ("desayuno", "combos"),
     "Sandwich": ("desayuno", "tostados"),
     "Tostados en pan de miga": ("desayuno", "tostados"),
@@ -240,7 +242,8 @@ category_map = {
     "Bakery / Pastelería": ("pasteleria", "tortas"), # Split Bakery
     "Adicionales": ("pasteleria", "adicionales"),   # Split Adicionales
     
-    "Bebidas (frías)": ("bebidas-frias", "bebidas-frias"),
+    "Bebidas": ("bebidas-frias", "bebidas-frias"),
+    "Gaseosas y Agua": ("bebidas", "bebidas-gaseosas"),
     "Licuados": ("bebidas-frias", "licuados"),
     "Milk shake": ("bebidas-frias", "licuados"),
     "Promos": ("desayuno", "promos")

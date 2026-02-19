@@ -24,6 +24,7 @@ new_filters = """
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-calientes')">☕ Calientes</button>
                 <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-frias')">❄️ Frías</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-gaseosas')">🥤 Gaseosas</button>
 
                 <!-- Submenu Comidas -->
                 <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
@@ -102,7 +103,7 @@ new_script = """
 
                 if (category === 'bebidas') {
                     subBebidas.forEach(el => el.classList.remove('hidden')); 
-                    filterItems(['bebidas-calientes', 'bebidas-frias']);
+                    filterItems(['bebidas-calientes', 'bebidas-frias', 'bebidas-gaseosas']);
                 } else if (category === 'comidas') {
                     subComidas.forEach(el => el.classList.remove('hidden'));
                     filterItems(['comidas']); 
