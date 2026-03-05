@@ -668,3 +668,99 @@ footer {
     .brunch-feature { flex-direction: column; text-align: center; padding: 40px 20px; }
     .brunch-img { width: 100%; height: 300px; }
 }
+
+/* =========================================
+   ADD-ONS: SECCIÓN REGALOS (MODIFICADO)
+   ========================================= */
+
+/* 1. Tarjetas con Borde Arriba y Abajo */
+.card-silver { 
+    border-top: 4px solid #C0C0C0; 
+    border-bottom: 4px solid #C0C0C0;
+}
+.card-gold { 
+    border-top: 4px solid #D4AF37; 
+    border-bottom: 4px solid #D4AF37;
+}
+.card-platinum { 
+    border-top: 4px solid #797979; /* Un gris más oscuro para que se note en fondo blanco */
+    border-bottom: 4px solid #797979;
+}
+
+/* 2. Imágenes "Ciegas" (Solo color de fondo opaco) */
+.img-placeholder-silver {
+    width: 100%; height: 100%;
+    background-color: #C0C0C0; /* Plata */
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: bold; font-size: 1.2rem;
+}
+.img-placeholder-gold {
+    width: 100%; height: 100%;
+    background-color: #D4AF37; /* Oro */
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: bold; font-size: 1.2rem;
+}
+.img-placeholder-platinum {
+    width: 100%; height: 100%;
+    background-color: #5a5a5a; /* Platino oscuro */
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: bold; font-size: 1.2rem;
+}
+
+/* 3. Botones Gift Card (Efecto Hover Negro/Dorado) */
+.btn-gift {
+    width: 100%;
+    display: inline-block;
+    padding: 15px 35px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    
+    /* Estado Normal (Hereda estilos base o definimos uno neutro) */
+    background-color: var(--gold); 
+    color: var(--white);
+    border: 1px solid var(--gold);
+}
+
+/* Estado Hover (Lo que pediste: Fondo negro, letras doradas) */
+.btn-gift:hover {
+    background-color: #000000;
+    color: var(--gold);
+    border-color: #000000;
+}
+
+/* Estilos de lista y precios */
+.gift-price {
+    display: block;
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    margin: 15px 0;
+    color: var(--wood-dark);
+    font-weight: bold;
+}
+.gift-details {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+.gift-details li { margin-bottom: 5px; }
+
+/* Sección personalizada */
+.custom-gift-section {
+    background-color: var(--bg-beige);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+    border: 1px solid var(--gold);
+}
+@media (max-width: 768px) {
+    .custom-gift-section { flex-direction: column; text-align: center; padding: 30px; }
+}
