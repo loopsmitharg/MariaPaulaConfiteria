@@ -92,8 +92,8 @@
 
         /* Masonry Grid */
         .masonry-grid {
-            column-count: 3;
-            column-gap: 24px;
+            column-count: 3; /* Restaurado a 3 columnas */
+            column-gap: 40px; /* Aumentado el espacio entre tarjetas para darle aire */
             padding: 0 5%;
             max-width: 1400px;
             margin: 0 auto;
@@ -194,19 +194,22 @@
 
         /* Content */
         .card-content {
-            padding: 1.5rem;
+            padding: 1.2rem;
+            padding-bottom: 3.5rem; /* Asegura espacio de colisión constante para el botón inferior */
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem; /* Más compacto */
+            gap: 10px;
+            flex-wrap: nowrap; /* Mantiene título y precio separados side-by-side */
         }
 
         .card-title {
             font-family: 'Plus Jakarta Sans', sans-serif; /* Modern font for card items */
-            font-size: 1.25rem;
+            font-size: 1.1rem; /* Bajar tamaño en caso de estar en 5 columnas */
             font-weight: 700;
             color: var(--wood-dark);
             margin: 0;
@@ -215,16 +218,25 @@
 
         .card-price {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.1rem; /* Restaurado el tamaño original */
             font-weight: 800;
             color: var(--gold);
+            text-align: right;
+            word-break: break-word; /* Permite quebrar precios larguísimos como (Jarrito) / (Doble) si hace falta */
+            max-width: 50%; /* Evita que el precio acapare todo el padre empujando al título */
+            flex-shrink: 0;
         }
 
         .card-desc {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--wood-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
+            margin-bottom: 0;
+            line-height: 1.4;
+            min-height: 0 !important; /* Fuerza a deshabilitar los 40px estáticos de estilos en línea */
+        }
+        
+        .card-desc:empty {
+            display: none; /* Si la descripción no tiene nada (o tiene espacios vacíos) no ocupa espacio *//*!*/
         }
 
         /* Buttons */
@@ -265,8 +277,8 @@
         }
 
         .btn-icon-only {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: rgba(197, 160, 89, 0.1);
             color: var(--gold);
@@ -277,8 +289,8 @@
             cursor: pointer;
             transition: all 0.3s;
             position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
+            bottom: 1rem;
+            right: 1rem;
         }
 
         .btn-icon-only:hover {
@@ -489,6 +501,166 @@
         @media (max-width: 480px) {
             .order-panel { width: 100%; }
         }
+
+        /* --- Modal de Opciones --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--wood-light);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--wood-dark);
+            margin-bottom: 20px;
+            padding-right: 20px;
+            line-height: 1.2;
+        }
+
+        .modal-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            border-color: rgba(197, 160, 89, 0.4);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .option-label.selected {
+            border-color: var(--gold);
+            background: rgba(197, 160, 89, 0.1);
+        }
+
+        .option-label input[type="radio"] {
+            display: none;
+        }
+
+        .option-name {
+            font-weight: 600;
+            color: var(--wood-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .option-price {
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .btn-modal-add {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-modal-add:hover {
+            background: var(--wood-dark);
+        }
+        
+        /* Controles de Cantidad en Panel de Pedido */
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 50px;
+            padding: 4px;
+            margin-top: 8px;
+            width: max-content;
+        }
+        
+        .qty-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: var(--wood-dark);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        
+        .qty-btn:hover { background: var(--gold); color: white;}
+        
+        .qty-value {
+            min-width: 25px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--wood-dark);
+        }
     </style>
 </head>
 <body>
@@ -534,6 +706,7 @@
         </div>
 
         <!-- Sticky Filters -->
+        
         
         
         
@@ -592,7 +765,7 @@
                     <span class="card-price">$16.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">hamburguesa casera, cheddar, lechuga y tomate</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -608,7 +781,7 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">casera, cheddar, bacon crocante, lechuga, tomate y huevo a la plancha</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -624,7 +797,7 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">doble carne, cheddar y bacon crocante</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -640,7 +813,7 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">carne braseada desmenuzada, queso derretido; aderezo opcional Bdq</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -656,7 +829,7 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">pollo frito, bacon crocante, tomate y queso</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -672,7 +845,7 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">rúcula, jamón crudo, tomates asados, queso crema</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -688,7 +861,7 @@
                     <span class="card-price">$12.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">jamón cocido, queso, lechuga y tomate</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12500, &quot;displayPrice&quot;: &quot;$12.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -704,7 +877,7 @@
                     <span class="card-price">$11.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 11500, &quot;displayPrice&quot;: &quot;$11.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -720,7 +893,7 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -736,7 +909,7 @@
                     <span class="card-price">$14.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -752,7 +925,7 @@
                     <span class="card-price">$14.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14500, &quot;displayPrice&quot;: &quot;$14.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -768,7 +941,7 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -784,7 +957,7 @@
                     <span class="card-price">$13.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">JyQ o RyV</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -800,7 +973,7 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -816,7 +989,7 @@
                     <span class="card-price">$5.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5600, &quot;displayPrice&quot;: &quot;$5.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -832,7 +1005,7 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">crema, jamón y parmesano</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -848,7 +1021,7 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -864,7 +1037,7 @@
                     <span class="card-price">$14.000 / $19.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -880,7 +1053,7 @@
                     <span class="card-price">$15.000 / $26.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26500, &quot;displayPrice&quot;: &quot;$26.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -896,7 +1069,7 @@
                     <span class="card-price">$16.500 / $27.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 27000, &quot;displayPrice&quot;: &quot;$27.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -912,7 +1085,7 @@
                     <span class="card-price">$13.000 / $18.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -928,7 +1101,7 @@
                     <span class="card-price">$16.000 / $21.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 21000, &quot;displayPrice&quot;: &quot;$21.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -944,7 +1117,7 @@
                     <span class="card-price">$18.000 / $28.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -960,7 +1133,7 @@
                     <span class="card-price">$18.500 / $26.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -976,7 +1149,7 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -992,7 +1165,7 @@
                     <span class="card-price">$15.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">sal Bdq + salsa miel y mostaza</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1008,7 +1181,7 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">guacamole, picante y cheddar</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1024,7 +1197,7 @@
                     <span class="card-price">$12.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1039,8 +1212,8 @@
                     <h3 class="card-title">Dúo de empanadas</h3>
                     <span class="card-price">$6.500</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">jyq / carne / verdura + salsa de tomates</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1056,7 +1229,7 @@
                     <span class="card-price">$9.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">individual</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9200, &quot;displayPrice&quot;: &quot;$9.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1072,7 +1245,7 @@
                     <span class="card-price">$28.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">dos medallones envueltos en panceta</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1088,7 +1261,7 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1104,7 +1277,7 @@
                     <span class="card-price">$19.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">a la cerveza, con Bdq + puré de batatas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1120,7 +1293,7 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">arroz yamani, verduras al wok y soja</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1136,7 +1309,7 @@
                     <span class="card-price">$20.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">grillada con vegetales salteados y puré de papas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1152,7 +1325,7 @@
                     <span class="card-price">$25.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">ternera con cheddar, panceta y verdeo + fritas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1168,7 +1341,7 @@
                     <span class="card-price">$26.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1184,7 +1357,7 @@
                     <span class="card-price">$24.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1200,7 +1373,7 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1216,7 +1389,7 @@
                     <span class="card-price">$18.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1232,7 +1405,7 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1248,7 +1421,7 @@
                     <span class="card-price">$20.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1264,7 +1437,7 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1280,7 +1453,7 @@
                     <span class="card-price">$24.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1296,7 +1469,7 @@
                     <span class="card-price">$23.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 23000, &quot;displayPrice&quot;: &quot;$23.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1312,7 +1485,7 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1328,7 +1501,7 @@
                     <span class="card-price">$12.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1344,7 +1517,7 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1360,7 +1533,7 @@
                     <span class="card-price">$7.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7500, &quot;displayPrice&quot;: &quot;$7.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1376,7 +1549,7 @@
                     <span class="card-price">$5.300</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5300, &quot;displayPrice&quot;: &quot;$5.300&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1392,7 +1565,7 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1408,7 +1581,7 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1424,7 +1597,7 @@
                     <span class="card-price">$7.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7000, &quot;displayPrice&quot;: &quot;$7.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1440,7 +1613,7 @@
                     <span class="card-price">$16.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">lechuga, aderezo césar, parmesano y croutons</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1456,7 +1629,7 @@
                     <span class="card-price">$16.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16800, &quot;displayPrice&quot;: &quot;$16.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1472,7 +1645,7 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1488,7 +1661,7 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">mix verdes, zanahoria, huevo, choclo, atún y cherry</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1504,7 +1677,7 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">arroz yamani, calabaza, palta, choclo, tomate y semillas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1520,7 +1693,7 @@
                     <span class="card-price">$18.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">rúcula, lechuga, muzzarella, jamón crudo, cebolla morada, cherry y aceitunas negras</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1536,7 +1709,7 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1552,7 +1725,7 @@
                     <span class="card-price">$3.800 / $4.200 / $4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1568,7 +1741,7 @@
                     <span class="card-price">(Jarrito) $4.800 / (Doble) $5.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1584,7 +1757,7 @@
                     <span class="card-price">$3.800 / $4.200 / $4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1600,7 +1773,7 @@
                     <span class="card-price">(Jarrito) $4.200 / (Doble) $5.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1616,7 +1789,7 @@
                     <span class="card-price">(Doble) $4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;(Doble) $4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1632,7 +1805,7 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1648,7 +1821,7 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1663,8 +1836,8 @@
                     <h3 class="card-title">Capuchino</h3>
                     <span class="card-price">$4.500 / $5.200</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">Chico / Grande</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1679,8 +1852,8 @@
                     <h3 class="card-title">Capuchino italiano</h3>
                     <span class="card-price">$4.900 / $5.900</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">Chico / Grande</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4900, &quot;displayPrice&quot;: &quot;$4.900&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1696,7 +1869,7 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1712,7 +1885,7 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1728,7 +1901,7 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1744,7 +1917,7 @@
                     <span class="card-price">$1.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1900, &quot;displayPrice&quot;: &quot;$1.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1760,7 +1933,7 @@
                     <span class="card-price">$3.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1776,7 +1949,7 @@
                     <span class="card-price">$4.100</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1792,7 +1965,7 @@
                     <span class="card-price">$4.100</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1808,7 +1981,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1824,7 +1997,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1840,7 +2013,7 @@
                     <span class="card-price">$1.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1000, &quot;displayPrice&quot;: &quot;$1.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1856,7 +2029,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1872,7 +2045,7 @@
                     <span class="card-price">$700</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 700, &quot;displayPrice&quot;: &quot;$700&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1888,7 +2061,7 @@
                     <span class="card-price">$800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1904,7 +2077,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1920,7 +2093,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1936,7 +2109,7 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1952,7 +2125,7 @@
                     <span class="card-price">$1.300</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">x unid</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1968,7 +2141,7 @@
                     <span class="card-price">$5.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">6 unid</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5500, &quot;displayPrice&quot;: &quot;$5.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -1984,7 +2157,7 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2000,7 +2173,7 @@
                     <span class="card-price">$6.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2016,7 +2189,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2032,7 +2205,7 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2048,7 +2221,7 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2064,7 +2237,7 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">tostada con huevos revueltos y bacon</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2080,7 +2253,7 @@
                     <span class="card-price">$36.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">2 tostadas + 2 medialunas jyq + mix frutas + 2 cafés + 2 exprimidos chicos</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 36500, &quot;displayPrice&quot;: &quot;$36.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2096,7 +2269,7 @@
                     <span class="card-price">$45.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">2 infusiones + porción torta + 2 scons + 2 muffins + masas + 2 de miga + 2 exprimidos chicos</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 45000, &quot;displayPrice&quot;: &quot;$45.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2104,15 +2277,15 @@
         
         <div class="menu-card-rich category-desayuno category-combos">
             <div class="card-img-container placeholder-img" style="height: 15rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                 <img src="../images/MariaPaulaLogo.png" alt="Tostado jyq  + limonada menta/jengibre (vaso)" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+                 <img src="../images/MariaPaulaLogo.png" alt="Tostado jyq (2 sandwich) + limonada menta/jengibre (vaso)" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
             </div>
             <div class="card-content">
                 <div class="card-header">
-                    <h3 class="card-title">Tostado jyq  + limonada menta/jengibre (vaso)</h3>
+                    <h3 class="card-title">Tostado jyq (2 sandwich) + limonada menta/jengibre (vaso)</h3>
                     <span class="card-price">$15.000</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">2 sandwich</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2128,7 +2301,7 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">ddl o crema y frutos rojos</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2144,7 +2317,7 @@
                     <span class="card-price">$2.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2600, &quot;displayPrice&quot;: &quot;$2.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2160,7 +2333,7 @@
                     <span class="card-price">$3.210</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3210, &quot;displayPrice&quot;: &quot;$3.210&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2176,7 +2349,7 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2192,7 +2365,7 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2208,7 +2381,7 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2224,7 +2397,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2240,7 +2413,7 @@
                     <span class="card-price">$4.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2256,7 +2429,7 @@
                     <span class="card-price">$14.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2272,7 +2445,7 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2288,7 +2461,7 @@
                     <span class="card-price">$14.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2304,7 +2477,7 @@
                     <span class="card-price">$900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 900, &quot;displayPrice&quot;: &quot;$900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2320,7 +2493,7 @@
                     <span class="card-price">$800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2336,7 +2509,7 @@
                     <span class="card-price">$1.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2352,7 +2525,7 @@
                     <span class="card-price">$1.300</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2368,7 +2541,7 @@
                     <span class="card-price">$1.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2384,7 +2557,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2400,7 +2573,7 @@
                     <span class="card-price">$8.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2416,7 +2589,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2432,7 +2605,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2448,7 +2621,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2464,7 +2637,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2480,7 +2653,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2496,7 +2669,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2512,7 +2685,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2528,7 +2701,7 @@
                     <span class="card-price">$8.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2544,7 +2717,7 @@
                     <span class="card-price">$6.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2560,7 +2733,7 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2576,7 +2749,7 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2592,7 +2765,7 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2608,7 +2781,7 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2624,7 +2797,7 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2640,7 +2813,7 @@
                     <span class="card-price">$3.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3500, &quot;displayPrice&quot;: &quot;$3.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2656,7 +2829,7 @@
                     <span class="card-price">$4.600</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2672,7 +2845,7 @@
                     <span class="card-price">$2.400</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2400, &quot;displayPrice&quot;: &quot;$2.400&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2688,7 +2861,7 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2704,7 +2877,7 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2720,7 +2893,7 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">Jarra</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2736,7 +2909,7 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">Vaso</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2744,15 +2917,15 @@
         
         <div class="menu-card-rich category-bebidas-frias category-bebidas-frias">
             <div class="card-img-container placeholder-img" style="height: 15rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                 <img src="../images/MariaPaulaLogo.png" alt="Pomelada  Chico/Grande" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+                 <img src="../images/MariaPaulaLogo.png" alt="Pomelada (vaso) Chico/Grande" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
             </div>
             <div class="card-content">
                 <div class="card-header">
-                    <h3 class="card-title">Pomelada  Chico/Grande</h3>
+                    <h3 class="card-title">Pomelada (vaso) Chico/Grande</h3>
                     <span class="card-price">$4.600 / $8.500</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">vaso</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2760,15 +2933,15 @@
         
         <div class="menu-card-rich category-bebidas-frias category-bebidas-frias">
             <div class="card-img-container placeholder-img" style="height: 15rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                 <img src="../images/MariaPaulaLogo.png" alt="Exprimido de naranja  Chico/Grande" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+                 <img src="../images/MariaPaulaLogo.png" alt="Exprimido de naranja (vaso) Chico/Grande" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
             </div>
             <div class="card-content">
                 <div class="card-header">
-                    <h3 class="card-title">Exprimido de naranja  Chico/Grande</h3>
+                    <h3 class="card-title">Exprimido de naranja (vaso) Chico/Grande</h3>
                     <span class="card-price">$4.600 / $8.500</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">vaso</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2784,7 +2957,7 @@
                     <span class="card-price">$3.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3900, &quot;displayPrice&quot;: &quot;$3.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2800,7 +2973,7 @@
                     <span class="card-price">$3.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2816,7 +2989,7 @@
                     <span class="card-price">$3.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2831,8 +3004,8 @@
                     <h3 class="card-title">Licuados al agua</h3>
                     <span class="card-price">$9.500</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">Ananá/Durazno</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2848,7 +3021,7 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">Otras frutas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2863,8 +3036,8 @@
                     <h3 class="card-title">Licuados de leche</h3>
                     <span class="card-price">$10.000</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">Ananá/Durazno</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10000, &quot;displayPrice&quot;: &quot;$10.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2880,7 +3053,7 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">Otras frutas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2896,7 +3069,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2912,7 +3085,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2928,7 +3101,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2944,7 +3117,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2960,7 +3133,7 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">helado de americana + ddl artesanal + chocolinas</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2976,7 +3149,7 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -2992,7 +3165,7 @@
                     <span class="card-price">$22.000</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;">al agua</p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 22000, &quot;displayPrice&quot;: &quot;$22.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -3008,7 +3181,7 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc" style="min-height: 40px;"></p>
-                <button class="btn-icon-only">
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -3023,8 +3196,8 @@
                     <h3 class="card-title">6 triples + 1 jarra</h3>
                     <span class="card-price">$27.900</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">limonada/pomelada</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 27900, &quot;displayPrice&quot;: &quot;$27.900&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -3039,8 +3212,8 @@
                     <h3 class="card-title">2 croissants jyq + 1 jarra</h3>
                     <span class="card-price">$26.000</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">limonada/pomelada</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -3048,15 +3221,15 @@
         
         <div class="menu-card-rich category-desayuno category-promos">
             <div class="card-img-container placeholder-img" style="height: 15rem; background-color: var(--white-pink); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                 <img src="../images/MariaPaulaLogo.png" alt="Jarra  + tostado" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
+                 <img src="../images/MariaPaulaLogo.png" alt="Jarra" style="opacity: 0.15; width: 60%; transform: grayscale(1);">
             </div>
             <div class="card-content">
                 <div class="card-header">
-                    <h3 class="card-title">Jarra  + tostado</h3>
+                    <h3 class="card-title">Jarra</h3>
                     <span class="card-price">$25.000</span>
                 </div>
-                <p class="card-desc" style="min-height: 40px;">limonada/pomelada</p>
-                <button class="btn-icon-only">
+                <p class="card-desc" style="min-height: 40px;"></p>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]'>
                     <span class="material-icons">add</span>
                 </button>
             </div>
@@ -3072,14 +3245,14 @@
                 <ul class="schedule-list">
                     <li style="padding-bottom: 10px;">
                             <strong>Sucursal Tribulato:</strong><br>
-                            <span>📞</span> xxx xxxx-xxxx
+                            <span>📞</span> 4667-7707 / 7709
                     </li>
                     <li style="padding-bottom: 10px;">
                             <strong>Sucursal Balbín:</strong><br>
-                            <span>📞</span> 011 3543-3031
+                            <span>📞</span> 4451-8282
                     </li>
                 </ul>
-                <div class="contact-info-item"><span>✉️</span> info@mariapaula.com</div>
+                <div class="contact-info-item"><span>✉️</span> 1301mpaula@gmail.com</div>
             </div>
 
             <div class="footer-col">
@@ -3107,7 +3280,7 @@
                     <a href="#" class="social-icon" title="Facebook">
                         <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                     </a>
-                    <a href="#" class="social-icon" title="WhatsApp">
+                    <a href="https://wa.me/5491155050530" class="social-icon" title="WhatsApp" target="_blank">
                         <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     </a>
                 </div>
@@ -3115,17 +3288,9 @@
         </div>
         
         <div class="copyright">
-            <p>© 2026 Confitería San Miguel. Todos los derechos reservados.</p>
+            <p>® 2025 Maria Paula es marca registrada. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    
-    
-    
-    
-    
-    
-    
     
     <script>
         function filterMenu(category, isSubmenu = false) {
@@ -3209,11 +3374,19 @@
     </script>
 
 
-
-
-
-
-
+    <!-- Options Modal HTML -->
+    <div class="modal-overlay" id="optionsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeOptionsModal()">&times;</button>
+            <h3 class="modal-title" id="modalProductTitle">Producto</h3>
+            <div class="modal-options-list" id="modalOptionsContainer">
+                <!-- Radio options (labels) injected via JS -->
+            </div>
+            <button class="btn-modal-add" id="btnConfirmOptions" onclick="confirmOptionsSelection()">
+                Añadir al Pedido
+            </button>
+        </div>
+    </div>
 
     <!-- Order FAB & Panel HTML -->
     <button class="fab-order" onclick="toggleOrderPanel()">
@@ -3250,31 +3423,120 @@
     <script>
         // Order State
         let currentOrder = [];
+        let currentlySelectingProduct = null;
+        let currentlySelectingOptions = [];
 
-        // Order Logic
-        function addToOrder(name, priceString) {
-            // Clean price string (remove '$' and '.' to parse)
-            // Handle ranges like "$14.000 / $19.000" by taking the first one for simplicity, or we could ask user.
-            // For now, let's take the first price found.
-            let cleanPrice = priceString.split('/')[0].replace(/[^0-9]/g, '');
-            let price = parseInt(cleanPrice);
-
-            currentOrder.push({
-                id: Date.now(), // simple unique id
-                name: name,
-                price: price,
-                displayPrice: priceString.split('/')[0].trim()
+        // --- Options Modal Logic ---
+        function openOptionsModal(name, optionsData) {
+            currentlySelectingProduct = name;
+            currentlySelectingOptions = optionsData;
+            
+            document.getElementById('modalProductTitle').textContent = name;
+            const container = document.getElementById('modalOptionsContainer');
+            container.innerHTML = '';
+            
+            optionsData.forEach((opt, index) => {
+                const label = document.createElement('label');
+                label.className = 'option-label' + (index === 0 ? ' selected' : '');
+                label.innerHTML = `
+                    <div class="option-info">
+                        <span class="option-name">${opt.name}</span>
+                    </div>
+                    <span class="option-price">$${opt.price.toLocaleString('es-AR')}</span>
+                    <input type="radio" name="productOption" value="${index}" ${index === 0 ? 'checked' : ''} onchange="updateSelectedOption(this)">
+                `;
+                container.appendChild(label);
             });
+            
+            document.getElementById('optionsModal').classList.add('active');
+        }
+
+        function updateSelectedOption(radioInput) {
+            document.querySelectorAll('.option-label').forEach(lbl => lbl.classList.remove('selected'));
+            radioInput.closest('.option-label').classList.add('selected');
+        }
+
+        function closeOptionsModal() {
+            document.getElementById('optionsModal').classList.remove('active');
+            currentlySelectingProduct = null;
+            currentlySelectingOptions = [];
+        }
+
+        function confirmOptionsSelection() {
+            const selectedRadio = document.querySelector('input[name="productOption"]:checked');
+            if (selectedRadio) {
+                const optIndex = parseInt(selectedRadio.value);
+                const selectedOption = currentlySelectingOptions[optIndex];
+                
+                // Formulate final name and price
+                const finalName = currentlySelectingOptions.length > 1 && selectedOption.name !== 'Única' 
+                                  ? `${currentlySelectingProduct} (${selectedOption.name})` 
+                                  : currentlySelectingProduct;
+                                  
+                addToOrder(finalName, selectedOption.price, selectedOption.displayPrice || `$${selectedOption.price.toLocaleString('es-AR')}`);
+                closeOptionsModal();
+            }
+        }
+
+        // --- Local Storage Logic ---
+        function saveOrder() {
+            localStorage.setItem('mariapaula_order', JSON.stringify(currentOrder));
+        }
+
+        function loadOrder() {
+            const saved = localStorage.getItem('mariapaula_order');
+            if (saved) {
+                try {
+                    currentOrder = JSON.parse(saved);
+                    renderOrder();
+                    updateBadge();
+                } catch (e) {
+                    console.error("Error loading order from local storage", e);
+                }
+            }
+        }
+
+        // --- Order Logic ---
+        function addToOrder(name, price, displayPrice) {
+            // Check if item already exists in order
+            const existingItem = currentOrder.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                currentOrder.push({
+                    id: Date.now() + Math.random(), // more unique id
+                    name: name,
+                    price: price,
+                    displayPrice: displayPrice,
+                    qty: 1
+                });
+            }
 
             renderOrder();
             showToast();
             updateBadge();
+            saveOrder();
         }
 
         function removeFromOrder(id) {
             currentOrder = currentOrder.filter(item => item.id !== id);
             renderOrder();
             updateBadge();
+            saveOrder();
+        }
+        
+        function updateQuantity(id, delta) {
+            const item = currentOrder.find(item => item.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    removeFromOrder(id);
+                } else {
+                    renderOrder();
+                    updateBadge();
+                    saveOrder();
+                }
+            }
         }
 
         function renderOrder() {
@@ -3283,27 +3545,39 @@
             
             container.innerHTML = '';
 
+            let total = 0;
+            let count = 0;
+
             if (currentOrder.length === 0) {
                 container.innerHTML = '<div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>';
                 totalEl.textContent = '$0';
                 return;
             }
 
-            let total = 0;
-
             currentOrder.forEach(item => {
-                total += item.price;
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                count += item.qty;
                 
                 const itemEl = document.createElement('div');
                 itemEl.className = 'order-item';
                 itemEl.innerHTML = `
-                    <div class="item-details">
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-price">${item.displayPrice}</span>
+                    <div class="item-details" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                             <span class="item-name" style="flex:1; padding-right:10px;">${item.name}</span>
+                             <button class="btn-remove" onclick="removeFromOrder(${item.id})" style="padding:0;">
+                                 <span class="material-icons" style="font-size:1.3rem;">delete</span>
+                             </button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="item-price">$${subtotal.toLocaleString('es-AR')}</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn-remove" onclick="removeFromOrder(${item.id})">
-                        <span class="material-icons">delete</span>
-                    </button>
                 `;
                 container.appendChild(itemEl);
             });
@@ -3313,10 +3587,14 @@
 
         function updateBadge() {
             const badge = document.getElementById('orderBadge');
-            if (currentOrder.length > 0) {
-                badge.textContent = currentOrder.length;
+            
+            let totalItems = 0;
+            currentOrder.forEach(i => totalItems += i.qty);
+            
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
                 badge.classList.remove('hidden');
-                badge.classList.add('animate-bounce'); // customized animation class if needed
+                badge.classList.add('animate-bounce');
             } else {
                 badge.classList.add('hidden');
             }
@@ -3337,17 +3615,43 @@
 
         // Initialize Button Listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Use event delegation for better performance and dynamic elements
+            loadOrder();
+            
             document.body.addEventListener('click', (e) => {
                 const btn = e.target.closest('.btn-icon-only');
-                if (btn) {
-                    // Find parent card
-                    const card = btn.closest('.menu-card-rich');
-                    if (card) {
-                        const name = card.querySelector('.card-title').textContent;
-                        const price = card.querySelector('.card-price').textContent;
-                        addToOrder(name, price);
+                if (!btn) return;
+                
+                const card = btn.closest('.menu-card-rich');
+                if (!card) return;
+                
+                const name = card.querySelector('.card-title').textContent;
+                const optionsAttr = btn.getAttribute('data-options');
+                
+                if (!optionsAttr) {
+                    alert("Error: Este producto no tiene opciones configuradas.");
+                    return;
+                }
+                
+                try {
+                    // Fix possible &quot; instead of real quotes if getAttribute didn't decode securely
+                    // or if it was pure HTML text
+                    let parsedAttr = optionsAttr;
+                    if (parsedAttr.includes('&quot;')) {
+                        parsedAttr = parsedAttr.replace(/&quot;/g, '"');
                     }
+                    
+                    const optionsData = JSON.parse(parsedAttr);
+                    
+                    if (optionsData && optionsData.length > 1) {
+                        openOptionsModal(name, optionsData);
+                    } else if (optionsData && optionsData.length === 1) {
+                        addToOrder(name, optionsData[0].price, optionsData[0].displayPrice);
+                    } else {
+                        alert("El producto no tiene precio cargado.");
+                    }
+                } catch (err) {
+                    alert("Ocurrió un error al leer las opciones del producto. Detalles: " + err.message);
+                    console.error("Error parsing options: ", err, optionsAttr);
                 }
             });
         });
