@@ -57,26 +57,33 @@
                 <h2>Envíenos su mensaje</h2>
                 <p>Complete el formulario y nos pondremos en contacto a la brevedad.</p>
 
-                <form>
+                <form id="contacto-form">
                     <div class="form-row">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" placeholder="Su nombre">
+                            <input type="text" id="form-nombre" placeholder="Su nombre" required>
                         </div>
                         <div class="form-group">
                             <label>Apellido</label>
-                            <input type="text" placeholder="Su apellido">
+                            <input type="text" id="form-apellido" placeholder="Su apellido" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="email@ejemplo.com">
+                        <label>Motivo del contacto</label>
+                        <select id="motivo-contacto" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; color: #333; background-color: #fff;">
+                            <option value="">Seleccione un motivo</option>
+                            <option value="Agradecimiento">Agradecimiento</option>
+                            <option value="Sugerencia">Sugerencia</option>
+                            <option value="Inconveniente">Inconveniente</option>
+                            <option value="Contacto por trabajo">Contacto por trabajo</option>
+                            <option value="Quiero un servicio de Maria Paula">Quiero un servicio de Maria Paula</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Mensaje o Consulta</label>
-                        <textarea rows="5" placeholder="¿En qué podemos ayudarle?"></textarea>
+                        <textarea id="form-mensaje" rows="5" placeholder="¿En qué podemos ayudarle?" required></textarea>
                     </div>
                     
                     <button type="submit" class="btn-main" style="width: 100%;">ENVIAR CONSULTA</button>
@@ -139,5 +146,25 @@
         </div>
     </footer>
 
+    <script>
+        document.getElementById('contacto-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('form-nombre').value.trim();
+            const apellido = document.getElementById('form-apellido').value.trim();
+            const motivo = document.getElementById('motivo-contacto').value;
+            const mensaje = document.getElementById('form-mensaje').value.trim();
+
+            // Construir el mensaje formateado para WhatsApp
+            const textoMensaje = `Hola, escribo desde la web MariaPaulaConfiteria.com.\n\n*Nombre:* ${nombre} ${apellido}\n*Motivo:* ${motivo}\n*Mensaje!*\n${mensaje}`;
+
+            // Codificar el texto para URL
+            const urlWhatsApp = `https://wa.me/5491155050530?text=${encodeURIComponent(textoMensaje)}`;
+
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
 </body>
 </html>
