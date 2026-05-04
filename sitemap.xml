@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Página Principal -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Nuestra Cocina -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/NuestraCocina.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Eventos -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/Eventos.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Catering -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/Catering.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Regalos / Gift Cards -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/Regalos.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Sucursal Balbín -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/restauranteBalbin.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Sucursal Tribulato -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/restauranteTribulato.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Contacto -->
+    <url>
+        <loc>https://www.mariapaulaconfiteria.com/contacto.html</loc>
+        <lastmod>2026-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>

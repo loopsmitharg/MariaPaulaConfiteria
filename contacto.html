@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Confitería San Miguel</title>
-    <link rel="stylesheet" href="../style/styles.css">
+
+    <!-- SEO PRIMARY META TAGS -->
+    <title>Contacto & Reservas | María Paula Confitería San Miguel</title>
+    <meta name="description" content="Contactate con María Paula Confitería en San Miguel. Realizá reservas, consultá disponibilidad para eventos o envianos tu mensaje. Sucursales en Balbín 1301 (4451-8282) y Tribulato 1148 (4667-7707).">
+    <meta name="keywords" content="contacto confitería san miguel, reservas san miguel, contacto maría paula, teléfono confitería san miguel, contacto cafetería san miguel, reserva mesa san miguel, consulta catering san miguel, horarios confitería san miguel, dirección confitería san miguel">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="María Paula Confitería">
+    <meta name="language" content="es-AR">
+    <link rel="canonical" href="https://www.mariapaulaconfiteria.com/contacto.html">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mariapaulaconfiteria.com/contacto.html">
+    <meta property="og:title" content="Contacto & Reservas | María Paula Confitería San Miguel">
+    <meta property="og:description" content="Reservas, consultas y contacto. Sucursales en Balbín 1301 y Tribulato 1148, San Miguel.">
+    <meta property="og:image" content="https://www.mariapaulaconfiteria.com/images/MariaPaulaLogo.png">
+    <meta property="og:site_name" content="María Paula Confitería">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contacto & Reservas | María Paula Confitería San Miguel">
+    <meta name="twitter:description" content="Reservas, consultas y contacto en Balbín 1301 y Tribulato 1148, San Miguel.">
+    <meta name="twitter:image" content="https://www.mariapaulaconfiteria.com/images/MariaPaulaLogo.png">
+
+    <!-- FAVICON – TODOS LOS DISPOSITIVOS -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/MariaPaulaFavicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/MariaPaulaFavicon.png">
+    <link rel="shortcut icon" href="images/MariaPaulaFavicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/MariaPaulaFavicon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/MariaPaulaFavicon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/MariaPaulaFavicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/MariaPaulaFavicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/MariaPaulaFavicon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/MariaPaulaFavicon.png">
+    <meta name="msapplication-TileImage" content="images/MariaPaulaFavicon.png">
+    <meta name="msapplication-TileColor" content="#4a2c2a">
+    <meta name="theme-color" content="#4a2c2a">
+
+    <link rel="stylesheet" href="style/styles.css">
 </head>
 <body>
 
@@ -17,7 +55,7 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="nav-link">Inicio</a></li>
-                <li><a href="Menu.html" class="nav-link">Menú</a></li>
+                <!-- Menú temporalmente no disponible -->
                 <li class="dropdown">
                     <a href="#" class="nav-link">Servicios ▾</a>
                     <div class="dropdown-content">
@@ -37,7 +75,49 @@
                 <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
             </ul>
         </nav>
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </header>
+
+    <div id="nav-overlay"></div>
+    <nav id="mobile-nav" aria-label="Menú móvil">
+        <div class="mobile-nav-header">
+            <img src="images/MariaPaulaLogo.png" alt="María Paula" class="mobile-nav-logo-img">
+            <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link">Inicio</a></li>
+            <li class="mobile-dropdown">
+                <button class="mobile-nav-link accordion-toggle">Servicios
+                    <svg class="accordion-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <ul class="mobile-submenu">
+                    <li><a href="Eventos.html">Eventos</a></li>
+                    <li><a href="Regalos.html">Regalos</a></li>
+                    <li><a href="Catering.html">Catering</a></li>
+                </ul>
+            </li>
+            <li class="mobile-dropdown">
+                <button class="mobile-nav-link accordion-toggle">Restaurantes
+                    <svg class="accordion-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <ul class="mobile-submenu">
+                    <li><a href="restauranteBalbin.html">Sucursal Balbín</a></li>
+                    <li><a href="restauranteTribulato.html">Sucursal Tribulato</a></li>
+                </ul>
+            </li>
+            <li><a href="NuestraCocina.html" class="mobile-nav-link">Nuestra Cocina</a></li>
+            <li><a href="contacto.html" class="mobile-nav-link active">Contacto</a></li>
+        </ul>
+        <div class="mobile-nav-divider"></div>
+        <div class="mobile-nav-footer">
+            <strong>Sucursal Balbín</strong> 📞 4451-8282 · Av. Balbín 1301<br>
+            <strong style="display:block;margin-top:10px">Sucursal Tribulato</strong>
+            📞 4667-7707 · Tribulato 1148<br>
+            <a href="mailto:1301mpaula@gmail.com">1301mpaula@gmail.com</a>
+        </div>
+    </nav>
 
     <main class="contact-section">
         <div class="text-center" style="margin-bottom: 50px;">
@@ -165,6 +245,6 @@
             // Abrir WhatsApp en una nueva pestaña
             window.open(urlWhatsApp, '_blank');
         });
-    </script>
+    </script>    <script src="js/hamburger.js"></script>
 </body>
 </html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Menu.html
+
+Sitemap: https://www.mariapaulaconfiteria.com/sitemap.xml

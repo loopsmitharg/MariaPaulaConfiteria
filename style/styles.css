@@ -84,9 +84,9 @@ header {
     box-shadow: 0 4px 10px rgba(74, 59, 50, 0.1);
 }
 
-.logo-container img { height: 70px; width: auto; }
+.logo-container img { height: 70px; width: auto; transition: height 0.3s; }
 
-nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
+header nav > ul { display: flex; gap: 30px; list-style: none; align-items: center; }
 
 .nav-link {
     color: var(--wood-dark);
@@ -100,31 +100,239 @@ nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
 }
 .nav-link:hover, .nav-link.active { color: var(--gold); }
 
-/* Dropdown Menu */
+/* Dropdown Desktop */
 .dropdown { position: relative; display: inline-block; }
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: var(--white);
-    min-width: 160px;
+    min-width: 180px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
-    z-index: 1;
+    z-index: 1001;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    border-top: 4px solid var(--gold);
-    padding: 10px 0;
+    border-top: 3px solid var(--gold);
+    padding: 8px 0;
 }
 .dropdown-content a {
     color: var(--wood-dark);
     padding: 12px 20px;
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
     border-bottom: 1px solid #f0f0f0;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
-.dropdown-content a:hover { background-color: var(--bg-cream); }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--bg-beige); color: var(--gold); }
 .dropdown:hover .dropdown-content { display: block; }
+
+/* ─────────────────────────────────────────
+   HAMBURGER BUTTON
+───────────────────────────────────────── */
+.hamburger {
+    display: none; /* Solo visible en mobile */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    cursor: pointer;
+    gap: 6px;
+    padding: 0;
+    transition: background 0.3s, border-color 0.3s;
+    z-index: 1300;
+    position: relative;
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--gold);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity   0.3s ease,
+                width     0.3s ease;
+    transform-origin: center;
+}
+
+/* Animación a X cuando está activo */
+.hamburger.is-active { background: var(--gold); border-color: var(--gold); }
+.hamburger.is-active span { background-color: var(--white); }
+.hamburger.is-active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.is-active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ─────────────────────────────────────────
+   OVERLAY (fondo oscuro al abrir menú)
+───────────────────────────────────────── */
+#nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(74, 59, 50, 0.5);
+    z-index: 1050;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+#nav-overlay.is-visible {
+    display: block;
+    opacity: 1;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE NAV DRAWER (Slide from right)
+───────────────────────────────────────── */
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(380px, 85vw);
+    height: 100dvh;
+    background: var(--bg-cream);
+    border-left: 3px solid var(--gold);
+    z-index: 1200;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-y: auto;
+    padding: 110px 0 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+#mobile-nav.is-open {
+    transform: translateX(0);
+}
+
+/* Scroll bloqueado en body cuando menú abierto */
+body.menu-open { overflow: hidden; }
+
+/* Header dentro del drawer */
+.mobile-nav-header {
+    padding: 0 30px 30px;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mobile-nav-logo-img { height: 40px; }
+
+/* Botón X dentro del drawer */
+.mobile-nav-close {
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--wood-dark);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+.mobile-nav-close:hover { color: var(--gold); }
+
+/* Lista principal del menú móvil */
+.mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.mobile-nav-list > li {
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.mobile-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--wood-dark);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.2s, background 0.2s;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active { color: var(--gold); background: rgba(197, 160, 89, 0.05); }
+
+/* Flecha del accordion */
+.accordion-arrow {
+    width: 20px;
+    height: 20px;
+    fill: var(--gold);
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+}
+
+.mobile-dropdown.accordion-open > .mobile-nav-link .accordion-arrow {
+    transform: rotate(180deg);
+}
+
+/* Submenu accordion */
+.mobile-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(197, 160, 89, 0.04);
+    border-top: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.mobile-submenu li a {
+    display: block;
+    padding: 14px 30px 14px 45px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--wood-light);
+    transition: color 0.2s, padding-left 0.2s;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+}
+.mobile-submenu li:last-child a { border-bottom: none; }
+.mobile-submenu li a:hover { color: var(--gold); padding-left: 55px; }
+
+/* Separador decorativo dentro del drawer */
+.mobile-nav-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 10px 30px;
+    opacity: 0.4;
+}
+
+/* Datos de contacto en el pie del drawer */
+.mobile-nav-footer {
+    padding: 25px 30px 10px;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    margin-top: auto;
+    font-size: 0.82rem;
+    color: var(--wood-light);
+    line-height: 1.8;
+}
+.mobile-nav-footer strong { color: var(--wood-dark); display: block; margin-bottom: 4px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; }
+.mobile-nav-footer a { color: var(--gold); }
 
 /* =========================================
    4. HERO SECTION (PORTADA)
@@ -466,33 +674,197 @@ footer {
 /* =========================================
    9. RESPONSIVE (MEDIA QUERIES)
    ========================================= */
-@media (max-width: 768px) {
-    /* Ajustes Generales */
-    .section-title { font-size: 2.2rem; }
-    .hero-content h1 { font-size: 2.8rem; }
-    
-    /* Header Móvil Simple */
-    header { padding: 0 20px; }
-    nav ul { display: none; } /* Aquí deberías implementar un menú hamburguesa con JS después */
-    
-    /* Grids a Columnas */
-    .history-grid, .features-grid, .promo-bar-flex, 
-    .cookbook-article, .contact-wrapper {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-    
-    /* Reordenar elementos si es necesario */
-    .cookbook-article.reverse { flex-direction: column; }
-    .history-text { text-align: center; }
 
-    /* Ajustes Específicos */
-    .feature-item.bordered { border: none; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 20px 0; }
+/* ─── TABLET GRANDE / LANDSCAPE (≤ 1024px) ─────────────────── */
+@media (max-width: 1024px) {
+
+    /* Header: activar hamburger */
+    .hamburger { display: flex; }
+    header nav > ul { display: none; } /* Menú desktop oculto */
+    header { padding: 0 5%; }
+
+    /* Reducir paddings de secciones */
+    .history-section  { padding: 50px 6% 60px; }
+    .cookbook-section { padding: 60px 6%; }
+    .features-section { padding: 60px 6%; }
+    .promo-bar-flex   { padding: 30px 6%; }
+    .contact-section  { padding: 20px 4% 60px; }
+
+    /* History grid: menos gap */
+    .history-grid { gap: 35px; }
+
+    /* Cookbook articles: menos gap */
+    .cookbook-article { gap: 40px; margin-bottom: 70px; }
+
+    /* Features */
+    .feature-item { min-width: 220px; }
+
+    /* Hero */
+    .hero-content h1 { font-size: 3.2rem; }
+}
+
+/* ─── TABLET PEQUEÑA / MOBILE GRANDE (≤ 768px) ─────────────── */
+@media (max-width: 768px) {
+
+    /* Main offset */
+    main { margin-top: 80px; }
+
+    /* Header más compacto */
+    header { height: 80px; padding: 0 5%; }
+    .logo-container img { height: 54px; }
+
+    /* Drawer ajuste de padding-top */
+    #mobile-nav { padding-top: 90px; }
+
+    /* ── Tipografías ── */
+    .section-title  { font-size: 2rem; }
+    .headline       { font-size: 2.2rem; letter-spacing: 3px; }
+    .section-subtitle { font-size: 1rem; margin-bottom: 30px; }
+    .middle-title   { font-size: 1.8rem; margin: 50px 0 30px; }
+
+    /* ── Hero ── */
+    .hero            { height: 75vh; }
+    .hero-content h1 { font-size: 2.4rem; margin-bottom: 14px; }
+    .hero-content p  { font-size: 0.95rem; letter-spacing: 1.5px; }
+    .scroll-indicator { bottom: 25px; }
+    .hero-balbin,
+    .hero-tribulato  { height: 45vh; }
+
+    /* ── History Grid → columna única ── */
+    .history-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 25px;
+    }
+    .history-text { text-align: center; }
+    .history-text h3 { font-size: 1.6rem; }
+    .history-img-container { height: 260px; }
+    .custom-list { text-align: left; display: inline-block; }
+
+    /* ── Features → columna única ── */
+    .features-section { padding: 50px 5%; }
+    .features-grid { flex-direction: column; gap: 0; }
+    .feature-item { min-width: 100%; padding: 25px 10px; }
+    .feature-item.bordered {
+        border: none;
+        border-top: 1px solid var(--gold);
+        border-bottom: 1px solid var(--gold);
+        padding: 25px 10px;
+    }
+
+    /* ── Promo Bar → columna ── */
+    .promo-bar-flex { flex-direction: column; text-align: center; gap: 20px; padding: 30px 5%; }
+    .promo-text { font-size: 1.2rem; }
+    .promo-action { flex-direction: column; gap: 12px; }
+    .promo-arrow { transform: rotate(90deg); animation: none; }
+
+    /* ── Cookbook Articles → columna ── */
+    .cookbook-article,
+    .cookbook-article.reverse {
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    .article-text h3 { font-size: 1.7rem; }
+    .article-image { height: 240px; width: 100%; }
+    .drop-cap::first-letter { font-size: 2.5rem; }
+    .paper-header { margin-bottom: 40px; }
+
+    /* ── Menu Grid → 1 columna ── */
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+    .card-image-box { height: 220px; }
+
+    /* ── Brunch Feature → columna ── */
+    .brunch-feature { flex-direction: column; text-align: center; padding: 40px 20px; gap: 25px; }
+    .brunch-text h3 { font-size: 1.8rem; }
+    .brunch-img { width: 100%; height: 250px; }
+
+    /* ── Contact → columna ── */
+    .contact-wrapper { flex-direction: column; border-radius: 20px; }
+    .map-container iframe { min-height: 280px; }
+    .contact-form-container { padding: 30px 25px; }
+    .contact-form-container h2 { font-size: 1.6rem; }
     .form-row { flex-direction: column; gap: 0; }
-    .promo-action { flex-direction: column; }
-    .promo-arrow { transform: rotate(90deg); margin-bottom: 10px; animation: none; }
+
+    /* ── Divider ── */
+    .divider-gold { width: 80%; margin: 30px auto; }
+
+    /* ── Footer → columna centrada ── */
+    .footer-container { flex-direction: column; align-items: center; gap: 35px; padding: 0 30px; }
+    .footer-col { min-width: 100%; max-width: 100%; }
+
+    /* ── Regalos custom section ── */
+    .custom-gift-section { flex-direction: column; text-align: center; padding: 35px 20px; gap: 25px; }
+
+    /* ── Botones ── */
+    .btn-main { padding: 13px 25px; font-size: 0.82rem; }
+}
+
+/* ─── MOBILE CHICO (≤ 480px) ───────────────────────────────── */
+@media (max-width: 480px) {
+
+    /* Header */
+    header { height: 70px; padding: 0 4%; }
+    .logo-container img { height: 46px; }
+    main { margin-top: 70px; }
+    #mobile-nav { padding-top: 80px; }
+
+    /* Tipografías más pequeñas */
+    .section-title  { font-size: 1.7rem; }
+    .headline       { font-size: 1.8rem; letter-spacing: 2px; }
+    .history-text h3 { font-size: 1.4rem; }
+    .article-text h3 { font-size: 1.5rem; }
+    .brunch-text h3 { font-size: 1.6rem; }
+    .middle-title   { font-size: 1.5rem; }
+
+    /* Hero muy compacto */
+    .hero            { height: 80vh; }
+    .hero-content h1 { font-size: 1.9rem; }
+    .hero-content p  { font-size: 0.85rem; letter-spacing: 1px; }
+    .hero-balbin,
+    .hero-tribulato  { height: 38vh; }
+
+    /* Secciones */
+    .history-section  { padding: 35px 4% 45px; }
+    .cookbook-section { padding: 40px 4%; }
+    .features-section { padding: 40px 4%; }
+    .history-img-container { height: 210px; }
+    .article-image    { height: 190px; }
+    .brunch-img       { height: 200px; }
+    .card-image-box   { height: 180px; }
+
+    /* Paddings cookbook */
+    .cookbook-article,
+    .cookbook-article.reverse { gap: 20px; margin-bottom: 35px; }
+
+    /* Drop cap más pequeño */
+    .drop-cap::first-letter { font-size: 2rem; }
+
+    /* Contacto */
+    .contact-form-container { padding: 25px 18px; }
+    .map-container iframe   { min-height: 230px; }
+
+    /* Brunch */
+    .brunch-feature { padding: 30px 15px; }
+
+    /* Regalos */
+    .btn-gift { padding: 13px 20px; font-size: 0.82rem; }
+    .custom-gift-section { padding: 28px 15px; }
+
+    /* Footer */
+    .footer-container { gap: 28px; padding: 0 20px; }
+    .copyright { font-size: 0.78rem; }
+
+    /* Drawer más angosto */
+    #mobile-nav { width: 92vw; }
+    .mobile-nav-link { padding: 16px 22px; font-size: 1rem; }
+    .mobile-submenu li a { padding: 12px 22px 12px 38px; }
+    .mobile-nav-footer { padding: 20px 22px 8px; }
 }
 
 /* =========================================
