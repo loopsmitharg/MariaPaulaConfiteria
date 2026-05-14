@@ -92,4 +92,27 @@
         }
     });
 
+    // ─── Modal Carta: bloqueo de scroll ──────────────────────────────────────
+    // El modal usa CSS puro (checkbox + label). Solo necesitamos JS para
+    // bloquear/desbloquear el scroll del body cuando el modal está abierto.
+    document.querySelectorAll('.modal-toggle').forEach(function (toggle) {
+        toggle.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.add('no-scroll');      // Modal abierto → bloquear scroll
+            } else {
+                body.classList.remove('no-scroll');   // Modal cerrado → restaurar scroll
+            }
+        });
+    });
+
+    // Cerrar modal con tecla Escape (desmarca el checkbox)
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-toggle:checked').forEach(function (t) {
+                t.checked = false;
+                body.classList.remove('no-scroll');
+            });
+        }
+    });
+
 })();

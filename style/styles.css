@@ -1136,3 +1136,174 @@ footer {
 @media (max-width: 768px) {
     .custom-gift-section { flex-direction: column; text-align: center; padding: 30px; }
 }
+
+/* =========================================
+   MODAL CARTA — Patrón CSS puro (checkbox + label)
+   ========================================= */
+
+/* Checkbox siempre oculto (es solo el interruptor) */
+.modal-toggle {
+    display: none;
+}
+
+/* Activar overlay cuando el checkbox está marcado */
+.modal-toggle:checked + .modal-overlay {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Overlay: fondo oscuro + blur */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 59, 50, 0.88);  /* Tono cálido de la marca */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;                              /* Por encima del header (z-index: 1000) */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+/* Caja del modal */
+.modal-content {
+    background-color: var(--bg-cream);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(74, 59, 50, 0.5);
+    /* Scrollbar del modal a tono con la marca */
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) var(--bg-beige);
+}
+
+/* Scrollbar webkit dentro del modal */
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--bg-beige); }
+.modal-content::-webkit-scrollbar-thumb { background-color: var(--gold); border-radius: 4px; }
+
+/* Header pegajoso (la × siempre visible al hacer scroll interno) */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 16px;
+    background: linear-gradient(to bottom, var(--bg-cream) 60%, transparent);
+}
+
+/* Botón × de cierre */
+.close-modal {
+    color: var(--wood-dark);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(197, 160, 89, 0.15);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.3s, color 0.3s;
+    border: 1px solid transparent;
+}
+
+.close-modal:hover {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 0 30px 20px;
+    text-align: center;
+}
+
+/* Título del modal */
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--wood-dark);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+/* Imágenes de la carta (apiladas, scrolleables) */
+.modal-body img {
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid var(--bg-beige);
+}
+
+/* Footer del modal */
+.modal-footer {
+    padding: 20px 30px;
+    background: var(--bg-beige);
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    text-align: center;
+}
+
+/* Botón "Cerrar carta" (al pie del modal) */
+.btn-carta-cerrar {
+    display: inline-block;
+    padding: 14px 40px;
+    background-color: var(--wood-dark);
+    color: var(--bg-cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid var(--wood-dark);
+    border-radius: 2px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-carta-cerrar:hover {
+    background-color: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+}
+
+/* Bloqueo de scroll del body cuando el modal está abierto */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Responsive modal en mobile */
+@media (max-width: 768px) {
+    .modal-content {
+        max-height: 88vh;
+        border-radius: 6px;
+    }
+    .modal-body { padding: 0 16px 16px; }
+    .modal-title { font-size: 1.5rem; letter-spacing: 2px; }
+    .modal-footer { padding: 16px 20px; }
+    .btn-carta-cerrar { padding: 12px 28px; font-size: 0.82rem; }
+    .close-modal { font-size: 1.7rem; width: 36px; height: 36px; }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay { padding: 10px; }
+    .modal-content { max-height: 92vh; }
+    .modal-body { padding: 0 12px 12px; }
+}

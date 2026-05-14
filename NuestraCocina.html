@@ -123,8 +123,9 @@
         <section class="promo-bar-flex">
             <div class="promo-text">Descubra nuestra propuesta de estación</div>
             <div class="promo-action">
-                <span class="promo-arrow">➔</span> 
-                <a href="#" class="btn-main btn-outline" style="color: var(--bg-cream); border-color: var(--bg-cream);">Consultar la carta</a>
+                <span class="promo-arrow">➔</span>
+                <!-- LABEL que abre el modal de la carta -->
+                <label for="modal-carta" class="btn-main btn-outline" style="color: var(--bg-cream); border-color: var(--bg-cream); cursor: pointer;">Consultar la carta</label>
             </div>
         </section>
 
@@ -287,5 +288,46 @@
         </div>
     </footer>
     <script src="js/hamburger.js"></script>
+
+    <!-- =============================================
+         MODAL CARTA – Checkbox oculto (interruptor)
+         El input DEBE ser hermano inmediato del overlay
+         ============================================= -->
+    <input type="checkbox" id="modal-carta" class="modal-toggle">
+
+    <div class="modal-overlay" role="dialog" aria-modal="true" aria-label="Carta de María Paula">
+        <div class="modal-content">
+
+            <!-- Header pegajoso con botón de cierre (siempre visible al scrollear) -->
+            <div class="sticky-header">
+                <label for="modal-carta" class="close-modal" title="Cerrar carta" aria-label="Cerrar carta">&times;</label>
+            </div>
+
+            <!-- Cuerpo del modal -->
+            <div class="modal-body">
+                <h2 class="modal-title">Nuestra Carta</h2>
+
+                <!-- Páginas de la carta -->
+                <img src="images/Carta/MPCarta01.webp" alt="Carta María Paula – Página 1">
+                <img src="images/Carta/MPCarta02.webp" alt="Carta María Paula – Página 2">
+                <img src="images/Carta/MPCarta03.webp" alt="Carta María Paula – Página 3">
+                <img src="images/Carta/MPCarta04.webp" alt="Carta María Paula – Página 4">
+                <img src="images/Carta/MPCarta05.webp" alt="Carta María Paula – Página 5">
+                <img src="images/Carta/MPCarta06.webp" alt="Carta María Paula – Página 6">
+                <img src="images/Carta/MPCarta07.webp" alt="Carta María Paula – Página 7">
+                <img src="images/Carta/MPCarta08.webp" alt="Carta María Paula – Página 8">
+                <img src="images/Carta/MPCarta09.webp" alt="Carta María Paula – Página 9">
+                <img src="images/Carta/MPCarta10.webp" alt="Carta María Paula – Página 10">
+                <img src="images/Carta/MPCarta11.webp" alt="Carta María Paula – Página 11">
+            </div>
+
+            <!-- Botón de cierre al final del scroll -->
+            <div class="modal-footer">
+                <label for="modal-carta" class="btn-carta-cerrar">Cerrar carta</label>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
