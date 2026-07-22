@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     
     <!-- Main Project Styles -->
-    <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="style/styles.css">
 
     <style>
         /* =========================================
@@ -674,7 +674,7 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="nav-link">Inicio</a></li>
-                <li><a href="Menu.html" class="nav-link">Menú</a></li>
+                <li><a href="Menu.html" class="nav-link active">Menú</a></li>
                 <li class="dropdown">
                     <a href="#" class="nav-link">Servicios ▾</a>
                     <div class="dropdown-content">
@@ -691,10 +691,63 @@
                     </div>
                 </li>
                 <li><a href="NuestraCocina.html" class="nav-link">Nuestra Cocina</a></li>
-                <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- ░░ OVERLAY ░░ -->
+    <div id="nav-overlay"></div>
+
+    <!-- ░░ MOBILE NAV DRAWER ░░ -->
+    <nav id="mobile-nav" aria-label="Menú móvil">
+        <div class="mobile-nav-header">
+            <img src="images/MariaPaulaLogo.png" alt="María Paula Confitería" class="mobile-nav-logo-img">
+            <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link">Inicio</a></li>
+            <li><a href="Menu.html" class="mobile-nav-link active">Menú</a></li>
+            <li class="mobile-dropdown">
+                <button class="mobile-nav-link accordion-toggle">Servicios
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z" />
+                    </svg>
+                </button>
+                <ul class="mobile-submenu">
+                    <li><a href="Eventos.html">Eventos</a></li>
+                    <li><a href="Regalos.html">Regalos</a></li>
+                    <li><a href="Catering.html">Catering</a></li>
+                </ul>
+            </li>
+            <li class="mobile-dropdown">
+                <button class="mobile-nav-link accordion-toggle">Restaurantes
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z" />
+                    </svg>
+                </button>
+                <ul class="mobile-submenu">
+                    <li><a href="restauranteBalbin.html">Sucursal Balbín</a></li>
+                    <li><a href="restauranteTribulato.html">Sucursal Tribulato</a></li>
+                </ul>
+            </li>
+            <li><a href="NuestraCocina.html" class="mobile-nav-link">Nuestra Cocina</a></li>
+            <li><a href="contacto.html" class="mobile-nav-link">Contacto</a></li>
+        </ul>
+        <div class="mobile-nav-divider"></div>
+        <div class="mobile-nav-footer">
+            <strong>Sucursal Balbín</strong>
+            📞 4451-8282 · Av. Balbín 1301<br>
+            <strong style="display:block;margin-top:10px">Sucursal Tribulato</strong>
+            📞 4667-7707 · Tribulato 1148<br>
+            <a href="mailto:1301mpaula@gmail.com">1301mpaula@gmail.com</a>
+        </div>
+    </nav>
 
     <main class="menu-wrapper">
         <!-- Hero Text -->
@@ -3656,5 +3709,6 @@
             });
         });
     </script>
+    <script src="js/hamburger.js"></script>
 </body>
 </html>
