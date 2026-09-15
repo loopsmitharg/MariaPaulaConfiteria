@@ -416,7 +416,15 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Variaciones de Hero por página (Clases opcionales para limpiar el HTML) */
-.hero-home { background-image: url('/assets/images/CafeteriaMariaPaula.jpg'); background-color: #333; }
+.hero-home { 
+    background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-desktop.jpg'); 
+    background-color: #333; 
+}
+@media (max-width: 768px) {
+    .hero-home {
+        background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-mobile.jpg');
+    }
+}
 
 /* =========================================
    5. SECCIÓN HISTORIA & GRIDS (HOME Y SUCURSALES)
@@ -882,12 +890,21 @@ footer {
     /* Si la imagen no carga, se verá este color Arena */
     background-color: var(--white-pink);     
     /* Si usas imagen, le ponemos un degradado SUAVE claro encima, no negro */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/Prueba1.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-desktop.jpg');
 }
 
 .hero-tribulato {
     background-color: var(--white-pink); /* Mismo color arena base */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/Prueba2.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-desktop.jpg');
+}
+
+@media (max-width: 768px) {
+    .hero-balbin {
+        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-mobile.jpg');
+    }
+    .hero-tribulato {
+        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-mobile.jpg');
+    }
 }
 
 /* Estilo para las listas de características */
