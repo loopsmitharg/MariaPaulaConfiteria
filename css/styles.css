@@ -417,12 +417,12 @@ body.menu-open { overflow: hidden; }
 
 /* Variaciones de Hero por página (Clases opcionales para limpiar el HTML) */
 .hero-home { 
-    background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-desktop.jpg'); 
+    background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-desktop.webp'); 
     background-color: #333; 
 }
 @media (max-width: 768px) {
     .hero-home {
-        background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-mobile.jpg');
+        background-image: url('/assets/images/hero-cafeteria-artesanal-san-miguel-mobile.webp');
     }
 }
 
@@ -890,20 +890,20 @@ footer {
     /* Si la imagen no carga, se verá este color Arena */
     background-color: var(--white-pink);     
     /* Si usas imagen, le ponemos un degradado SUAVE claro encima, no negro */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-desktop.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-desktop.webp');
 }
 
 .hero-tribulato {
     background-color: var(--white-pink); /* Mismo color arena base */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-desktop.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-desktop.webp');
 }
 
 @media (max-width: 768px) {
     .hero-balbin {
-        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-mobile.jpg');
+        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-balbin-san-miguel-mobile.webp');
     }
     .hero-tribulato {
-        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-mobile.jpg');
+        background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/hero-sucursal-tribulato-san-miguel-mobile.webp');
     }
 }
 
