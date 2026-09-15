@@ -416,7 +416,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Variaciones de Hero por página (Clases opcionales para limpiar el HTML) */
-.hero-home { background-image: url('../images/cafeteria-bg.jpg'); background-color: #333; }
+.hero-home { background-image: url('/assets/images/CafeteriaMariaPaula.jpg'); background-color: #333; }
 
 /* =========================================
    5. SECCIÓN HISTORIA & GRIDS (HOME Y SUCURSALES)
@@ -882,12 +882,12 @@ footer {
     /* Si la imagen no carga, se verá este color Arena */
     background-color: var(--white-pink);     
     /* Si usas imagen, le ponemos un degradado SUAVE claro encima, no negro */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('../images/Prueba1.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/Prueba1.jpg');
 }
 
 .hero-tribulato {
     background-color: var(--white-pink); /* Mismo color arena base */
-    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('../images/Prueba2.jpg');
+    background-image: linear-gradient(rgba(232, 220, 202, 0.3), rgba(232, 220, 202, 0.3)), url('/assets/images/Prueba2.jpg');
 }
 
 /* Estilo para las listas de características */

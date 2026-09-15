@@ -1,0 +1,24 @@
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Editores y Entornos de Desarrollo
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Política de Cero Dependencias y Archivos de Compilación
+node_modules/
+package.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Binarios y temporales
+*.log
