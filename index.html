@@ -169,6 +169,10 @@
     }
     </script>
 
+    <!-- Preload Scanner: Imagen principal visible del Hero (LCP) con fetchpriority="high" -->
+    <link rel="preload" as="image" href="/assets/images/hero-cafeteria-artesanal-san-miguel-desktop.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/hero-cafeteria-artesanal-san-miguel-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -177,7 +181,7 @@
     <header>
         <div class="logo-container">
             <a href="/">
-                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="Logo" width="400" height="171">
+                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
             </a>
         </div>
         <nav>
@@ -314,7 +318,7 @@
                 <div class="history-img-container">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/historia-salon-confiteria-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/historia-salon-confiteria-san-miguel-desktop.webp" alt="Salón histórico de María Paula Confitería en San Miguel" class="history-img" loading="lazy">
+                        <img src="/assets/images/historia-salon-confiteria-san-miguel-desktop.webp" alt="Salón histórico de María Paula Confitería en San Miguel" class="history-img" width="720" height="405" loading="lazy">
                     </picture>
                 </div>
             </div>

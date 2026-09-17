@@ -42,6 +42,10 @@
     <meta name="msapplication-TileColor" content="#4a2c2a">
     <meta name="theme-color" content="#4a2c2a">
 
+    <!-- Preload Scanner: Imagen principal visible del Hero (LCP) con fetchpriority="high" -->
+    <link rel="preload" as="image" href="/assets/images/servicio-catering-eventos-sociales-san-miguel-desktop.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/servicio-catering-eventos-sociales-san-miguel-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -49,7 +53,7 @@
     <header>
         <div class="logo-container">
             <a href="/">
-                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="Logo" width="400" height="171">
+                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
             </a>
         </div>
         <nav>
@@ -83,7 +87,7 @@
     <div id="nav-overlay"></div>
     <nav id="mobile-nav" aria-label="Menú móvil">
         <div class="mobile-nav-header">
-            <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula" class="mobile-nav-logo-img" width="400" height="171" loading="lazy">
+            <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" class="mobile-nav-logo-img" width="400" height="171" loading="lazy">
             <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
         </div>
         <ul class="mobile-nav-list">
@@ -140,7 +144,7 @@
                 <div class="article-image">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/servicio-catering-eventos-sociales-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/servicio-catering-eventos-sociales-san-miguel-desktop.webp" alt="Servicio de catering en salón de María Paula" class="article-placeholder" style="object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/servicio-catering-eventos-sociales-san-miguel-desktop.webp" alt="Servicio de catering en salón de María Paula" class="article-placeholder" width="880" height="495" style="object-fit: cover;" fetchpriority="high">
                     </picture>
                 </div>
             </article>
@@ -164,7 +168,7 @@
                 <div class="article-image">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/catering-eventos-al-aire-libre-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/catering-eventos-al-aire-libre-san-miguel-desktop.webp" alt="Catering integral para eventos al aire libre en San Miguel" class="article-placeholder" style="object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/catering-eventos-al-aire-libre-san-miguel-desktop.webp" alt="Catering integral para eventos al aire libre en San Miguel" class="article-placeholder" width="800" height="500" style="object-fit: cover;" loading="lazy">
                     </picture>
                 </div>
             </article>
@@ -181,7 +185,7 @@
                 <div class="brunch-img" style="border-color: var(--wood-dark);">
                     <picture style="width: 100%; height: 100%;">
                         <source media="(max-width: 768px)" srcset="/assets/images/mesa-dulce-catering-pasteleria-artesanal-mobile.webp" type="image/webp">
-                        <img src="/assets/images/mesa-dulce-catering-pasteleria-artesanal-desktop.webp" alt="Mesa dulce para eventos de catering artesanal" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/mesa-dulce-catering-pasteleria-artesanal-desktop.webp" alt="Mesa dulce para eventos de catering artesanal" width="1050" height="1400" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
                     </picture>
                 </div>
             </div>

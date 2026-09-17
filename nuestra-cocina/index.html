@@ -47,6 +47,10 @@
     <meta name="msapplication-TileColor" content="#4a2c2a">
     <meta name="theme-color" content="#4a2c2a">
 
+    <!-- Preload Scanner: Imagen principal visible del Hero (LCP) con fetchpriority="high" -->
+    <link rel="preload" as="image" href="/assets/images/panaderia-medialunas-artesanales-cafeteria-desktop.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/panaderia-medialunas-artesanales-cafeteria-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -55,7 +59,7 @@
     <header>
         <div class="logo-container">
             <a href="/">
-                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="Logo" width="400" height="171">
+                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
             </a>
         </div>
         <nav>
@@ -89,7 +93,7 @@
     <div id="nav-overlay"></div>
     <nav id="mobile-nav" aria-label="Menú móvil">
         <div class="mobile-nav-header">
-            <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula" class="mobile-nav-logo-img" width="400" height="171" loading="lazy">
+            <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" class="mobile-nav-logo-img" width="400" height="171" loading="lazy">
             <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
         </div>
         <ul class="mobile-nav-list">
@@ -165,7 +169,7 @@
                 <div class="article-image">
                     <picture style="width: 100%; height: 100%;">
                         <source media="(max-width: 768px)" srcset="/assets/images/panaderia-medialunas-artesanales-cafeteria-mobile.webp" type="image/webp">
-                        <img src="/assets/images/panaderia-medialunas-artesanales-cafeteria-desktop.webp" alt="Medialunas artesanales y café de especialidad" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/panaderia-medialunas-artesanales-cafeteria-desktop.webp" alt="Medialunas artesanales y café de especialidad" width="1600" height="900" style="width: 100%; height: 100%; object-fit: cover;" fetchpriority="high">
                     </picture>
                 </div>
             </article>
@@ -183,7 +187,7 @@
                 <div class="article-image">
                     <picture style="width: 100%; height: 100%;">
                         <source media="(max-width: 768px)" srcset="/assets/images/gastronomia-platos-de-autor-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/gastronomia-platos-de-autor-san-miguel-desktop.webp" alt="Platos gastronómicos de autor en San Miguel" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/gastronomia-platos-de-autor-san-miguel-desktop.webp" alt="Platos gastronómicos de autor en San Miguel" width="675" height="1200" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
                     </picture>
                 </div>
             </article>
@@ -202,7 +206,7 @@
                 <div class="article-image">
                     <picture style="width: 100%; height: 100%;">
                         <source media="(max-width: 768px)" srcset="/assets/images/heladeria-helados-artesanales-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/heladeria-helados-artesanales-san-miguel-desktop.webp" alt="Helados artesanales de elaboración propia" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/heladeria-helados-artesanales-san-miguel-desktop.webp" alt="Helados artesanales de elaboración propia" width="1600" height="900" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
                     </picture>
                 </div>
             </article>
@@ -215,7 +219,7 @@
                     <div class="card-image-box">
                         <picture>
                             <source media="(max-width: 768px)" srcset="/assets/images/pasteleria-waffles-dulces-artesanales-mobile.webp" type="image/webp">
-                            <img src="/assets/images/pasteleria-waffles-dulces-artesanales-desktop.webp" alt="Waffles dulces con frutas y dulce de leche" loading="lazy">
+                            <img src="/assets/images/pasteleria-waffles-dulces-artesanales-desktop.webp" alt="Waffles dulces con frutas y dulce de leche" width="305" height="500" loading="lazy">
                         </picture>
                     </div>
                     <h4>Waffles de la Casa</h4>
@@ -226,7 +230,7 @@
                     <div class="card-image-box">
                         <picture>
                             <source media="(max-width: 768px)" srcset="/assets/images/pasteleria-torta-lemon-pie-artesanal-mobile.webp" type="image/webp">
-                            <img src="/assets/images/pasteleria-torta-lemon-pie-artesanal-desktop.webp" alt="Torta Lemon Pie clásica artesanal" loading="lazy">
+                            <img src="/assets/images/pasteleria-torta-lemon-pie-artesanal-desktop.webp" alt="Torta Lemon Pie clásica artesanal" width="680" height="510" loading="lazy">
                         </picture>
                     </div>
                     <h4>Lemon Pie Clásico</h4>
@@ -238,7 +242,7 @@
                     <div class="card-image-box">
                         <picture>
                             <source media="(max-width: 768px)" srcset="/assets/images/pasteleria-torta-brownie-chocolate-mobile.webp" type="image/webp">
-                            <img src="/assets/images/pasteleria-torta-brownie-chocolate-desktop.webp" alt="Torta Brownie con chocolate y nueces" loading="lazy">
+                            <img src="/assets/images/pasteleria-torta-brownie-chocolate-desktop.webp" alt="Torta Brownie con chocolate y nueces" width="280" height="500" loading="lazy">
                         </picture>
                     </div>
                     <h4>Torta Brownie</h4>
@@ -263,7 +267,7 @@
                 <div class="brunch-img">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/brunch-artesanal-completo-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/brunch-artesanal-completo-san-miguel-desktop.webp" alt="Brunch completo artesanal en San Miguel" loading="lazy">
+                        <img src="/assets/images/brunch-artesanal-completo-san-miguel-desktop.webp" alt="Brunch completo artesanal en San Miguel" width="295" height="500" loading="lazy">
                     </picture>
                 </div>
             </div>
@@ -357,47 +361,47 @@
                 <!-- Páginas de la carta -->
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-01-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-01-desktop.webp" alt="Carta María Paula – Página 1" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-01-desktop.webp" alt="Carta María Paula – Página 1" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-02-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-02-desktop.webp" alt="Carta María Paula – Página 2" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-02-desktop.webp" alt="Carta María Paula – Página 2" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-03-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-03-desktop.webp" alt="Carta María Paula – Página 3" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-03-desktop.webp" alt="Carta María Paula – Página 3" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-04-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-04-desktop.webp" alt="Carta María Paula – Página 4" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-04-desktop.webp" alt="Carta María Paula – Página 4" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-05-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-05-desktop.webp" alt="Carta María Paula – Página 5" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-05-desktop.webp" alt="Carta María Paula – Página 5" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-06-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-06-desktop.webp" alt="Carta María Paula – Página 6" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-06-desktop.webp" alt="Carta María Paula – Página 6" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-07-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-07-desktop.webp" alt="Carta María Paula – Página 7" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-07-desktop.webp" alt="Carta María Paula – Página 7" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-08-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-08-desktop.webp" alt="Carta María Paula – Página 8" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-08-desktop.webp" alt="Carta María Paula – Página 8" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-09-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-09-desktop.webp" alt="Carta María Paula – Página 9" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-09-desktop.webp" alt="Carta María Paula – Página 9" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-10-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-10-desktop.webp" alt="Carta María Paula – Página 10" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-10-desktop.webp" alt="Carta María Paula – Página 10" width="1240" height="1753" loading="lazy">
                 </picture>
                 <picture>
                     <source media="(max-width: 768px)" srcset="/assets/images/Carta/carta-menu-digital-pagina-11-mobile.webp" type="image/webp">
-                    <img src="/assets/images/Carta/carta-menu-digital-pagina-11-desktop.webp" alt="Carta María Paula – Página 11" loading="lazy">
+                    <img src="/assets/images/Carta/carta-menu-digital-pagina-11-desktop.webp" alt="Carta María Paula – Página 11" width="1240" height="1753" loading="lazy">
                 </picture>
             </div>
 

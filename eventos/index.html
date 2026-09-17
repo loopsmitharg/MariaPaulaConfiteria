@@ -42,6 +42,10 @@
     <meta name="msapplication-TileColor" content="#4a2c2a">
     <meta name="theme-color" content="#4a2c2a">
 
+    <!-- Preload Scanner: Imagen principal visible del Hero (LCP) con fetchpriority="high" -->
+    <link rel="preload" as="image" href="/assets/images/salon-eventos-casamiento-civil-san-miguel-desktop.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/salon-eventos-casamiento-civil-san-miguel-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -49,7 +53,7 @@
     <header>
         <div class="logo-container">
             <a href="/">
-                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="Logo" width="400" height="171">
+                <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
             </a>
         </div>
         <nav>
@@ -148,7 +152,7 @@
                 <div class="article-image">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/salon-eventos-casamiento-civil-san-miguel-mobile.webp" type="image/webp">
-                        <img src="/assets/images/salon-eventos-casamiento-civil-san-miguel-desktop.webp" alt="Celebración de casamientos y eventos civiles en María Paula" class="article-placeholder" style="object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/salon-eventos-casamiento-civil-san-miguel-desktop.webp" alt="Celebración de casamientos y eventos civiles en María Paula" class="article-placeholder" width="1280" height="852" style="object-fit: cover;" fetchpriority="high">
                     </picture>
                 </div>
             </article>
@@ -170,7 +174,7 @@
                 <div class="article-image">
                     <picture>
                         <source media="(max-width: 768px)" srcset="/assets/images/salon-eventos-after-office-corporativo-mobile.webp" type="image/webp">
-                        <img src="/assets/images/salon-eventos-after-office-corporativo-desktop.webp" alt="Salón para eventos corporativos y after office en San Miguel" class="article-placeholder" style="object-fit: cover;" loading="lazy">
+                        <img src="/assets/images/salon-eventos-after-office-corporativo-desktop.webp" alt="Salón para eventos corporativos y after office en San Miguel" class="article-placeholder" width="600" height="400" style="object-fit: cover;" loading="lazy">
                     </picture>
                 </div>
             </article>
