@@ -15,6 +15,10 @@
 
     // ─── Abrir / Cerrar menú ─────────────────────────────────────────────────
     function openMenu() {
+        const orderPanel = document.getElementById('orderPanel');
+        if (orderPanel && orderPanel.classList.contains('open')) {
+            orderPanel.classList.remove('open');
+        }
         hamburgerBtn.classList.add('is-active');
         mobileNav.classList.add('is-open');
         navOverlay.classList.add('is-visible');
@@ -28,6 +32,10 @@
         navOverlay.classList.remove('is-visible');
         body.classList.remove('menu-open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
+        if (document.activeElement && mobileNav.contains(document.activeElement)) {
+            document.activeElement.blur();
+        }
+        window.scrollTo({ left: 0 });
     }
 
     function toggleMenu() {
