@@ -1,0 +1,59 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLOUDFLARE PAGES – REDIRECCIONES 301
+# Mapeo de rutas históricas y extensiones .html a URLs limpias con barra final
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Página Principal
+/index.html                     /                           301
+/views/index.html               /                           301
+
+# Catering
+/Catering.html                  /catering/                  301
+/catering.html                  /catering/                  301
+/views/Catering.html            /catering/                  301
+/catering                       /catering/                  301
+
+# Contacto
+/contacto.html                  /contacto/                  301
+/Contacto.html                  /contacto/                  301
+/views/contacto.html            /contacto/                  301
+/contacto                       /contacto/                  301
+
+# Eventos
+/Eventos.html                   /eventos/                   301
+/eventos.html                   /eventos/                   301
+/views/Eventos.html             /eventos/                   301
+/eventos                        /eventos/                   301
+
+# Menú Digital
+/Menu.html                      /menu/                      301
+/menu.html                      /menu/                      301
+/views/Menu.html                /menu/                      301
+/menu                           /menu/                      301
+
+# Nuestra Cocina
+/NuestraCocina.html             /nuestra-cocina/            301
+/nuestracocina.html             /nuestra-cocina/            301
+/nuestra-cocina.html            /nuestra-cocina/            301
+/views/NuestraCocina.html       /nuestra-cocina/            301
+/nuestra-cocina                 /nuestra-cocina/            301
+
+# Regalos
+/Regalos.html                   /regalos/                   301
+/regalos.html                   /regalos/                   301
+/views/Regalos.html             /regalos/                   301
+/regalos                        /regalos/                   301
+
+# Sucursal Balbín
+/restauranteBalbin.html         /sucursal-balbin/           301
+/restaurantebalbin.html         /sucursal-balbin/           301
+/sucursal-balbin.html           /sucursal-balbin/           301
+/views/restauranteBalbin.html   /sucursal-balbin/           301
+/sucursal-balbin                /sucursal-balbin/           301
+
+# Sucursal Tribulato
+/restauranteTribulato.html      /sucursal-tribulato/        301
+/restaurantetribulato.html      /sucursal-tribulato/        301
+/sucursal-tribulato.html        /sucursal-tribulato/        301
+/views/restauranteTribulato.html /sucursal-tribulato/       301
+/sucursal-tribulato             /sucursal-tribulato/        301

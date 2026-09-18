@@ -1,0 +1,84 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# APACHE HTTP SERVER CONFIGURATION (.htaccess)
+# María Paula Confitería – Seguridad, Caché y Redirecciones 301
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# 1. Cabeceras de Seguridad Globales
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Bloqueo de indexación en entornos de pruebas/dev
+    SetEnvIf Host "pages\.dev$" NOINDEX=1
+    Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet" env=NOINDEX
+</IfModule>
+
+# 2. Motor de Reescritura y Redirecciones 301
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Mapeo de archivos HTML históricos a rutas limpias (301)
+    RewriteRule ^Catering\.html$ /catering/ [R=301,L,NC]
+    RewriteRule ^contacto\.html$ /contacto/ [R=301,L,NC]
+    RewriteRule ^Eventos\.html$ /eventos/ [R=301,L,NC]
+    RewriteRule ^Menu\.html$ /menu/ [R=301,L,NC]
+    RewriteRule ^NuestraCocina\.html$ /nuestra-cocina/ [R=301,L,NC]
+    RewriteRule ^Regalos\.html$ /regalos/ [R=301,L,NC]
+    RewriteRule ^restauranteBalbin\.html$ /sucursal-balbin/ [R=301,L,NC]
+    RewriteRule ^restauranteTribulato\.html$ /sucursal-tribulato/ [R=301,L,NC]
+
+    # Mapeo de rutas legacy de la carpeta views/
+    RewriteRule ^views/Catering\.html$ /catering/ [R=301,L,NC]
+    RewriteRule ^views/contacto\.html$ /contacto/ [R=301,L,NC]
+    RewriteRule ^views/Eventos\.html$ /eventos/ [R=301,L,NC]
+    RewriteRule ^views/Menu\.html$ /menu/ [R=301,L,NC]
+    RewriteRule ^views/NuestraCocina\.html$ /nuestra-cocina/ [R=301,L,NC]
+    RewriteRule ^views/Regalos\.html$ /regalos/ [R=301,L,NC]
+    RewriteRule ^views/restauranteBalbin\.html$ /sucursal-balbin/ [R=301,L,NC]
+    RewriteRule ^views/restauranteTribulato\.html$ /sucursal-tribulato/ [R=301,L,NC]
+    RewriteRule ^views/(index\.html)?$ / [R=301,L,NC]
+
+    # Forzar barra final en directorios para consistencia canónica
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_URI} !/$
+    RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# 3. Políticas de Expiración y Caché (mod_expires)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # HTML: Revalidación inmediata
+    ExpiresByType text/html "access plus 0 seconds"
+
+    # Assets Estáticos: 1 Año Inmutable
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/webm "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+
+# 4. Políticas de Control de Caché (mod_headers)
+<IfModule mod_headers.c>
+    # Revalidación inmediata para HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+
+    # Caché inmutable de 1 año para assets estáticos
+    <FilesMatch "\.(css|js|webp|png|jpg|jpeg|svg|ico|woff2|woff|mp4|webm)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

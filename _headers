@@ -1,0 +1,75 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLOUDFLARE PAGES – CABECERAS HTTP Y POLÍTICAS DE CACHÉ
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# 1. Cabeceras de Seguridad Globales
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# 2. Caché Inmutable de 1 Año para Assets Estáticos
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/videos/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# 3. Revalidación Inmediata para Documentos HTML
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/catering/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/contacto/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/eventos/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/menu/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/nuestra-cocina/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/regalos/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sucursal-balbin/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sucursal-tribulato/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 4. Bloqueo de Indexación para Dominios de Previsualización / Dev
+https://*.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
