@@ -395,7 +395,10 @@
         }
         
         /* Utility for hiding elements */
-        .hidden { display: none; }
+        .hidden,
+        .fab-badge.hidden { 
+            display: none !important; 
+        }
 
         /* --- Order Summary FAB & Panel Styles --- */
         .fab-order {
@@ -437,6 +440,10 @@
             align-items: center;
             justify-content: center;
             border: 2px solid white;
+        }
+
+        .fab-badge.hidden {
+            display: none !important;
         }
 
         .order-panel {
@@ -3526,9 +3533,9 @@
     </div>
 
     <!-- Order FAB & Panel HTML -->
-    <button class="fab-order" onclick="toggleOrderPanel()">
+    <button class="fab-order" onclick="toggleOrderPanel()" aria-label="Ver pedido">
         <span class="material-icons" style="font-size: 32px;">shopping_bag</span>
-        <span class="fab-badge hidden" id="orderBadge">0</span>
+        <span class="fab-badge hidden" id="orderBadge" style="display: none;">0</span>
     </button>
 
     <div class="order-panel" id="orderPanel">
@@ -3624,12 +3631,17 @@
             const saved = localStorage.getItem('mariapaula_order');
             if (saved) {
                 try {
-                    currentOrder = JSON.parse(saved);
+                    currentOrder = JSON.parse(saved) || [];
                     renderOrder();
                     updateBadge();
                 } catch (e) {
                     console.error("Error loading order from local storage", e);
+                    currentOrder = [];
+                    updateBadge();
                 }
+            } else {
+                currentOrder = [];
+                updateBadge();
             }
         }
 
@@ -3638,10 +3650,10 @@
             // Check if item already exists in order
             const existingItem = currentOrder.find(item => item.name === name);
             if (existingItem) {
-                existingItem.qty += 1;
+                existingItem.qty = (parseInt(existingItem.qty, 10) || 0) + 1;
             } else {
                 currentOrder.push({
-                    id: Date.now() + Math.random(), // more unique id
+                    id: 'item_' + Date.now() + '_' + Math.floor(Math.random() * 1000000),
                     name: name,
                     price: price,
                     displayPrice: displayPrice,
@@ -3656,16 +3668,16 @@
         }
 
         function removeFromOrder(id) {
-            currentOrder = currentOrder.filter(item => item.id !== id);
+            currentOrder = currentOrder.filter(item => String(item.id) !== String(id));
             renderOrder();
             updateBadge();
             saveOrder();
         }
         
         function updateQuantity(id, delta) {
-            const item = currentOrder.find(item => item.id === id);
+            const item = currentOrder.find(item => String(item.id) === String(id));
             if (item) {
-                item.qty += delta;
+                item.qty = (parseInt(item.qty, 10) || 0) + delta;
                 if (item.qty <= 0) {
                     removeFromOrder(id);
                 } else {
@@ -3685,16 +3697,17 @@
             let total = 0;
             let count = 0;
 
-            if (currentOrder.length === 0) {
+            if (!currentOrder || currentOrder.length === 0) {
                 container.innerHTML = '<div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>';
                 totalEl.textContent = '$0';
                 return;
             }
 
             currentOrder.forEach(item => {
-                const subtotal = item.price * item.qty;
+                const itemQty = parseInt(item.qty, 10) || 1;
+                const subtotal = item.price * itemQty;
                 total += subtotal;
-                count += item.qty;
+                count += itemQty;
                 
                 const itemEl = document.createElement('div');
                 itemEl.className = 'order-item';
@@ -3702,16 +3715,16 @@
                     <div class="item-details" style="width: 100%;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                              <span class="item-name" style="flex:1; padding-right:10px;">${item.name}</span>
-                             <button class="btn-remove" onclick="removeFromOrder(${item.id})" style="padding:0;">
+                             <button class="btn-remove" onclick="removeFromOrder('${item.id}')" style="padding:0;" aria-label="Eliminar ${item.name}">
                                  <span class="material-icons" style="font-size:1.3rem;">delete</span>
                              </button>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span class="item-price">$${subtotal.toLocaleString('es-AR')}</span>
                             <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span class="qty-value">${item.qty}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)" aria-label="Restar cantidad">-</button>
+                                <span class="qty-value">${itemQty}</span>
+                                <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)" aria-label="Sumar cantidad">+</button>
                             </div>
                         </div>
                     </div>
@@ -3724,22 +3737,33 @@
 
         function updateBadge() {
             const badge = document.getElementById('orderBadge');
+            if (!badge) return;
             
             let totalItems = 0;
-            currentOrder.forEach(i => totalItems += i.qty);
+            if (Array.isArray(currentOrder)) {
+                currentOrder.forEach(i => {
+                    const q = parseInt(i.qty, 10);
+                    if (!isNaN(q) && q > 0) {
+                        totalItems += q;
+                    }
+                });
+            }
             
             if (totalItems > 0) {
                 badge.textContent = totalItems;
                 badge.classList.remove('hidden');
-                badge.classList.add('animate-bounce');
+                badge.style.display = 'flex';
             } else {
+                badge.textContent = '0';
                 badge.classList.add('hidden');
+                badge.style.display = 'none';
             }
         }
 
         function toggleOrderPanel() {
             const panel = document.getElementById('orderPanel');
             const isOpen = panel.classList.toggle('open');
+            updateBadge();
             if (isOpen) {
                 const hamburgerBtn = document.getElementById('hamburger-btn');
                 const mobileNav = document.getElementById('mobile-nav');
@@ -3765,6 +3789,7 @@
         // Initialize Button Listeners
         document.addEventListener('DOMContentLoaded', () => {
             loadOrder();
+            updateBadge();
             
             document.body.addEventListener('click', (e) => {
                 const btn = e.target.closest('.btn-icon-only');
