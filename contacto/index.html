@@ -132,7 +132,8 @@
             
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/d/embed?mid=1fSXvjay35u7iqkkcqWaBSTBF6aM7nZc&ehbc=2E312F&noprof=1" 
-                        style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        title="Mapa de ubicación de María Paula Confitería en San Miguel"
+                        style="border:0;" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="contact-form-container">
                 <h2>Envíenos su mensaje</h2>
@@ -141,18 +142,18 @@
                 <form id="contacto-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" id="form-nombre" placeholder="Su nombre" required>
+                            <label for="form-nombre">Nombre</label>
+                            <input type="text" id="form-nombre" name="nombre" placeholder="Su nombre" required>
                         </div>
                         <div class="form-group">
-                            <label>Apellido</label>
-                            <input type="text" id="form-apellido" placeholder="Su apellido" required>
+                            <label for="form-apellido">Apellido</label>
+                            <input type="text" id="form-apellido" name="apellido" placeholder="Su apellido" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Motivo del contacto</label>
-                        <select id="motivo-contacto" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; color: #333; background-color: #fff;">
+                        <label for="motivo-contacto">Motivo del contacto</label>
+                        <select id="motivo-contacto" name="motivo" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; color: #333; background-color: #fff;">
                             <option value="">Seleccione un motivo</option>
                             <option value="Agradecimiento">Agradecimiento</option>
                             <option value="Sugerencia">Sugerencia</option>
@@ -163,8 +164,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Mensaje o Consulta</label>
-                        <textarea id="form-mensaje" rows="5" placeholder="¿En qué podemos ayudarle?" required></textarea>
+                        <label for="form-mensaje">Mensaje o Consulta</label>
+                        <textarea id="form-mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarle?" required></textarea>
                     </div>
                     
                     <button type="submit" class="btn-main" style="width: 100%;">ENVIAR CONSULTA</button>
@@ -238,7 +239,7 @@
             const mensaje = document.getElementById('form-mensaje').value.trim();
 
             // Construir el mensaje formateado para WhatsApp
-            const textoMensaje = `Hola, escribo desde la web MariaPaulaConfiteria.com.\n\n*Nombre:* ${nombre} ${apellido}\n*Motivo:* ${motivo}\n*Mensaje!*\n${mensaje}`;
+            const textoMensaje = `Hola, escribo desde la web MariaPaulaConfiteria.com.\n\n*Nombre:* ${nombre} ${apellido}\n*Motivo:* ${motivo}\n*Mensaje:*\n${mensaje}`;
 
             // Codificar el texto para URL
             const urlWhatsApp = `https://wa.me/5491155050530?text=${encodeURIComponent(textoMensaje)}`;
