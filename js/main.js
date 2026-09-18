@@ -123,13 +123,38 @@
         }
     });
 
-    // ─── Patrón Facade: Carga Diferida de Video (YouTube / Vimeo) ────────────
+    // ─── Patrón Facade: Carga Diferida de Video (Local MP4 / YouTube / Vimeo) ─
     document.querySelectorAll('.video-facade').forEach(function (facade) {
         function activateVideo() {
             if (facade.classList.contains('is-loaded')) return;
+            const videoSrc = facade.getAttribute('data-video-src');
             const videoId  = facade.getAttribute('data-video-id');
-            const platform = facade.getAttribute('data-platform') || 'youtube';
+            const platform = facade.getAttribute('data-platform') || (videoSrc ? 'local' : 'youtube');
             const embedUrl = facade.getAttribute('data-embed-url');
+
+            facade.classList.add('is-loaded');
+
+            const playBtn = facade.querySelector('.facade-play-btn');
+            if (playBtn) playBtn.remove();
+
+            if (videoSrc || platform === 'local') {
+                const src = videoSrc || '/assets/videos/VideoMariaPaula.mp4';
+                const video = document.createElement('video');
+                video.setAttribute('controls', '');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('playsinline', '');
+                video.className = 'video-demand';
+
+                const source = document.createElement('source');
+                source.src = src;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+
+                facade.appendChild(video);
+                video.play().catch(function () {});
+                video.focus();
+                return;
+            }
 
             let src = '';
             if (embedUrl) {
@@ -154,11 +179,6 @@
             iframe.style.top = '0';
             iframe.style.left = '0';
             iframe.style.zIndex = '3';
-
-            facade.classList.add('is-loaded');
-
-            const playBtn = facade.querySelector('.facade-play-btn');
-            if (playBtn) playBtn.remove();
 
             facade.appendChild(iframe);
             iframe.focus();

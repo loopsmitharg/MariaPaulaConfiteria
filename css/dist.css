@@ -474,7 +474,12 @@ body.menu-open { overflow: hidden; }
     box-shadow: 0 12px 30px rgba(212, 160, 23, 0.5);
 }
 
-.video-facade iframe {
+.video-facade.is-loaded {
+    cursor: default;
+}
+
+.video-facade iframe,
+.video-facade video {
     position: absolute;
     top: 0;
     left: 0;
@@ -482,6 +487,7 @@ body.menu-open { overflow: hidden; }
     height: 100%;
     border: 0;
     z-index: 3;
+    object-fit: cover;
 }
 
 .scroll-indicator {
