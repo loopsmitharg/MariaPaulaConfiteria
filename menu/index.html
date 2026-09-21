@@ -62,16 +62,16 @@
 
     <header>
         <div class="logo-container">
-            <a href="/">
+            <a href="/" aria-label="Página principal de María Paula Confitería">
                 <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
             </a>
         </div>
-        <nav>
+        <nav aria-label="Navegación principal">
             <ul>
                 <li><a href="/" class="nav-link">Inicio</a></li>
                 <li><a href="/menu/" class="nav-link active">Menú</a></li>
                 <li class="dropdown">
-                    <a href="#" class="nav-link">Servicios ▾</a>
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Servicios ▾</a>
                     <div class="dropdown-content">
                         <a href="/eventos/">Eventos</a>
                         <a href="/regalos/">Regalos</a>
@@ -79,7 +79,7 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="nav-link">Restaurantes ▾</a>
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">Restaurantes ▾</a>
                     <div class="dropdown-content">
                         <a href="/sucursal-balbin/">Sucursal Balbín</a>
                         <a href="/sucursal-tribulato/">Sucursal Tribulato</a>
@@ -109,24 +109,24 @@
             <li><a href="/" class="mobile-nav-link">Inicio</a></li>
             <li><a href="/menu/" class="mobile-nav-link active">Menú</a></li>
             <li class="mobile-dropdown">
-                <button class="mobile-nav-link accordion-toggle">Servicios
-                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <button class="mobile-nav-link accordion-toggle" aria-expanded="false" aria-controls="mobile-submenu-servicios">Servicios
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
-                <ul class="mobile-submenu">
+                <ul class="mobile-submenu" id="mobile-submenu-servicios">
                     <li><a href="/eventos/">Eventos</a></li>
                     <li><a href="/regalos/">Regalos</a></li>
                     <li><a href="/catering/">Catering</a></li>
                 </ul>
             </li>
             <li class="mobile-dropdown">
-                <button class="mobile-nav-link accordion-toggle">Restaurantes
-                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <button class="mobile-nav-link accordion-toggle" aria-expanded="false" aria-controls="mobile-submenu-restaurantes">Restaurantes
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
-                <ul class="mobile-submenu">
+                <ul class="mobile-submenu" id="mobile-submenu-restaurantes">
                     <li><a href="/sucursal-balbin/">Sucursal Balbín</a></li>
                     <li><a href="/sucursal-tribulato/">Sucursal Tribulato</a></li>
                 </ul>
@@ -201,7 +201,8 @@
                 <button class="filter-pill sub-filter sub-pasteleria hidden" onclick="filterMenu('adicionales')">🧀 Adicionales</button>
             </div>
         </div>
-<div class="masonry-grid">
+<h2 class="sr-only">Catálogo de Productos y Platos</h2>
+        <div class="masonry-grid">
 
         <div class="menu-card-rich category-comidas category-burgers">
             <div class="card-img-container placeholder-img">
@@ -213,8 +214,8 @@
                     <span class="card-price">$16.500</span>
                 </div>
                 <p class="card-desc">hamburguesa casera, cheddar, lechuga y tomate</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}]' aria-label="Añadir Burger clásica al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -229,8 +230,8 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc">casera, cheddar, bacon crocante, lechuga, tomate y huevo a la plancha</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]' aria-label="Añadir Burger María Paula al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -245,8 +246,8 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc">doble carne, cheddar y bacon crocante</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]' aria-label="Añadir Doble burger al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -261,8 +262,8 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc">carne braseada desmenuzada, queso derretido; aderezo opcional Bdq</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]' aria-label="Añadir Sandwich al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -277,8 +278,8 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc">pollo frito, bacon crocante, tomate y queso</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]' aria-label="Añadir Sandwich al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -293,8 +294,8 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc">rúcula, jamón crudo, tomates asados, queso crema</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]' aria-label="Añadir Sandwich al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -309,8 +310,8 @@
                     <span class="card-price">$12.500</span>
                 </div>
                 <p class="card-desc">jamón cocido, queso, lechuga y tomate</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12500, &quot;displayPrice&quot;: &quot;$12.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12500, &quot;displayPrice&quot;: &quot;$12.500&quot;}]' aria-label="Añadir Sandwich clásico al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -325,8 +326,8 @@
                     <span class="card-price">$11.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 11500, &quot;displayPrice&quot;: &quot;$11.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 11500, &quot;displayPrice&quot;: &quot;$11.500&quot;}]' aria-label="Añadir Fetuccinis al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -341,8 +342,8 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]' aria-label="Añadir Ñoquis al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -357,8 +358,8 @@
                     <span class="card-price">$14.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}]' aria-label="Añadir Sorrentinos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -373,8 +374,8 @@
                     <span class="card-price">$14.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14500, &quot;displayPrice&quot;: &quot;$14.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14500, &quot;displayPrice&quot;: &quot;$14.500&quot;}]' aria-label="Añadir Canelones al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -389,8 +390,8 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]' aria-label="Añadir Lasagna al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -405,8 +406,8 @@
                     <span class="card-price">$13.000</span>
                 </div>
                 <p class="card-desc">JyQ o RyV</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}]' aria-label="Añadir Ravioles al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -421,8 +422,8 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Bolognesa al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -437,8 +438,8 @@
                     <span class="card-price">$5.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5600, &quot;displayPrice&quot;: &quot;$5.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5600, &quot;displayPrice&quot;: &quot;$5.600&quot;}]' aria-label="Añadir Estofado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -453,8 +454,8 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc">crema, jamón y parmesano</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Alfredo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -469,8 +470,8 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Alfredo con tiras de pollo grillado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -485,8 +486,8 @@
                     <span class="card-price">$14.000 / $19.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 14000, &quot;displayPrice&quot;: &quot;$14.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]' aria-label="Añadir Muzzarella al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -501,8 +502,8 @@
                     <span class="card-price">$15.000 / $26.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26500, &quot;displayPrice&quot;: &quot;$26.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26500, &quot;displayPrice&quot;: &quot;$26.500&quot;}]' aria-label="Añadir Jamón y muzzarella al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -517,8 +518,8 @@
                     <span class="card-price">$16.500 / $27.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 27000, &quot;displayPrice&quot;: &quot;$27.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16500, &quot;displayPrice&quot;: &quot;$16.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 27000, &quot;displayPrice&quot;: &quot;$27.000&quot;}]' aria-label="Añadir Napolitana al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -533,8 +534,8 @@
                     <span class="card-price">$13.000 / $18.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 13000, &quot;displayPrice&quot;: &quot;$13.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]' aria-label="Añadir Fugazza al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -549,8 +550,8 @@
                     <span class="card-price">$16.000 / $21.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 21000, &quot;displayPrice&quot;: &quot;$21.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 21000, &quot;displayPrice&quot;: &quot;$21.000&quot;}]' aria-label="Añadir Fugazzeta con muzzarella al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -565,8 +566,8 @@
                     <span class="card-price">$18.000 / $28.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]' aria-label="Añadir Roquefort al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -581,8 +582,8 @@
                     <span class="card-price">$18.500 / $26.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Individual&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]' aria-label="Añadir Italiana al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -597,8 +598,8 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]' aria-label="Añadir Bastones de muzzarella con salsa de tomate al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -613,8 +614,8 @@
                     <span class="card-price">$15.000</span>
                 </div>
                 <p class="card-desc">sal Bdq + salsa miel y mostaza</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]' aria-label="Añadir Finger de pollo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -629,8 +630,8 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc">guacamole, picante y cheddar</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]' aria-label="Añadir Nachos con 3 aderezos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -645,8 +646,8 @@
                     <span class="card-price">$12.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]' aria-label="Añadir Papas fritas con cheddar, panceta y verdeo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -661,8 +662,8 @@
                     <span class="card-price">$6.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]' aria-label="Añadir Dúo de empanadas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -677,8 +678,8 @@
                     <span class="card-price">$9.200</span>
                 </div>
                 <p class="card-desc">individual</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9200, &quot;displayPrice&quot;: &quot;$9.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9200, &quot;displayPrice&quot;: &quot;$9.200&quot;}]' aria-label="Añadir Tortilla de papas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -693,8 +694,8 @@
                     <span class="card-price">$28.000</span>
                 </div>
                 <p class="card-desc">dos medallones envueltos en panceta</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 28000, &quot;displayPrice&quot;: &quot;$28.000&quot;}]' aria-label="Añadir Lomo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -709,8 +710,8 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]' aria-label="Añadir Puré rústico de papas y rúcula con parmesano al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -725,8 +726,8 @@
                     <span class="card-price">$19.000</span>
                 </div>
                 <p class="card-desc">a la cerveza, con Bdq + puré de batatas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19000, &quot;displayPrice&quot;: &quot;$19.000&quot;}]' aria-label="Añadir Rondiola al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -741,8 +742,8 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc">arroz yamani, verduras al wok y soja</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]' aria-label="Añadir Yamani al wok al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -757,8 +758,8 @@
                     <span class="card-price">$20.500</span>
                 </div>
                 <p class="card-desc">grillada con vegetales salteados y puré de papas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]' aria-label="Añadir Pesca del día al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -773,8 +774,8 @@
                     <span class="card-price">$25.000</span>
                 </div>
                 <p class="card-desc">ternera con cheddar, panceta y verdeo + fritas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]' aria-label="Añadir Milanesa María Paula al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -789,8 +790,8 @@
                     <span class="card-price">$26.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]' aria-label="Añadir Bife de chorizo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -805,8 +806,8 @@
                     <span class="card-price">$24.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]' aria-label="Añadir Bife de lomo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -821,8 +822,8 @@
                     <span class="card-price">$18.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18500, &quot;displayPrice&quot;: &quot;$18.500&quot;}]' aria-label="Añadir Bife de costilla al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -837,8 +838,8 @@
                     <span class="card-price">$18.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]' aria-label="Añadir Costillitas de cerdo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -853,8 +854,8 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]' aria-label="Añadir Pollo grillé al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -869,8 +870,8 @@
                     <span class="card-price">$20.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 20500, &quot;displayPrice&quot;: &quot;$20.500&quot;}]' aria-label="Añadir Milanesa de ternera al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -885,8 +886,8 @@
                     <span class="card-price">$19.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 19500, &quot;displayPrice&quot;: &quot;$19.500&quot;}]' aria-label="Añadir Milanesa de pollo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -901,8 +902,8 @@
                     <span class="card-price">$24.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 24000, &quot;displayPrice&quot;: &quot;$24.000&quot;}]' aria-label="Añadir Milanesa de ternera napolitana al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -917,8 +918,8 @@
                     <span class="card-price">$23.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 23000, &quot;displayPrice&quot;: &quot;$23.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 23000, &quot;displayPrice&quot;: &quot;$23.000&quot;}]' aria-label="Añadir Milanesa de pollo napolitana al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -933,8 +934,8 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]' aria-label="Añadir Papas fritas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -949,8 +950,8 @@
                     <span class="card-price">$12.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 12000, &quot;displayPrice&quot;: &quot;$12.000&quot;}]' aria-label="Añadir Papas fritas c/ cheddar y bacon al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -965,8 +966,8 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]' aria-label="Añadir Batatas fritas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -981,8 +982,8 @@
                     <span class="card-price">$7.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7500, &quot;displayPrice&quot;: &quot;$7.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7500, &quot;displayPrice&quot;: &quot;$7.500&quot;}]' aria-label="Añadir Puré de papas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -997,8 +998,8 @@
                     <span class="card-price">$5.300</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5300, &quot;displayPrice&quot;: &quot;$5.300&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5300, &quot;displayPrice&quot;: &quot;$5.300&quot;}]' aria-label="Añadir Puré de batatas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1013,8 +1014,8 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]' aria-label="Añadir Puré de calabaza al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1029,8 +1030,8 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]' aria-label="Añadir Ensalada verde al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1045,8 +1046,8 @@
                     <span class="card-price">$7.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7000, &quot;displayPrice&quot;: &quot;$7.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 7000, &quot;displayPrice&quot;: &quot;$7.000&quot;}]' aria-label="Añadir Arroz blanco al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1061,8 +1062,8 @@
                     <span class="card-price">$16.000</span>
                 </div>
                 <p class="card-desc">lechuga, aderezo césar, parmesano y croutons</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16000, &quot;displayPrice&quot;: &quot;$16.000&quot;}]' aria-label="Añadir César al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1077,8 +1078,8 @@
                     <span class="card-price">$16.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16800, &quot;displayPrice&quot;: &quot;$16.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 16800, &quot;displayPrice&quot;: &quot;$16.800&quot;}]' aria-label="Añadir César con pollo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1093,8 +1094,8 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]' aria-label="Añadir César con lagostino al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1109,8 +1110,8 @@
                     <span class="card-price">$17.500</span>
                 </div>
                 <p class="card-desc">mix verdes, zanahoria, huevo, choclo, atún y cherry</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17500, &quot;displayPrice&quot;: &quot;$17.500&quot;}]' aria-label="Añadir Tuna salad al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1125,8 +1126,8 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc">arroz yamani, calabaza, palta, choclo, tomate y semillas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]' aria-label="Añadir Veggie salad al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1141,8 +1142,8 @@
                     <span class="card-price">$18.000</span>
                 </div>
                 <p class="card-desc">rúcula, lechuga, muzzarella, jamón crudo, cebolla morada, cherry y aceitunas negras</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 18000, &quot;displayPrice&quot;: &quot;$18.000&quot;}]' aria-label="Añadir Mediterránea al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1157,8 +1158,8 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]' aria-label="Añadir Ensalada 3 ingredientes a elección al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1173,8 +1174,8 @@
                     <span class="card-price">$3.800 / $4.200 / $4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Café al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1189,8 +1190,8 @@
                     <span class="card-price">(Jarrito) $4.800 / (Doble) $5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Café con crema al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1205,8 +1206,8 @@
                     <span class="card-price">$3.800 / $4.200 / $4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Pocillo&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}, {&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Cortado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1221,8 +1222,8 @@
                     <span class="card-price">(Jarrito) $4.200 / (Doble) $5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Jarrito&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}, {&quot;name&quot;: &quot;Doble&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Lágrima al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1237,8 +1238,8 @@
                     <span class="card-price">(Doble) $4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;(Doble) $4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;(Doble) $4.800&quot;}]' aria-label="Añadir Descafeinado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1253,8 +1254,8 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]' aria-label="Añadir Doble al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1269,8 +1270,8 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]' aria-label="Añadir XL al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1285,8 +1286,8 @@
                     <span class="card-price">$4.500 / $5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Capuchino al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1301,8 +1302,8 @@
                     <span class="card-price">$4.900 / $5.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4900, &quot;displayPrice&quot;: &quot;$4.900&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Chico&quot;, &quot;price&quot;: 4900, &quot;displayPrice&quot;: &quot;$4.900&quot;}, {&quot;name&quot;: &quot;Grande&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]' aria-label="Añadir Capuchino italiano al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1317,8 +1318,8 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]' aria-label="Añadir Café especial al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1333,8 +1334,8 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Submarino al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1349,8 +1350,8 @@
                     <span class="card-price">$4.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4500, &quot;displayPrice&quot;: &quot;$4.500&quot;}]' aria-label="Añadir Chocolatada al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1365,8 +1366,8 @@
                     <span class="card-price">$1.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1900, &quot;displayPrice&quot;: &quot;$1.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1900, &quot;displayPrice&quot;: &quot;$1.900&quot;}]' aria-label="Añadir Vaso de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1381,8 +1382,8 @@
                     <span class="card-price">$3.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3800, &quot;displayPrice&quot;: &quot;$3.800&quot;}]' aria-label="Añadir Té / mate cocido al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1397,8 +1398,8 @@
                     <span class="card-price">$4.100</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]' aria-label="Añadir Té / mate cocido con leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1413,8 +1414,8 @@
                     <span class="card-price">$4.100</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4100, &quot;displayPrice&quot;: &quot;$4.100&quot;}]' aria-label="Añadir Té saborizado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1429,8 +1430,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Queso crema al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1445,8 +1446,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Mermelada / Dulce de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1461,8 +1462,8 @@
                     <span class="card-price">$1.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1000, &quot;displayPrice&quot;: &quot;$1.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1000, &quot;displayPrice&quot;: &quot;$1.000&quot;}]' aria-label="Añadir Tostadas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1477,8 +1478,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Facturas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1493,8 +1494,8 @@
                     <span class="card-price">$700</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 700, &quot;displayPrice&quot;: &quot;$700&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 700, &quot;displayPrice&quot;: &quot;$700&quot;}]' aria-label="Añadir Libritos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1509,8 +1510,8 @@
                     <span class="card-price">$800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]' aria-label="Añadir Chipá al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1525,8 +1526,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Jarrito de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1541,8 +1542,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Crema al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1557,8 +1558,8 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]' aria-label="Añadir Plato de frutas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1573,8 +1574,8 @@
                     <span class="card-price">$1.300</span>
                 </div>
                 <p class="card-desc">x unid</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]' aria-label="Añadir Masas finas y secas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1589,8 +1590,8 @@
                     <span class="card-price">$5.500</span>
                 </div>
                 <p class="card-desc">6 unid</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5500, &quot;displayPrice&quot;: &quot;$5.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5500, &quot;displayPrice&quot;: &quot;$5.500&quot;}]' aria-label="Añadir Galletitas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1605,8 +1606,8 @@
                     <span class="card-price">$5.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5900, &quot;displayPrice&quot;: &quot;$5.900&quot;}]' aria-label="Añadir Café con leche + 2 facturas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1621,8 +1622,8 @@
                     <span class="card-price">$6.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]' aria-label="Añadir Café con leche + 3 facturas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1637,8 +1638,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Café con leche + medio tostado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1653,8 +1654,8 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]' aria-label="Añadir 2 tostadas + mermelada + queso blanco + café c/leche + exprimido chico al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1669,8 +1670,8 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]' aria-label="Añadir Tazón yogurt/granola/frutas + 2 tostadas + queso blanco + mermelada + exprimido chico al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1685,8 +1686,8 @@
                     <span class="card-price">$15.500</span>
                 </div>
                 <p class="card-desc">tostada con huevos revueltos y bacon</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15500, &quot;displayPrice&quot;: &quot;$15.500&quot;}]' aria-label="Añadir Brunch  + café + exprimido chico al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1701,8 +1702,8 @@
                     <span class="card-price">$36.500</span>
                 </div>
                 <p class="card-desc">2 tostadas + 2 medialunas jyq + mix frutas + 2 cafés + 2 exprimidos chicos</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 36500, &quot;displayPrice&quot;: &quot;$36.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 36500, &quot;displayPrice&quot;: &quot;$36.500&quot;}]' aria-label="Añadir Brunch para dos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1717,8 +1718,8 @@
                     <span class="card-price">$45.000</span>
                 </div>
                 <p class="card-desc">2 infusiones + porción torta + 2 scons + 2 muffins + masas + 2 de miga + 2 exprimidos chicos</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 45000, &quot;displayPrice&quot;: &quot;$45.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 45000, &quot;displayPrice&quot;: &quot;$45.000&quot;}]' aria-label="Añadir María Paula al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1733,8 +1734,8 @@
                     <span class="card-price">$15.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 15000, &quot;displayPrice&quot;: &quot;$15.000&quot;}]' aria-label="Añadir Tostado jyq (2 sandwich) + limonada menta/jengibre (vaso) al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1749,8 +1750,8 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc">ddl o crema y frutos rojos</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]' aria-label="Añadir Waffle  + milk shake (a elección) al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1765,8 +1766,8 @@
                     <span class="card-price">$2.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2600, &quot;displayPrice&quot;: &quot;$2.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2600, &quot;displayPrice&quot;: &quot;$2.600&quot;}]' aria-label="Añadir Triple tradicional al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1781,8 +1782,8 @@
                     <span class="card-price">$3.210</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3210, &quot;displayPrice&quot;: &quot;$3.210&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3210, &quot;displayPrice&quot;: &quot;$3.210&quot;}]' aria-label="Añadir Triple especial al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1797,8 +1798,8 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]' aria-label="Añadir Pan a elección jamón y queso al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1813,8 +1814,8 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]' aria-label="Añadir Pan a elección crudo y queso al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1829,8 +1830,8 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]' aria-label="Añadir Pan a elección salame y queso al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1845,8 +1846,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Tostados en pan de miga al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1861,8 +1862,8 @@
                     <span class="card-price">$4.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]' aria-label="Añadir Medio tostado en pan de miga al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1877,8 +1878,8 @@
                     <span class="card-price">$14.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]' aria-label="Añadir Crudo, queso y tomate al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1893,8 +1894,8 @@
                     <span class="card-price">$9.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9800, &quot;displayPrice&quot;: &quot;$9.800&quot;}]' aria-label="Añadir Jamón cocido, queso y tomate al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1909,8 +1910,8 @@
                     <span class="card-price">$14.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 14200, &quot;displayPrice&quot;: &quot;$14.200&quot;}]' aria-label="Añadir Cheddar, panceta y huevo a la plancha al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1925,8 +1926,8 @@
                     <span class="card-price">$900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 900, &quot;displayPrice&quot;: &quot;$900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 900, &quot;displayPrice&quot;: &quot;$900&quot;}]' aria-label="Añadir Huevo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1941,8 +1942,8 @@
                     <span class="card-price">$800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 800, &quot;displayPrice&quot;: &quot;$800&quot;}]' aria-label="Añadir Tomate al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1957,8 +1958,8 @@
                     <span class="card-price">$1.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]' aria-label="Añadir Crudo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1973,8 +1974,8 @@
                     <span class="card-price">$1.300</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1300, &quot;displayPrice&quot;: &quot;$1.300&quot;}]' aria-label="Añadir Jamón cocido al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -1989,8 +1990,8 @@
                     <span class="card-price">$1.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1600, &quot;displayPrice&quot;: &quot;$1.600&quot;}]' aria-label="Añadir Palmitos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2005,8 +2006,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Apple crumble al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2021,8 +2022,8 @@
                     <span class="card-price">$8.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]' aria-label="Añadir Cheesecake con frutos rojos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2037,8 +2038,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Lemon pie al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2053,8 +2054,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Selva negra al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2069,8 +2070,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Oreo torta al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2085,8 +2086,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Chocotorta al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2101,8 +2102,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Torta brownie al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2117,8 +2118,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Rogel al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2133,8 +2134,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Tiramisu al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2149,8 +2150,8 @@
                     <span class="card-price">$8.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]' aria-label="Añadir Brownie al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2165,8 +2166,8 @@
                     <span class="card-price">$6.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 6500, &quot;displayPrice&quot;: &quot;$6.500&quot;}]' aria-label="Añadir Pastafrola con membrillo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2181,8 +2182,8 @@
                     <span class="card-price">$8.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8200, &quot;displayPrice&quot;: &quot;$8.200&quot;}]' aria-label="Añadir Torta de ricota al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2197,8 +2198,8 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]' aria-label="Añadir Alfajor cordobés al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2213,8 +2214,8 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Alfajor de chocolate al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2229,8 +2230,8 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]' aria-label="Añadir Alfajor de maicena al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2245,8 +2246,8 @@
                     <span class="card-price">$4.800</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4800, &quot;displayPrice&quot;: &quot;$4.800&quot;}]' aria-label="Añadir Alfajor de coco al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2261,8 +2262,8 @@
                     <span class="card-price">$3.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3500, &quot;displayPrice&quot;: &quot;$3.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3500, &quot;displayPrice&quot;: &quot;$3.500&quot;}]' aria-label="Añadir Macarrón al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2277,8 +2278,8 @@
                     <span class="card-price">$4.600</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}]' aria-label="Añadir Muffin’s al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2293,8 +2294,8 @@
                     <span class="card-price">$2.400</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2400, &quot;displayPrice&quot;: &quot;$2.400&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 2400, &quot;displayPrice&quot;: &quot;$2.400&quot;}]' aria-label="Añadir Pastelitos al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2309,8 +2310,8 @@
                     <span class="card-price">$1.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 1200, &quot;displayPrice&quot;: &quot;$1.200&quot;}]' aria-label="Añadir Facturas / medialunas al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2325,8 +2326,8 @@
                     <span class="card-price">$5.200</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 5200, &quot;displayPrice&quot;: &quot;$5.200&quot;}]' aria-label="Añadir Budín al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2341,8 +2342,8 @@
                     <span class="card-price">$13.500</span>
                 </div>
                 <p class="card-desc">Jarra</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 13500, &quot;displayPrice&quot;: &quot;$13.500&quot;}]' aria-label="Añadir Limonada menta y jengibre al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2357,8 +2358,8 @@
                     <span class="card-price">$4.200</span>
                 </div>
                 <p class="card-desc">Vaso</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 4200, &quot;displayPrice&quot;: &quot;$4.200&quot;}]' aria-label="Añadir Limonada menta y jengibre al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2373,8 +2374,8 @@
                     <span class="card-price">$4.600 / $8.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]' aria-label="Añadir Pomelada (vaso) Chico/Grande al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2389,8 +2390,8 @@
                     <span class="card-price">$4.600 / $8.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;Opci\u00f3n 1&quot;, &quot;price&quot;: 4600, &quot;displayPrice&quot;: &quot;$4.600&quot;}, {&quot;name&quot;: &quot;Opci\u00f3n 2&quot;, &quot;price&quot;: 8500, &quot;displayPrice&quot;: &quot;$8.500&quot;}]' aria-label="Añadir Exprimido de naranja (vaso) Chico/Grande al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2405,8 +2406,8 @@
                     <span class="card-price">$3.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3900, &quot;displayPrice&quot;: &quot;$3.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3900, &quot;displayPrice&quot;: &quot;$3.900&quot;}]' aria-label="Añadir Gaseosa línea Coca Cola 500 ml al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2421,8 +2422,8 @@
                     <span class="card-price">$3.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]' aria-label="Añadir Agua saborizada 500 ml al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2437,8 +2438,8 @@
                     <span class="card-price">$3.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 3000, &quot;displayPrice&quot;: &quot;$3.000&quot;}]' aria-label="Añadir Agua con o sin gas 500 ml al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2453,8 +2454,8 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]' aria-label="Añadir Licuados al agua al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2469,8 +2470,8 @@
                     <span class="card-price">$9.000</span>
                 </div>
                 <p class="card-desc">Otras frutas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9000, &quot;displayPrice&quot;: &quot;$9.000&quot;}]' aria-label="Añadir Licuados al agua al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2485,8 +2486,8 @@
                     <span class="card-price">$10.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10000, &quot;displayPrice&quot;: &quot;$10.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10000, &quot;displayPrice&quot;: &quot;$10.000&quot;}]' aria-label="Añadir Licuados de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2501,8 +2502,8 @@
                     <span class="card-price">$9.500</span>
                 </div>
                 <p class="card-desc">Otras frutas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 9500, &quot;displayPrice&quot;: &quot;$9.500&quot;}]' aria-label="Añadir Licuados de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2517,8 +2518,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Americana con Oreo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2533,8 +2534,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Frutilla al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2549,8 +2550,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Choco al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2565,8 +2566,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Dulce de leche al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2581,8 +2582,8 @@
                     <span class="card-price">$8.900</span>
                 </div>
                 <p class="card-desc">helado de americana + ddl artesanal + chocolinas</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 8900, &quot;displayPrice&quot;: &quot;$8.900&quot;}]' aria-label="Añadir Chocotorta al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2597,8 +2598,8 @@
                     <span class="card-price">$17.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 17000, &quot;displayPrice&quot;: &quot;$17.000&quot;}]' aria-label="Añadir Milkshake + Waffle al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2613,8 +2614,8 @@
                     <span class="card-price">$22.000</span>
                 </div>
                 <p class="card-desc">al agua</p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 22000, &quot;displayPrice&quot;: &quot;$22.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 22000, &quot;displayPrice&quot;: &quot;$22.000&quot;}]' aria-label="Añadir 2 licuados  + tostado al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2629,8 +2630,8 @@
                     <span class="card-price">$10.500</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 10500, &quot;displayPrice&quot;: &quot;$10.500&quot;}]' aria-label="Añadir Exprimido grande + tostado queso y huevo al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2645,8 +2646,8 @@
                     <span class="card-price">$27.900</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 27900, &quot;displayPrice&quot;: &quot;$27.900&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 27900, &quot;displayPrice&quot;: &quot;$27.900&quot;}]' aria-label="Añadir 6 triples + 1 jarra al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2661,8 +2662,8 @@
                     <span class="card-price">$26.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 26000, &quot;displayPrice&quot;: &quot;$26.000&quot;}]' aria-label="Añadir 2 croissants jyq + 1 jarra al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2677,8 +2678,8 @@
                     <span class="card-price">$25.000</span>
                 </div>
                 <p class="card-desc"></p>
-                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]'>
-                    <span class="material-icons">add</span>
+                <button class="btn-icon-only" data-options='[{&quot;name&quot;: &quot;\u00danica&quot;, &quot;price&quot;: 25000, &quot;displayPrice&quot;: &quot;$25.000&quot;}]' aria-label="Añadir Jarra al pedido">
+                    <span class="material-icons" aria-hidden="true">add</span>
                 </button>
             </div>
         </div>
@@ -2687,6 +2688,7 @@
     </main>
 
     <footer>
+        <h2 class="sr-only">Información de Contacto y Sucursales</h2>
         <div class="footer-container">
             <div class="footer-col">
                 <h3>Contacto</h3>
@@ -2722,14 +2724,14 @@
             <div class="footer-col">
                 <h3>Redes Sociales</h3>
                 <div class="socials">
-                    <a href="https://www.instagram.com/mariapaulaconfiteria/?hl=es" class="social-icon" title="Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <a href="https://www.instagram.com/mariapaulaconfiteria/?hl=es" class="social-icon" title="Instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram de María Paula Confitería">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=100048064763939" class="social-icon" title="Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    <a href="https://www.facebook.com/profile.php?id=100048064763939" class="social-icon" title="Facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook de María Paula Confitería">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                     </a>
-                    <a href="https://wa.me/5491135433031?text=Hola,%20quiero%20comunicarme%20con%20Maria%20Paula" class="social-icon" title="WhatsApp" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <a href="https://wa.me/5491135433031?text=Hola,%20quiero%20comunicarme%20con%20Maria%20Paula" class="social-icon" title="WhatsApp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de María Paula Confitería">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     </a>
                 </div>
             </div>
@@ -2823,9 +2825,9 @@
 
 
     <!-- Options Modal HTML -->
-    <div class="modal-overlay" id="optionsModal">
+    <div class="modal-overlay" id="optionsModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeOptionsModal()">&times;</button>
+            <button class="modal-close" onclick="closeOptionsModal()" aria-label="Cerrar modal de opciones">&times;</button>
             <h3 class="modal-title" id="modalProductTitle">Producto</h3>
             <div class="modal-options-list" id="modalOptionsContainer">
                 <!-- Radio options (labels) injected via JS -->
@@ -2837,15 +2839,15 @@
     </div>
 
     <!-- Order FAB & Panel HTML -->
-    <button class="fab-order" onclick="toggleOrderPanel()" aria-label="Ver pedido">
+    <button class="fab-order" onclick="toggleOrderPanel()" aria-label="Ver pedido" aria-expanded="false" aria-controls="orderPanel">
         <span class="material-icons">shopping_bag</span>
         <span class="fab-badge hidden" id="orderBadge">0</span>
     </button>
 
-    <div class="order-panel" id="orderPanel">
+    <section class="order-panel" id="orderPanel" aria-label="Panel de pedido">
         <div class="order-header">
             <h2>Tu Pedido</h2>
-            <button class="close-order-btn" onclick="toggleOrderPanel()">&times;</button>
+            <button class="close-order-btn" onclick="toggleOrderPanel()" aria-label="Cerrar panel de pedido">&times;</button>
         </div>
         <div class="order-items" id="orderItemsContainer">
             <!-- Items will be injected here -->
@@ -2860,7 +2862,7 @@
                 Cuando termines, avisale a una de las meseras para que registre tu pedido
             </p>
         </div>
-    </div>
+    </section>
 
     <!-- Toast Notification -->
     <div id="toast">
@@ -2885,13 +2887,15 @@
             
             optionsData.forEach((opt, index) => {
                 const label = document.createElement('label');
+                const radioId = `product-opt-${index}`;
+                label.htmlFor = radioId;
                 label.className = 'option-label' + (index === 0 ? ' selected' : '');
                 label.innerHTML = `
                     <div class="option-info">
                         <span class="option-name">${opt.name}</span>
                     </div>
                     <span class="option-price">$${opt.price.toLocaleString('es-AR')}</span>
-                    <input type="radio" name="productOption" value="${index}" ${index === 0 ? 'checked' : ''} onchange="updateSelectedOption(this)">
+                    <input type="radio" id="${radioId}" name="productOption" value="${index}" ${index === 0 ? 'checked' : ''} onchange="updateSelectedOption(this)" aria-label="${opt.name} - $${opt.price.toLocaleString('es-AR')}">
                 `;
                 container.appendChild(label);
             });
@@ -3066,7 +3070,9 @@
 
         function toggleOrderPanel() {
             const panel = document.getElementById('orderPanel');
+            const fab = document.querySelector('.fab-order');
             const isOpen = panel.classList.toggle('open');
+            if (fab) fab.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             updateBadge();
             if (isOpen) {
                 const hamburgerBtn = document.getElementById('hamburger-btn');

@@ -32,6 +32,13 @@
         navOverlay.classList.remove('is-visible');
         body.classList.remove('menu-open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.mobile-dropdown.accordion-open').forEach(function (openItem) {
+            openItem.classList.remove('accordion-open');
+            const toggleBtn = openItem.querySelector('.accordion-toggle');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+            const sub = openItem.querySelector('.mobile-submenu');
+            if (sub) sub.style.maxHeight = null;
+        });
         if (document.activeElement && mobileNav.contains(document.activeElement)) {
             document.activeElement.blur();
         }
@@ -82,13 +89,18 @@
             // Cerrar todos los otros acordeones
             document.querySelectorAll('.mobile-dropdown.accordion-open').forEach(function (openItem) {
                 openItem.classList.remove('accordion-open');
+                const toggleBtn = openItem.querySelector('.accordion-toggle');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
                 openItem.querySelector('.mobile-submenu').style.maxHeight = null;
             });
 
             // Abrir / cerrar el actual
             if (!isOpen) {
                 parent.classList.add('accordion-open');
+                toggle.setAttribute('aria-expanded', 'true');
                 submenu.style.maxHeight = submenu.scrollHeight + 'px';
+            } else {
+                toggle.setAttribute('aria-expanded', 'false');
             }
         });
     });
