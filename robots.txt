@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mariapaulaconfiteria.com/sitemap.xml
+Sitemap: https://mariapaulaconfiteria.com/sitemap.xml
