@@ -2405,3 +2405,146 @@ body.no-scroll {
 #toast.show {
     opacity: 1;
 }
+
+/* =========================================
+   PÁGINA DE ERROR 404
+   ========================================= */
+.error-wrapper {
+    min-height: calc(100vh - 100px - 320px);
+    background-color: var(--bg-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 20px 90px;
+}
+
+.error-section {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 6px 18px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background-color: rgba(197, 160, 89, 0.08);
+}
+
+.error-big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4.5rem, 13vw, 8.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px rgba(74, 59, 50, 0.08);
+}
+
+.error-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--wood-dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.error-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--wood-light);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 22px;
+}
+
+.error-desc {
+    max-width: 620px;
+    margin: 0 auto 35px;
+    color: var(--wood-dark);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 55px;
+}
+
+.error-actions .btn-main {
+    min-width: 200px;
+}
+
+.error-shortcuts {
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    padding-top: 45px;
+    margin-top: 10px;
+}
+
+.shortcuts-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--wood-dark);
+    margin-bottom: 25px;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.shortcut-card {
+    display: block;
+    background: var(--white);
+    border: 1px solid rgba(74, 59, 50, 0.12);
+    padding: 22px 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.shortcut-card:hover,
+.shortcut-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.18);
+    outline: none;
+}
+
+.shortcut-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.shortcut-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--wood-dark);
+    margin-bottom: 8px;
+}
+
+.shortcut-card p {
+    font-size: 0.88rem;
+    color: var(--wood-light);
+    line-height: 1.5;
+    margin: 0;
+}

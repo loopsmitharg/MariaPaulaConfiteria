@@ -3,7 +3,9 @@
 # María Paula Confitería – Seguridad, Caché y Redirecciones 301
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# 1. Cabeceras de Seguridad Globales
+# 1. Cabeceras de Seguridad Globales y Documentos de Error
+ErrorDocument 404 /404.html
+
 <IfModule mod_headers.c>
     Header always set X-Frame-Options "DENY"
     Header always set X-Content-Type-Options "nosniff"
