@@ -7,6 +7,30 @@
 (function () {
     'use strict';
 
+    // ─── Portabilidad de Rutas Dinámicas (data-root) ─────────────────────────
+    const projectRoot = document.body.getAttribute('data-root') || './';
+
+    /**
+     * Resuelve una ruta relativa o con barra inicial respecto a projectRoot.
+     * Preserva URLs externas, anclas, esquemas mailto: o tel:.
+     * @param {string} path - Ruta de archivo o recurso.
+     * @returns {string} - Ruta resuelta y portable.
+     */
+    function resolvePath(path) {
+        if (!path) return path;
+        if (/^(?:https?:|\/\/|#|mailto:|tel:)/i.test(path)) {
+            return path;
+        }
+        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+        const base = projectRoot.endsWith('/') ? projectRoot : projectRoot + '/';
+        return base + cleanPath;
+    }
+
+    // Exponer API de utilidades globales del proyecto
+    window.MariaPaula = window.MariaPaula || {};
+    window.MariaPaula.projectRoot = projectRoot;
+    window.MariaPaula.resolvePath = resolvePath;
+
     const hamburgerBtn  = document.getElementById('hamburger-btn');
     const closeBtn      = document.getElementById('mobile-nav-close');
     const mobileNav     = document.getElementById('mobile-nav');
@@ -150,7 +174,8 @@
             if (playBtn) playBtn.remove();
 
             if (videoSrc || platform === 'local') {
-                const src = videoSrc || '/assets/videos/VideoMariaPaula.mp4';
+                const rawSrc = videoSrc || 'assets/videos/VideoMariaPaula.mp4';
+                const src = resolvePath(rawSrc);
                 const video = document.createElement('video');
                 video.setAttribute('controls', '');
                 video.setAttribute('autoplay', '');
@@ -204,5 +229,24 @@
             }
         });
     });
+
+    // ─── Compatibilidad para Entornos Locales Directos (file:///) ─────────────
+    if (window.location.protocol === 'file:') {
+        // En file:///, los enlaces raíz absoluta tipo "/menu/" se reescriben a relativos
+        document.querySelectorAll('a[href^="/"]').forEach(function (link) {
+            const href = link.getAttribute('href');
+            let target = resolvePath(href);
+            if (target.endsWith('/')) {
+                target += 'index.html';
+            }
+            link.setAttribute('href', target);
+        });
+
+        // Asegurar imágenes y recursos cargados con src="/..."
+        document.querySelectorAll('img[src^="/"], video[src^="/"], source[src^="/"]').forEach(function (media) {
+            const src = media.getAttribute('src');
+            media.setAttribute('src', resolvePath(src));
+        });
+    }
 
 })();
