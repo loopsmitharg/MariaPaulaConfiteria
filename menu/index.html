@@ -56,11 +56,11 @@
     <meta name="theme-color" content="#C5A059">
 
     <!-- Main Project Styles -->
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dist.css">
 </head>
 <body>
 
-    <header>
+    <header id="site-header">
         <div class="logo-container">
             <a href="/" aria-label="Página principal de María Paula Confitería">
                 <img src="/assets/images/logo-maria-paula-confiteria.webp" alt="María Paula Confitería" width="400" height="171">
@@ -2687,7 +2687,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer id="site-footer">
         <h2 class="sr-only">Información de Contacto y Sucursales</h2>
         <div class="footer-container">
             <div class="footer-col">
@@ -2917,20 +2917,22 @@
         function confirmOptionsSelection() {
             const selectedRadio = document.querySelector('input[name="productOption"]:checked');
             if (selectedRadio) {
-                const optIndex = parseInt(selectedRadio.value);
+                const optIndex = parseInt(selectedRadio.value, 10);
                 const selectedOption = currentlySelectingOptions[optIndex];
+                if (!selectedOption) return;
                 
-                // Formulate final name and price
+                // Formulate final name and strictly numeric price
                 const finalName = currentlySelectingOptions.length > 1 && selectedOption.name !== 'Única' 
                                   ? `${currentlySelectingProduct} (${selectedOption.name})` 
                                   : currentlySelectingProduct;
                                   
-                addToOrder(finalName, selectedOption.price, selectedOption.displayPrice || `$${selectedOption.price.toLocaleString('es-AR')}`);
+                const numPrice = Number(selectedOption.price) || 0;
+                addToOrder(finalName, numPrice, selectedOption.displayPrice || `$${numPrice.toLocaleString('es-AR')}`);
                 closeOptionsModal();
             }
         }
 
-        // --- Local Storage Logic ---
+        // --- Local Storage Logic (Sanitización y Validación de Tipos) ---
         function saveOrder() {
             localStorage.setItem('mariapaula_order', JSON.stringify(currentOrder));
         }
@@ -2939,7 +2941,19 @@
             const saved = localStorage.getItem('mariapaula_order');
             if (saved) {
                 try {
-                    currentOrder = JSON.parse(saved) || [];
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        // Estado numérico desacoplado y blindado contra adulteraciones del cliente
+                        currentOrder = parsed.map(item => ({
+                            id: String(item.id || ('item_' + Date.now())),
+                            name: String(item.name || '').trim(),
+                            price: Math.max(0, Number(item.price) || 0),
+                            displayPrice: String(item.displayPrice || `$${(Number(item.price) || 0).toLocaleString('es-AR')}`),
+                            qty: Math.max(1, parseInt(item.qty, 10) || 1)
+                        }));
+                    } else {
+                        currentOrder = [];
+                    }
                     renderOrder();
                     updateBadge();
                 } catch (e) {
@@ -2953,18 +2967,20 @@
             }
         }
 
-        // --- Order Logic ---
+        // --- Order Logic (Cálculos Numéricos en Memoria Desacoplados del DOM) ---
         function addToOrder(name, price, displayPrice) {
-            // Check if item already exists in order
-            const existingItem = currentOrder.find(item => item.name === name);
+            const numPrice = Math.max(0, Number(price) || 0);
+            const sanitizedName = String(name || '').trim();
+
+            const existingItem = currentOrder.find(item => item.name === sanitizedName);
             if (existingItem) {
                 existingItem.qty = (parseInt(existingItem.qty, 10) || 0) + 1;
             } else {
                 currentOrder.push({
                     id: 'item_' + Date.now() + '_' + Math.floor(Math.random() * 1000000),
-                    name: name,
-                    price: price,
-                    displayPrice: displayPrice,
+                    name: sanitizedName,
+                    price: numPrice,
+                    displayPrice: displayPrice || `$${numPrice.toLocaleString('es-AR')}`,
                     qty: 1
                 });
             }
@@ -2983,9 +2999,10 @@
         }
         
         function updateQuantity(id, delta) {
+            const deltaNum = parseInt(delta, 10) || 0;
             const item = currentOrder.find(item => String(item.id) === String(id));
             if (item) {
-                item.qty = (parseInt(item.qty, 10) || 0) + delta;
+                item.qty = (parseInt(item.qty, 10) || 0) + deltaNum;
                 if (item.qty <= 0) {
                     removeFromOrder(id);
                 } else {
@@ -3003,7 +3020,6 @@
             container.innerHTML = '';
 
             let total = 0;
-            let count = 0;
 
             if (!currentOrder || currentOrder.length === 0) {
                 container.innerHTML = '<div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>';
@@ -3012,10 +3028,10 @@
             }
 
             currentOrder.forEach(item => {
-                const itemQty = parseInt(item.qty, 10) || 1;
-                const subtotal = item.price * itemQty;
+                const itemQty = Math.max(1, parseInt(item.qty, 10) || 1);
+                const itemPrice = Math.max(0, Number(item.price) || 0);
+                const subtotal = itemPrice * itemQty;
                 total += subtotal;
-                count += itemQty;
                 
                 const itemEl = document.createElement('div');
                 itemEl.className = 'order-item';
@@ -3024,7 +3040,7 @@
                         <div class="order-item-header">
                              <span class="item-name">${item.name}</span>
                              <button class="btn-remove" onclick="removeFromOrder('${item.id}')" aria-label="Eliminar ${item.name}">
-                                 <span class="material-icons">delete</span>
+                                 <span class="material-icons" aria-hidden="true">delete</span>
                              </button>
                         </div>
                         <div class="order-item-body">
@@ -3047,24 +3063,16 @@
             const badge = document.getElementById('orderBadge');
             if (!badge) return;
             
-            let totalItems = 0;
-            if (Array.isArray(currentOrder)) {
-                currentOrder.forEach(i => {
-                    const q = parseInt(i.qty, 10);
-                    if (!isNaN(q) && q > 0) {
-                        totalItems += q;
-                    }
-                });
-            }
+            const totalItems = Array.isArray(currentOrder) 
+                ? currentOrder.reduce((acc, item) => acc + (parseInt(item.qty, 10) || 0), 0)
+                : 0;
             
             if (totalItems > 0) {
                 badge.textContent = totalItems;
                 badge.classList.remove('hidden');
-                badge.style.display = 'flex';
             } else {
                 badge.textContent = '0';
                 badge.classList.add('hidden');
-                badge.style.display = 'none';
             }
         }
 
@@ -3108,7 +3116,8 @@
                 const card = btn.closest('.menu-card-rich');
                 if (!card) return;
                 
-                const name = card.querySelector('.card-title').textContent;
+                const titleEl = card.querySelector('.card-title');
+                const name = titleEl ? titleEl.textContent.trim() : 'Producto';
                 const optionsAttr = btn.getAttribute('data-options');
                 
                 if (!optionsAttr) {
@@ -3117,8 +3126,6 @@
                 }
                 
                 try {
-                    // Fix possible &quot; instead of real quotes if getAttribute didn't decode securely
-                    // or if it was pure HTML text
                     let parsedAttr = optionsAttr;
                     if (parsedAttr.includes('&quot;')) {
                         parsedAttr = parsedAttr.replace(/&quot;/g, '"');
@@ -3129,7 +3136,9 @@
                     if (optionsData && optionsData.length > 1) {
                         openOptionsModal(name, optionsData);
                     } else if (optionsData && optionsData.length === 1) {
-                        addToOrder(name, optionsData[0].price, optionsData[0].displayPrice);
+                        const opt = optionsData[0];
+                        const numPrice = Number(opt.price) || 0;
+                        addToOrder(name, numPrice, opt.displayPrice);
                     } else {
                         alert("El producto no tiene precio cargado.");
                     }
