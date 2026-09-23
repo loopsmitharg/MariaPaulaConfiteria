@@ -50,10 +50,10 @@ def audit_html_files():
         else:
             print(f"  [OK] {rel_path}: Has '{expected_script}' defer in <head>")
 
-        # 3. Check NO script tags in body (except schema json-ld if any)
-        body_scripts = re.findall(r'<script\b[^>]*>(.*?)</script>', body_content, re.DOTALL | re.IGNORECASE)
+        # 3. Check NO executable script tags in body (excluding declarative application/ld+json)
+        body_scripts = [s for s in re.findall(r'<script\b([^>]*)>(.*?)</script>', body_content, re.DOTALL | re.IGNORECASE) if 'application/ld+json' not in s[0]]
         if body_scripts:
-            errors.append(f"{rel_path}: Found {len(body_scripts)} unexpected <script> tag(s) inside <body>")
+            errors.append(f"{rel_path}: Found {len(body_scripts)} unexpected executable <script> tag(s) inside <body>")
 
         # 4. Check for ANY inline event handler: on\w+=
         inline_events = re.findall(r'\s(on[a-zA-Z]+)\s*=', content)
