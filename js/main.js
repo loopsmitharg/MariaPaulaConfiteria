@@ -194,7 +194,18 @@
         allItems.forEach(item => {
             let match = false;
             categories.forEach(cat => {
-                if (cat === 'all' || item.classList.contains('category-' + cat)) {
+                if (cat === 'all') {
+                    match = true;
+                } else if (cat === 'bebidas') {
+                    if (item.classList.contains('category-bebidas') ||
+                        item.classList.contains('category-bebidas-calientes') ||
+                        item.classList.contains('category-bebidas-frias') ||
+                        item.classList.contains('category-bebidas-gaseosas') ||
+                        item.classList.contains('category-cafeteria') ||
+                        item.classList.contains('category-licuados')) {
+                        match = true;
+                    }
+                } else if (item.classList.contains('category-' + cat)) {
                     match = true;
                 }
             });
@@ -203,59 +214,100 @@
         });
     }
 
-    function filterMenu(category, isSubmenu = false, clickedBtn = null) {
-        const allItems     = document.querySelectorAll('.menu-card-rich');
-        const mainFilters  = document.querySelectorAll('.main-filter');
-        const subFilters   = document.querySelectorAll('.sub-filter');
-
-        const subBebidas   = document.querySelectorAll('.sub-bebidas');
-        const subComidas   = document.querySelectorAll('.sub-comidas');
-        const subDesayuno  = document.querySelectorAll('.sub-desayuno');
-        const subPasteleria = document.querySelectorAll('.sub-pasteleria');
-
+    function scrollToMenu() {
         const filterContainer = document.querySelector('.filter-sticky-container');
-        if (filterContainer) {
+        if (!filterContainer) return;
+
+        const header = document.getElementById('site-header');
+        const headerHeight = header ? header.offsetHeight : 70;
+
+        const containerRect = filterContainer.getBoundingClientRect();
+        const containerTop = containerRect.top + window.pageYOffset;
+        const targetScroll = containerTop - headerHeight;
+
+        if (Math.abs(window.pageYOffset - targetScroll) > 25) {
             window.scrollTo({
-                top: filterContainer.offsetTop - 100,
+                top: Math.max(0, targetScroll),
                 behavior: 'smooth'
             });
         }
+    }
+
+    function filterMenu(category, isSubmenu = false, clickedBtn = null) {
+        const allItems      = document.querySelectorAll('.menu-card-rich');
+        const mainFilters   = document.querySelectorAll('.main-filter');
+        const subFilters    = document.querySelectorAll('.sub-filter');
+
+        const subBebidas    = document.querySelectorAll('.sub-bebidas');
+        const subComidas    = document.querySelectorAll('.sub-comidas');
+        const subDesayuno   = document.querySelectorAll('.sub-desayuno');
+        const subPasteleria = document.querySelectorAll('.sub-pasteleria');
+
+        scrollToMenu();
 
         // Submenús principales
         if (isSubmenu) {
             mainFilters.forEach(el => el.classList.add('hidden'));
-            subFilters.forEach(el => el.classList.add('hidden'));
+            subFilters.forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('active');
+            });
 
+            let activeSubBtn = null;
             if (category === 'bebidas') {
                 subBebidas.forEach(el => el.classList.remove('hidden'));
-                filterItems(['bebidas-calientes', 'bebidas-frias', 'bebidas-gaseosas']);
+                filterItems(['bebidas']);
+                activeSubBtn = document.querySelector('.sub-bebidas[data-filter-category="bebidas"]');
             } else if (category === 'comidas') {
                 subComidas.forEach(el => el.classList.remove('hidden'));
                 filterItems(['comidas']);
+                activeSubBtn = document.querySelector('.sub-comidas[data-filter-category="comidas"]');
             } else if (category === 'desayuno') {
                 subDesayuno.forEach(el => el.classList.remove('hidden'));
                 filterItems(['desayuno']);
+                activeSubBtn = document.querySelector('.sub-desayuno[data-filter-category="desayuno"]');
             } else if (category === 'pasteleria') {
                 subPasteleria.forEach(el => el.classList.remove('hidden'));
                 filterItems(['pasteleria']);
+                activeSubBtn = document.querySelector('.sub-pasteleria[data-filter-category="pasteleria"]');
+            }
+
+            if (activeSubBtn) {
+                activeSubBtn.classList.add('active');
+                if (activeSubBtn.scrollIntoView) {
+                    activeSubBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
             }
             return;
         }
 
         // Volver al nivel principal
         if (category === 'back') {
-            subFilters.forEach(el => el.classList.add('hidden'));
+            subFilters.forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('active');
+            });
             mainFilters.forEach(el => el.classList.remove('hidden'));
             filterItems(['all']);
             document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
             const allBtn = document.querySelector('.filter-pill[data-filter-category="all"]');
-            if (allBtn) allBtn.classList.add('active');
+            if (allBtn) {
+                allBtn.classList.add('active');
+                if (allBtn.scrollIntoView) {
+                    allBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
             return;
         }
 
         // Estado visual activo
         document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
-        if (clickedBtn) clickedBtn.classList.add('active');
+        if (clickedBtn) {
+            clickedBtn.classList.add('active');
+            if (clickedBtn.scrollIntoView) {
+                clickedBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
 
         // Filtrado real
         if (category === 'all') {
