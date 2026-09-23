@@ -233,7 +233,7 @@ a { text-decoration: none; color: inherit; }
 /* =========================================
    3. HEADER Y NAVEGACIÓN
    ========================================= */
-header {
+header, #site-header {
     background-color: var(--bg-cream);
     height: clamp(70px, 8vw, 100px);
     display: flex;
@@ -300,7 +300,8 @@ header nav > ul { display: none; gap: clamp(16px, 2vw, 30px); list-style: none; 
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dropdown-content a:last-child { border-bottom: none; }
-.dropdown-content a:hover { background-color: var(--bg-beige); color: var(--gold); }
+.dropdown-content a:hover,
+.dropdown-content a.active { background-color: var(--bg-beige); color: var(--gold); font-weight: 700; }
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
     opacity: 1;
@@ -533,7 +534,8 @@ body.menu-open { overflow: hidden; }
     border-bottom: 1px solid rgba(197, 160, 89, 0.1);
 }
 .mobile-submenu li:last-child a { border-bottom: none; }
-.mobile-submenu li a:hover { color: var(--gold); transform: translate3d(10px, 0, 0); }
+.mobile-submenu li a:hover,
+.mobile-submenu li a.active { color: var(--gold); transform: translate3d(10px, 0, 0); font-weight: 700; }
 
 /* Separador decorativo dentro del drawer */
 .mobile-nav-divider {
@@ -986,7 +988,7 @@ body.menu-open { overflow: hidden; }
 /* =========================================
    8. FOOTER (ACTUALIZADO)
    ========================================= */
-footer {
+footer, #site-footer {
     background-color: #2e241e;
     color: var(--bg-beige);
     border-top: 5px solid var(--gold);
