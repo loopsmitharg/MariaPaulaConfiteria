@@ -57,6 +57,9 @@
 
     <!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
+
+    <!-- JavaScript Vanilla Desacoplado -->
+    <script src="../js/main.js" defer></script>
 </head>
 <body data-root="../">
 
@@ -166,39 +169,39 @@
         <div class="filter-sticky-container">
             <div class="filter-pills">
                 <!-- Main Filters -->
-                <button class="filter-pill main-filter active" onclick="filterMenu('all')">Todos</button>
-                <button class="filter-pill main-filter" onclick="filterMenu('comidas', true)">🍽️ Comidas</button>
-                <button class="filter-pill main-filter" onclick="filterMenu('desayuno', true)">☕🥐 Desayuno</button>
-                <button class="filter-pill main-filter" onclick="filterMenu('pasteleria', true)">🍰 Pastelería</button>
-                <button class="filter-pill main-filter" onclick="filterMenu('bebidas', true)">🥤 Bebidas</button>
+                <button class="filter-pill main-filter active" data-filter-category="all">Todos</button>
+                <button class="filter-pill main-filter" data-filter-category="comidas" data-filter-is-sub="true">🍽️ Comidas</button>
+                <button class="filter-pill main-filter" data-filter-category="desayuno" data-filter-is-sub="true">☕🥐 Desayuno</button>
+                <button class="filter-pill main-filter" data-filter-category="pasteleria" data-filter-is-sub="true">🍰 Pastelería</button>
+                <button class="filter-pill main-filter" data-filter-category="bebidas" data-filter-is-sub="true">🥤 Bebidas</button>
                 
                 <!-- Submenu Bebidas -->
-                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
-                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-calientes')">☕ Calientes</button>
-                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-frias')">❄️ Frías</button>
-                <button class="filter-pill sub-filter sub-bebidas hidden" onclick="filterMenu('bebidas-gaseosas')">🥤 Gaseosas</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" data-filter-category="back">⬅️ Volver</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" data-filter-category="bebidas-calientes">☕ Calientes</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" data-filter-category="bebidas-frias">❄️ Frías</button>
+                <button class="filter-pill sub-filter sub-bebidas hidden" data-filter-category="bebidas-gaseosas">🥤 Gaseosas</button>
 
                 <!-- Submenu Comidas -->
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('back')">⬅️ Volver</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('burgers')">🍔 Burgers</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('pastas')">🍝 Pastas</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('pizzas')">🍕 Pizzas</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('entradas')">🍢 Entradas</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('principales')">🥘 Principales</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('grilladas')">🍖 Grill</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('milanesas')">🍽️ Milanesas</button>
-                <button class="filter-pill sub-filter sub-comidas hidden" onclick="filterMenu('ensaladas')">🥗 Ensaladas</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="back">⬅️ Volver</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="burgers">🍔 Burgers</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="pastas">🍝 Pastas</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="pizzas">🍕 Pizzas</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="entradas">🍢 Entradas</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="principales">🥘 Principales</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="grilladas">🍖 Grill</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="milanesas">🍽️ Milanesas</button>
+                <button class="filter-pill sub-filter sub-comidas hidden" data-filter-category="ensaladas">🥗 Ensaladas</button>
 
                 <!-- Submenu Desayuno -->
-                <button class="filter-pill sub-filter sub-desayuno hidden" onclick="filterMenu('back')">⬅️ Volver</button>
-                <button class="filter-pill sub-filter sub-desayuno hidden" onclick="filterMenu('combos')">🥐 Combos</button>
-                <button class="filter-pill sub-filter sub-desayuno hidden" onclick="filterMenu('tostados')">🥪 Tostados</button>
-                <button class="filter-pill sub-filter sub-desayuno hidden" onclick="filterMenu('promos')">🏷️ Promos</button>
+                <button class="filter-pill sub-filter sub-desayuno hidden" data-filter-category="back">⬅️ Volver</button>
+                <button class="filter-pill sub-filter sub-desayuno hidden" data-filter-category="combos">🥐 Combos</button>
+                <button class="filter-pill sub-filter sub-desayuno hidden" data-filter-category="tostados">🥪 Tostados</button>
+                <button class="filter-pill sub-filter sub-desayuno hidden" data-filter-category="promos">🏷️ Promos</button>
 
                 <!-- Submenu Pastelería -->
-                <button class="filter-pill sub-filter sub-pasteleria hidden" onclick="filterMenu('back')">⬅️ Volver</button>
-                <button class="filter-pill sub-filter sub-pasteleria hidden" onclick="filterMenu('tortas')">🍰 Tortas y Dulces</button>
-                <button class="filter-pill sub-filter sub-pasteleria hidden" onclick="filterMenu('adicionales')">🧀 Adicionales</button>
+                <button class="filter-pill sub-filter sub-pasteleria hidden" data-filter-category="back">⬅️ Volver</button>
+                <button class="filter-pill sub-filter sub-pasteleria hidden" data-filter-category="tortas">🍰 Tortas y Dulces</button>
+                <button class="filter-pill sub-filter sub-pasteleria hidden" data-filter-category="adicionales">🧀 Adicionales</button>
             </div>
         </div>
 <h2 class="sr-only">Catálogo de Productos y Platos</h2>
@@ -2742,104 +2745,22 @@
         </div>
     </footer>
     
-    <script>
-        function filterMenu(category, isSubmenu = false) {
-            const allItems = document.querySelectorAll('.menu-card-rich');
-            const mainFilters = document.querySelectorAll('.main-filter');
-            const subFilters = document.querySelectorAll('.sub-filter');
-            
-            const subBebidas = document.querySelectorAll('.sub-bebidas');
-            const subComidas = document.querySelectorAll('.sub-comidas');
-            const subDesayuno = document.querySelectorAll('.sub-desayuno');
-            const subPasteleria = document.querySelectorAll('.sub-pasteleria');
-            
-            // Scroll to top of filters
-            const filterContainer = document.querySelector('.filter-sticky-container');
-            if(filterContainer) {
-                window.scrollTo({
-                    top: filterContainer.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
-
-            // --- Submenu Logic ---
-            if (isSubmenu) {
-                mainFilters.forEach(el => el.classList.add('hidden'));
-                subFilters.forEach(el => el.classList.add('hidden')); // Hide all subs first
-
-                if (category === 'bebidas') {
-                    subBebidas.forEach(el => el.classList.remove('hidden')); 
-                    filterItems(['bebidas-calientes', 'bebidas-frias', 'bebidas-gaseosas']);
-                } else if (category === 'comidas') {
-                    subComidas.forEach(el => el.classList.remove('hidden'));
-                    filterItems(['comidas']); 
-                } else if (category === 'desayuno') {
-                    subDesayuno.forEach(el => el.classList.remove('hidden'));
-                    filterItems(['desayuno']); 
-                } else if (category === 'pasteleria') {
-                    subPasteleria.forEach(el => el.classList.remove('hidden'));
-                    filterItems(['pasteleria']); 
-                }
-                return;
-            }
-            
-            // --- Back Logic ---
-            if (category === 'back') {
-                subFilters.forEach(el => el.classList.add('hidden'));
-                mainFilters.forEach(el => el.classList.remove('hidden'));
-                
-                filterMenu('all');
-                document.querySelector("button[onclick*='all']").classList.add('active');
-                return;
-            }
-
-            // --- Visual Active State ---
-            document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
-            const clickedBtn = event.target; 
-            if (clickedBtn) clickedBtn.classList.add('active');
-            
-            // --- Actual Filtering ---
-            if (category === 'all') {
-                allItems.forEach(item => item.classList.remove('hidden'));
-            } else {
-                filterItems([category]);
-            }
-        }
-
-        function filterItems(categories) {
-            const allItems = document.querySelectorAll('.menu-card-rich');
-            allItems.forEach(item => {
-                let match = false;
-                categories.forEach(cat => {
-                    // Check if item has the specific category class
-                    // We check for 'category-' + cat. 
-                    // Note: 'comidas' class is present on all food, but we also have 'category-burgers' etc.
-                    if (item.classList.contains('category-' + cat)) match = true;
-                });
-                
-                if (match) item.classList.remove('hidden');
-                else item.classList.add('hidden');
-            });
-        }
-    </script>
-
-
     <!-- Options Modal HTML -->
     <div class="modal-overlay" id="optionsModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeOptionsModal()" aria-label="Cerrar modal de opciones">&times;</button>
+            <button class="modal-close" data-action="close-options-modal" aria-label="Cerrar modal de opciones">&times;</button>
             <h3 class="modal-title" id="modalProductTitle">Producto</h3>
             <div class="modal-options-list" id="modalOptionsContainer">
                 <!-- Radio options (labels) injected via JS -->
             </div>
-            <button class="btn-modal-add" id="btnConfirmOptions" onclick="confirmOptionsSelection()">
+            <button class="btn-modal-add" id="btnConfirmOptions" data-action="confirm-options">
                 Añadir al Pedido
             </button>
         </div>
     </div>
 
     <!-- Order FAB & Panel HTML -->
-    <button class="fab-order" onclick="toggleOrderPanel()" aria-label="Ver pedido" aria-expanded="false" aria-controls="orderPanel">
+    <button class="fab-order" data-action="toggle-order" aria-label="Ver pedido" aria-expanded="false" aria-controls="orderPanel">
         <span class="material-icons">shopping_bag</span>
         <span class="fab-badge hidden" id="orderBadge">0</span>
     </button>
@@ -2847,7 +2768,7 @@
     <section class="order-panel" id="orderPanel" aria-label="Panel de pedido">
         <div class="order-header">
             <h2>Tu Pedido</h2>
-            <button class="close-order-btn" onclick="toggleOrderPanel()" aria-label="Cerrar panel de pedido">&times;</button>
+            <button class="close-order-btn" data-action="toggle-order" aria-label="Cerrar panel de pedido">&times;</button>
         </div>
         <div class="order-items" id="orderItemsContainer">
             <!-- Items will be injected here -->
@@ -2868,287 +2789,5 @@
     <div id="toast">
         ¡Agregado al pedido!
     </div>
-
-
-    <script>
-        // Order State
-        let currentOrder = [];
-        let currentlySelectingProduct = null;
-        let currentlySelectingOptions = [];
-
-        // --- Options Modal Logic ---
-        function openOptionsModal(name, optionsData) {
-            currentlySelectingProduct = name;
-            currentlySelectingOptions = optionsData;
-            
-            document.getElementById('modalProductTitle').textContent = name;
-            const container = document.getElementById('modalOptionsContainer');
-            container.innerHTML = '';
-            
-            optionsData.forEach((opt, index) => {
-                const label = document.createElement('label');
-                const radioId = `product-opt-${index}`;
-                label.htmlFor = radioId;
-                label.className = 'option-label' + (index === 0 ? ' selected' : '');
-                label.innerHTML = `
-                    <div class="option-info">
-                        <span class="option-name">${opt.name}</span>
-                    </div>
-                    <span class="option-price">$${opt.price.toLocaleString('es-AR')}</span>
-                    <input type="radio" id="${radioId}" name="productOption" value="${index}" ${index === 0 ? 'checked' : ''} onchange="updateSelectedOption(this)" aria-label="${opt.name} - $${opt.price.toLocaleString('es-AR')}">
-                `;
-                container.appendChild(label);
-            });
-            
-            document.getElementById('optionsModal').classList.add('active');
-        }
-
-        function updateSelectedOption(radioInput) {
-            document.querySelectorAll('.option-label').forEach(lbl => lbl.classList.remove('selected'));
-            radioInput.closest('.option-label').classList.add('selected');
-        }
-
-        function closeOptionsModal() {
-            document.getElementById('optionsModal').classList.remove('active');
-            currentlySelectingProduct = null;
-            currentlySelectingOptions = [];
-        }
-
-        function confirmOptionsSelection() {
-            const selectedRadio = document.querySelector('input[name="productOption"]:checked');
-            if (selectedRadio) {
-                const optIndex = parseInt(selectedRadio.value, 10);
-                const selectedOption = currentlySelectingOptions[optIndex];
-                if (!selectedOption) return;
-                
-                // Formulate final name and strictly numeric price
-                const finalName = currentlySelectingOptions.length > 1 && selectedOption.name !== 'Única' 
-                                  ? `${currentlySelectingProduct} (${selectedOption.name})` 
-                                  : currentlySelectingProduct;
-                                  
-                const numPrice = Number(selectedOption.price) || 0;
-                addToOrder(finalName, numPrice, selectedOption.displayPrice || `$${numPrice.toLocaleString('es-AR')}`);
-                closeOptionsModal();
-            }
-        }
-
-        // --- Local Storage Logic (Sanitización y Validación de Tipos) ---
-        function saveOrder() {
-            localStorage.setItem('mariapaula_order', JSON.stringify(currentOrder));
-        }
-
-        function loadOrder() {
-            const saved = localStorage.getItem('mariapaula_order');
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    if (Array.isArray(parsed)) {
-                        // Estado numérico desacoplado y blindado contra adulteraciones del cliente
-                        currentOrder = parsed.map(item => ({
-                            id: String(item.id || ('item_' + Date.now())),
-                            name: String(item.name || '').trim(),
-                            price: Math.max(0, Number(item.price) || 0),
-                            displayPrice: String(item.displayPrice || `$${(Number(item.price) || 0).toLocaleString('es-AR')}`),
-                            qty: Math.max(1, parseInt(item.qty, 10) || 1)
-                        }));
-                    } else {
-                        currentOrder = [];
-                    }
-                    renderOrder();
-                    updateBadge();
-                } catch (e) {
-                    console.error("Error loading order from local storage", e);
-                    currentOrder = [];
-                    updateBadge();
-                }
-            } else {
-                currentOrder = [];
-                updateBadge();
-            }
-        }
-
-        // --- Order Logic (Cálculos Numéricos en Memoria Desacoplados del DOM) ---
-        function addToOrder(name, price, displayPrice) {
-            const numPrice = Math.max(0, Number(price) || 0);
-            const sanitizedName = String(name || '').trim();
-
-            const existingItem = currentOrder.find(item => item.name === sanitizedName);
-            if (existingItem) {
-                existingItem.qty = (parseInt(existingItem.qty, 10) || 0) + 1;
-            } else {
-                currentOrder.push({
-                    id: 'item_' + Date.now() + '_' + Math.floor(Math.random() * 1000000),
-                    name: sanitizedName,
-                    price: numPrice,
-                    displayPrice: displayPrice || `$${numPrice.toLocaleString('es-AR')}`,
-                    qty: 1
-                });
-            }
-
-            renderOrder();
-            showToast();
-            updateBadge();
-            saveOrder();
-        }
-
-        function removeFromOrder(id) {
-            currentOrder = currentOrder.filter(item => String(item.id) !== String(id));
-            renderOrder();
-            updateBadge();
-            saveOrder();
-        }
-        
-        function updateQuantity(id, delta) {
-            const deltaNum = parseInt(delta, 10) || 0;
-            const item = currentOrder.find(item => String(item.id) === String(id));
-            if (item) {
-                item.qty = (parseInt(item.qty, 10) || 0) + deltaNum;
-                if (item.qty <= 0) {
-                    removeFromOrder(id);
-                } else {
-                    renderOrder();
-                    updateBadge();
-                    saveOrder();
-                }
-            }
-        }
-
-        function renderOrder() {
-            const container = document.getElementById('orderItemsContainer');
-            const totalEl = document.getElementById('orderTotal');
-            
-            container.innerHTML = '';
-
-            let total = 0;
-
-            if (!currentOrder || currentOrder.length === 0) {
-                container.innerHTML = '<div class="empty-state">Tu pedido está vacío.<br>¡Agrega algo delicioso!</div>';
-                totalEl.textContent = '$0';
-                return;
-            }
-
-            currentOrder.forEach(item => {
-                const itemQty = Math.max(1, parseInt(item.qty, 10) || 1);
-                const itemPrice = Math.max(0, Number(item.price) || 0);
-                const subtotal = itemPrice * itemQty;
-                total += subtotal;
-                
-                const itemEl = document.createElement('div');
-                itemEl.className = 'order-item';
-                itemEl.innerHTML = `
-                    <div class="item-details">
-                        <div class="order-item-header">
-                             <span class="item-name">${item.name}</span>
-                             <button class="btn-remove" onclick="removeFromOrder('${item.id}')" aria-label="Eliminar ${item.name}">
-                                 <span class="material-icons" aria-hidden="true">delete</span>
-                             </button>
-                        </div>
-                        <div class="order-item-body">
-                            <span class="item-price">$${subtotal.toLocaleString('es-AR')}</span>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)" aria-label="Restar cantidad">-</button>
-                                <span class="qty-value">${itemQty}</span>
-                                <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)" aria-label="Sumar cantidad">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(itemEl);
-            });
-
-            totalEl.textContent = '$' + total.toLocaleString('es-AR');
-        }
-
-        function updateBadge() {
-            const badge = document.getElementById('orderBadge');
-            if (!badge) return;
-            
-            const totalItems = Array.isArray(currentOrder) 
-                ? currentOrder.reduce((acc, item) => acc + (parseInt(item.qty, 10) || 0), 0)
-                : 0;
-            
-            if (totalItems > 0) {
-                badge.textContent = totalItems;
-                badge.classList.remove('hidden');
-            } else {
-                badge.textContent = '0';
-                badge.classList.add('hidden');
-            }
-        }
-
-        function toggleOrderPanel() {
-            const panel = document.getElementById('orderPanel');
-            const fab = document.querySelector('.fab-order');
-            const isOpen = panel.classList.toggle('open');
-            if (fab) fab.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            updateBadge();
-            if (isOpen) {
-                const hamburgerBtn = document.getElementById('hamburger-btn');
-                const mobileNav = document.getElementById('mobile-nav');
-                const navOverlay = document.getElementById('nav-overlay');
-                if (mobileNav && mobileNav.classList.contains('is-open')) {
-                    hamburgerBtn && hamburgerBtn.classList.remove('is-active');
-                    mobileNav.classList.remove('is-open');
-                    navOverlay && navOverlay.classList.remove('is-visible');
-                    document.body.classList.remove('menu-open');
-                    hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded', 'false');
-                }
-            }
-        }
-
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.style.opacity = '1';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-            }, 2000);
-        }
-
-        // Initialize Button Listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            loadOrder();
-            updateBadge();
-            
-            document.body.addEventListener('click', (e) => {
-                const btn = e.target.closest('.btn-icon-only');
-                if (!btn) return;
-                
-                const card = btn.closest('.menu-card-rich');
-                if (!card) return;
-                
-                const titleEl = card.querySelector('.card-title');
-                const name = titleEl ? titleEl.textContent.trim() : 'Producto';
-                const optionsAttr = btn.getAttribute('data-options');
-                
-                if (!optionsAttr) {
-                    alert("Error: Este producto no tiene opciones configuradas.");
-                    return;
-                }
-                
-                try {
-                    let parsedAttr = optionsAttr;
-                    if (parsedAttr.includes('&quot;')) {
-                        parsedAttr = parsedAttr.replace(/&quot;/g, '"');
-                    }
-                    
-                    const optionsData = JSON.parse(parsedAttr);
-                    
-                    if (optionsData && optionsData.length > 1) {
-                        openOptionsModal(name, optionsData);
-                    } else if (optionsData && optionsData.length === 1) {
-                        const opt = optionsData[0];
-                        const numPrice = Number(opt.price) || 0;
-                        addToOrder(name, numPrice, opt.displayPrice);
-                    } else {
-                        alert("El producto no tiene precio cargado.");
-                    }
-                } catch (err) {
-                    alert("Ocurrió un error al leer las opciones del producto. Detalles: " + err.message);
-                    console.error("Error parsing options: ", err, optionsAttr);
-                }
-            });
-        });
-    </script>
-    <script src="/js/main.js"></script>
 </body>
 </html>

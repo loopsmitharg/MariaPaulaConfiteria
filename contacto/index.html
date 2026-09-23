@@ -56,6 +56,9 @@
 
     <!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
+
+    <!-- JavaScript Vanilla Desacoplado -->
+    <script src="../js/main.js" defer></script>
 </head>
 <body data-root="../">
 
@@ -241,27 +244,5 @@
             <p>® 2025 Maria Paula es marca registrada. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <script>
-        document.getElementById('contacto-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Obtener los valores del formulario
-            const nombre = document.getElementById('form-nombre').value.trim();
-            const apellido = document.getElementById('form-apellido').value.trim();
-            const motivo = document.getElementById('motivo-contacto').value;
-            const mensaje = document.getElementById('form-mensaje').value.trim();
-
-            // Construir el mensaje formateado para WhatsApp
-            const textoMensaje = `Hola, escribo desde la web MariaPaulaConfiteria.com.\n\n*Nombre:* ${nombre} ${apellido}\n*Motivo:* ${motivo}\n*Mensaje:*\n${mensaje}`;
-
-            // Codificar el texto para URL
-            const urlWhatsApp = `https://wa.me/5491135433031?text=${encodeURIComponent(textoMensaje)}`;
-
-            // Abrir WhatsApp en una nueva pestaña
-            window.open(urlWhatsApp, '_blank');
-        });
-    </script>
-    <script src="/js/main.js"></script>
 </body>
 </html>
