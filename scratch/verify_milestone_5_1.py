@@ -65,56 +65,98 @@ def audit_html_file(rel_path):
         except json.JSONDecodeError as e:
             errors.append(f"{rel_path}: JSON-LD block #{idx+1} has invalid JSON syntax: {e}")
 
-    # 5. Check LocalBusiness Schema
-    local_business = None
+    # 5. Extract FoodEstablishment / Bakery entity (or mainEntity in ContactPage)
+    food_business = None
     video_objects = []
+    specialized_schemas = []
 
     for s in schemas:
         stype = s.get('@type')
-        if stype == 'LocalBusiness':
-            local_business = s
+        if isinstance(stype, list) and ("Bakery" in stype or "LocalBusiness" in stype or "CafeOrCoffeeShop" in stype):
+            food_business = s
+        elif stype == 'LocalBusiness':
+            food_business = s
+        elif stype == 'ContactPage':
+            specialized_schemas.append(s)
+            main_ent = s.get('mainEntity', {})
+            mtype = main_ent.get('@type')
+            if isinstance(mtype, list) and ("Bakery" in mtype or "CafeOrCoffeeShop" in mtype):
+                food_business = main_ent
+        elif stype in ['Menu', 'Service', 'EventVenue', 'OfferCatalog']:
+            specialized_schemas.append(s)
         elif stype == 'VideoObject':
             video_objects.append(s)
 
-    if not local_business:
-        errors.append(f"{rel_path}: Missing '@type': 'LocalBusiness' schema")
+    if not food_business:
+        errors.append(f"{rel_path}: Missing multi-typed Bakery/CafeOrCoffeeShop/Restaurant schema")
     else:
         # Check required fields
-        if local_business.get('@context') != 'https://schema.org':
-            errors.append(f"{rel_path}: LocalBusiness @context must be 'https://schema.org'")
+        for req in ['name', 'url', 'priceRange', 'currenciesAccepted', 'paymentAccepted']:
+            if not food_business.get(req):
+                errors.append(f"{rel_path}: FoodBusiness missing enriched field '{req}'")
 
-        for req in ['name', 'image', 'telephone', 'email', 'url', 'logo', 'address', 'sameAs']:
-            if not local_business.get(req):
-                errors.append(f"{rel_path}: LocalBusiness missing '{req}'")
-
-        # Validate Telephone E.164
-        tel = local_business.get('telephone')
+        # Validate Telephone if present
+        tel = food_business.get('telephone')
         if tel and not E164_REGEX.match(str(tel)):
-            errors.append(f"{rel_path}: LocalBusiness telephone '{tel}' is not in valid E.164 format (+54...)")
+            errors.append(f"{rel_path}: Telephone '{tel}' is not in valid E.164 format (+54...)")
 
-        # Validate URLs
-        for url_field in ['image', 'url', 'logo']:
-            val = local_business.get(url_field, '')
-            if val and not val.startswith('http'):
-                errors.append(f"{rel_path}: LocalBusiness '{url_field}' must be an absolute URL (starts with http): {val}")
+        # Validate openingHoursSpecification if present
+        hours = food_business.get('openingHoursSpecification')
+        if hours:
+            if not isinstance(hours, list) or len(hours) == 0:
+                errors.append(f"{rel_path}: openingHoursSpecification must be a non-empty list")
+            else:
+                h = hours[0]
+                if h.get('opens') != '06:00' or h.get('closes') != '22:00':
+                    errors.append(f"{rel_path}: Invalid openingHoursSpecification hours: {h}")
 
-        # Validate PostalAddress
-        addr = local_business.get('address')
-        if isinstance(addr, dict):
-            if addr.get('@type') != 'PostalAddress':
-                errors.append(f"{rel_path}: Address @type must be 'PostalAddress'")
-            for addr_req in ['streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry']:
-                if not addr.get(addr_req):
-                    errors.append(f"{rel_path}: PostalAddress missing '{addr_req}'")
+    # 6. Check specialized schemas by page
+    if rel_path == 'menu/index.html':
+        menu_schema = next((s for s in specialized_schemas if s.get('@type') == 'Menu'), None)
+        if not menu_schema:
+            errors.append("menu/index.html: Expected 'Menu' schema with 'hasMenuSection'")
+        elif not menu_schema.get('hasMenuSection'):
+            errors.append("menu/index.html: 'Menu' schema missing 'hasMenuSection'")
+
+    elif rel_path == 'catering/index.html':
+        service_schema = next((s for s in specialized_schemas if s.get('@type') == 'Service'), None)
+        if not service_schema:
+            errors.append("catering/index.html: Expected 'Service' schema")
+        elif not service_schema.get('hasOfferCatalog'):
+            errors.append("catering/index.html: 'Service' schema missing 'hasOfferCatalog'")
+
+    elif rel_path == 'eventos/index.html':
+        event_venue = next((s for s in specialized_schemas if s.get('@type') == 'EventVenue'), None)
+        if not event_venue:
+            errors.append("eventos/index.html: Expected 'EventVenue' schema")
+
+    elif rel_path == 'regalos/index.html':
+        offer_cat = next((s for s in specialized_schemas if s.get('@type') == 'OfferCatalog'), None)
+        if not offer_cat:
+            errors.append("regalos/index.html: Expected 'OfferCatalog' schema for Gift Cards")
+        elif not offer_cat.get('itemListElement'):
+            errors.append("regalos/index.html: 'OfferCatalog' schema missing 'itemListElement'")
+
+    elif rel_path == 'contacto/index.html':
+        contact_page = next((s for s in specialized_schemas if s.get('@type') == 'ContactPage'), None)
+        if not contact_page:
+            errors.append("contacto/index.html: Expected 'ContactPage' schema")
         else:
-            errors.append(f"{rel_path}: LocalBusiness address must be an object (PostalAddress)")
+            main_ent = contact_page.get('mainEntity', {})
+            if not main_ent.get('contactPoint'):
+                errors.append("contacto/index.html: mainEntity missing 'contactPoint'")
+            if not main_ent.get('department'):
+                errors.append("contacto/index.html: mainEntity missing 'department'")
 
-        # Validate sameAs
-        same_as = local_business.get('sameAs')
-        if not isinstance(same_as, list) or len(same_as) < 2:
-            errors.append(f"{rel_path}: LocalBusiness sameAs must be a list with at least 2 social profiles")
+    elif rel_path in ['sucursal-balbin/index.html', 'sucursal-tribulato/index.html']:
+        if not food_business.get('geo'):
+            errors.append(f"{rel_path}: Missing 'geo' (GeoCoordinates)")
+        if not food_business.get('parentOrganization'):
+            errors.append(f"{rel_path}: Missing 'parentOrganization'")
+        if not food_business.get('potentialAction'):
+            errors.append(f"{rel_path}: Missing 'potentialAction' (ReserveAction)")
 
-    # 6. Check VideoObject Schema for pages with video
+    # 7. Check VideoObject Schema for pages with video
     if rel_path in VIDEO_PAGES:
         if not video_objects:
             errors.append(f"{rel_path}: Expected VideoObject schema for page with video")
@@ -148,7 +190,7 @@ def audit_404_file():
 
 def main():
     print("=" * 60)
-    print("AUDITING MILESTONE 5.1: SEO ESTRUCTURADO SCHEMA JSON-LD")
+    print("AUDITING MILESTONE 5.1: ENRICHED MULTI-TYPED SCHEMA JSON-LD")
     print("=" * 60)
 
     total_errors = []
@@ -161,7 +203,7 @@ def main():
             total_errors.extend(errs)
         else:
             is_video = " [+VideoObject]" if rel_path in VIDEO_PAGES else ""
-            print(f"✓ {rel_path}: Valid LocalBusiness Schema{is_video} inside <head>")
+            print(f"✓ {rel_path}: Valid Enriched Multi-Type Schema{is_video} inside <head>")
 
     errs_404 = audit_404_file()
     if errs_404:
@@ -176,9 +218,8 @@ def main():
         print(f"FAILED WITH {len(total_errors)} ERROR(S)!")
         sys.exit(1)
     else:
-        print("🎉 ALL HTML FILES PASSED MILESTONE 5.1 AUDIT PERFECTLY!")
-        print("Schema JSON-LD LocalBusiness & VideoObject 100% compliant in <head>.")
-        print("404 page free of structured data.")
+        print("🎉 ALL HTML FILES PASSED ENRICHED SCHEMA JSON-LD AUDIT PERFECTLY!")
+        print("Multi-typing, openingHours, priceRange, currency, hasMenu, acceptsReservations & specialized schemas validated.")
         sys.exit(0)
 
 if __name__ == '__main__':

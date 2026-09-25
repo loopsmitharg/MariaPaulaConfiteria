@@ -60,13 +60,24 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería",
       "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/menu/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/menu/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "hasMenu": "https://mariapaulaconfiteria.com/menu/",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
+      "servesCuisine": [
+        "Pastelería Artesanal",
+        "Cafetería de Especialidad",
+        "Panadería",
+        "Cocina Tradicional Argentina",
+        "Heladería"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -75,6 +86,22 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -82,8 +109,76 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Menu",
+      "name": "Menú y Carta María Paula Confitería",
+      "description": "Carta completa de cafetería de especialidad, pastelería artesanal, comidas, burgers, pastas caseras, pizzas y desayunos en San Miguel.",
+      "url": "https://mariapaulaconfiteria.com/menu/",
+      "inLanguage": "es-AR",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Comidas",
+          "description": "Burgers artesanales, pastas frescas caseras, pizzas, milanesas, grilladas y platos principales",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Burger clásica",
+              "description": "Hamburguesa artesanal con guarnición de papas fritas",
+              "offers": {
+                "@type": "Offer",
+                "price": "16500",
+                "priceCurrency": "ARS"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Desayunos y Meriendas",
+          "description": "Combos con café de especialidad, tostados y medialunas de manteca artesanales",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Desayuno Clásico",
+              "description": "Café o té con 2 medialunas artesanales y jugo de naranja",
+              "offers": {
+                "@type": "Offer",
+                "price": "6500",
+                "priceCurrency": "ARS"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Pastelería",
+          "description": "Tortas tradicionales y de autor, porciones dulces y masas finas de elaboración propia",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Porción de Torta Artesanal",
+              "description": "Variedades de tortas frescas elaboradas en nuestra confitería",
+              "offers": {
+                "@type": "Offer",
+                "price": "7500",
+                "priceCurrency": "ARS"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Bebidas",
+          "description": "Café de especialidad en grano, bebidas calientes, infusiones, jugos y bebidas frías"
+        }
+      ]
+    }
+    </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

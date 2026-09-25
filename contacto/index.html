@@ -59,30 +59,112 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "María Paula Confitería",
-      "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
-      "telephone": "+541146677707",
-      "email": "1301mpaula@gmail.com",
+      "@type": "ContactPage",
+      "name": "Contacto | María Paula Confitería",
+      "description": "Información de contacto, mapa de ubicación, teléfonos y horarios de atención de las sucursales de María Paula Confitería en San Miguel.",
       "url": "https://mariapaulaconfiteria.com/contacto/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Consejal Tribulato 1148",
-        "addressLocality": "San Miguel",
-        "addressRegion": "Buenos Aires",
-        "postalCode": "B1663",
-        "addressCountry": "AR"
-      },
-      "sameAs": [
-        "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
-        "https://www.facebook.com/profile.php?id=100048064763939",
-        "https://wa.me/5491135433031"
-      ]
+      "mainEntity": {
+        "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+        "name": "María Paula Confitería",
+        "url": "https://mariapaulaconfiteria.com/",
+        "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+        "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+        "email": "1301mpaula@gmail.com",
+        "telephone": "+541146677707",
+        "priceRange": "$3.000 - $22.000 ARS",
+        "currenciesAccepted": "ARS",
+        "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
+        "hasMap": "https://www.google.com/maps/d/embed?mid=1fSXvjay35u7iqkkcqWaBSTBF6aM7nZc",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+541146677707",
+            "contactType": "Sucursal Tribulato - Atención y Reservas",
+            "areaServed": "AR",
+            "availableLanguage": "Spanish"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+541144518282",
+            "contactType": "Sucursal Balbín - Atención y Reservas",
+            "areaServed": "AR",
+            "availableLanguage": "Spanish"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+5491135433031",
+            "contactType": "WhatsApp Atención y Eventos",
+            "areaServed": "AR",
+            "availableLanguage": "Spanish"
+          }
+        ],
+        "department": [
+          {
+            "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+            "name": "María Paula Confitería – Sucursal Tribulato",
+            "telephone": "+541146677707",
+            "url": "https://mariapaulaconfiteria.com/sucursal-tribulato/",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Consejal Tribulato 1148",
+              "addressLocality": "San Miguel",
+              "addressRegion": "Buenos Aires",
+              "postalCode": "B1663",
+              "addressCountry": "AR"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "06:00",
+                "closes": "22:00"
+              }
+            ]
+          },
+          {
+            "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+            "name": "María Paula Confitería – Sucursal Balbín",
+            "telephone": "+541144518282",
+            "url": "https://mariapaulaconfiteria.com/sucursal-balbin/",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Av. Dr. Ricardo Balbín 1301",
+              "addressLocality": "San Miguel",
+              "addressRegion": "Buenos Aires",
+              "postalCode": "B1663",
+              "addressCountry": "AR"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "06:00",
+                "closes": "22:00"
+              }
+            ]
+          }
+        ]
+      }
     }
     </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

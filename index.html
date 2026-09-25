@@ -60,13 +60,26 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería",
+      "alternateName": "María Paula",
       "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
+      "hasMenu": "https://mariapaulaconfiteria.com/menu/",
+      "acceptsReservations": "True",
+      "servesCuisine": [
+        "Pastelería Artesanal",
+        "Cafetería de Especialidad",
+        "Panadería",
+        "Cocina Tradicional Argentina",
+        "Heladería"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -75,6 +88,84 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
+      "department": [
+        {
+          "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+          "name": "María Paula Confitería – Sucursal Tribulato",
+          "telephone": "+541146677707",
+          "url": "https://mariapaulaconfiteria.com/sucursal-tribulato/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Consejal Tribulato 1148",
+            "addressLocality": "San Miguel",
+            "addressRegion": "Buenos Aires",
+            "postalCode": "B1663",
+            "addressCountry": "AR"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "06:00",
+              "closes": "22:00"
+            }
+          ]
+        },
+        {
+          "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+          "name": "María Paula Confitería – Sucursal Balbín",
+          "telephone": "+541144518282",
+          "url": "https://mariapaulaconfiteria.com/sucursal-balbin/",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Dr. Ricardo Balbín 1301",
+            "addressLocality": "San Miguel",
+            "addressRegion": "Buenos Aires",
+            "postalCode": "B1663",
+            "addressCountry": "AR"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "06:00",
+              "closes": "22:00"
+            }
+          ]
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -95,7 +186,7 @@
     }
     </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

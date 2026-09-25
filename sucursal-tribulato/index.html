@@ -63,13 +63,40 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería – Sucursal Tribulato",
-      "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "image": "https://mariapaulaconfiteria.com/assets/images/salon-moderno-sucursal-tribulato-san-miguel-desktop.webp",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/sucursal-tribulato/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/sucursal-tribulato/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "hasMenu": "https://mariapaulaconfiteria.com/menu/",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
+      "servesCuisine": [
+        "Pastelería Artesanal",
+        "Cafetería de Especialidad",
+        "Panadería",
+        "Cocina Tradicional Argentina",
+        "Helados Artesanales"
+      ],
+      "acceptsReservations": "True",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quiero%20hacer%20una%20reserva%20para%20la%20sucursal%20de%20Tribulato."
+        },
+        "result": {
+          "@type": "FoodEstablishmentReservation"
+        }
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "María Paula Confitería",
+        "url": "https://mariapaulaconfiteria.com/"
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -78,6 +105,27 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.5427,
+        "longitude": -58.7126
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -86,7 +134,7 @@
     }
     </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

@@ -59,13 +59,16 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería",
       "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/regalos/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/regalos/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -74,6 +77,22 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -81,8 +100,43 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "OfferCatalog",
+      "name": "Gift Cards y Experiencias de Regalo María Paula",
+      "url": "https://mariapaulaconfiteria.com/regalos/",
+      "description": "Gift Cards de experiencias gastronómicas para regalar y disfrutar en las sucursales de María Paula Confitería.",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Gift Card Experiencia Plata",
+          "description": "Desayuno o merienda: café o té a elección, jugo de naranja, 2 medialunas o tostadas y porción de torta a elección.",
+          "category": "GiftCard",
+          "priceCurrency": "ARS",
+          "url": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quisiera%20comprar%20una%20Gift%20Card%20PLATA"
+        },
+        {
+          "@type": "Offer",
+          "name": "Gift Card Experiencia Oro",
+          "description": "Brunch o almuerzo ligero: plato principal de carta, bebida sin alcohol, postre o café y servicio de mesa.",
+          "category": "GiftCard",
+          "priceCurrency": "ARS",
+          "url": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quisiera%20comprar%20una%20Gift%20Card%20ORO"
+        },
+        {
+          "@type": "Offer",
+          "name": "Gift Card Experiencia Platino",
+          "description": "Cena completa: entrada para compartir, 2 platos principales, vino a elección de la casa, 2 postres y café.",
+          "category": "GiftCard",
+          "priceCurrency": "ARS",
+          "url": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quisiera%20comprar%20una%20Gift%20Card%20PLATINO"
+        }
+      ]
+    }
+    </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

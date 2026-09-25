@@ -63,13 +63,16 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería",
       "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/catering/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/catering/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -78,6 +81,22 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -85,8 +104,58 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Servicio de Catering Premium",
+      "serviceType": "Catering y Eventos a Domicilio",
+      "description": "Servicio integral de catering en salón y externo llave en mano para bodas, cumpleaños y eventos corporativos con carpas calefaccionadas, vajilla, mobiliario y gastronomía de excelencia.",
+      "url": "https://mariapaulaconfiteria.com/catering/",
+      "provider": {
+        "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+        "name": "María Paula Confitería",
+        "url": "https://mariapaulaconfiteria.com/",
+        "telephone": "+541146677707",
+        "email": "1301mpaula@gmail.com"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "San Miguel y Zona Norte de Gran Buenos Aires"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Propuestas de Catering María Paula",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Catering en Salón",
+              "description": "Celebración integral en los salones de María Paula con camareros, ambientación y menú artesanal."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Catering Externo Llave en Mano",
+              "description": "Servicio a domicilio en quintas y salones con armado de carpas, sonido, vajilla de gala y retiro posterior."
+            }
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quisiera%20consultar%20disponibilidad%20y%20presupuesto%20para%20un%20servicio%20de%20Catering."
+        }
+      }
+    }
+    </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

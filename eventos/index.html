@@ -63,13 +63,16 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
       "name": "María Paula Confitería",
       "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/eventos/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/eventos/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -78,6 +81,22 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -85,8 +104,33 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EventVenue",
+      "name": "Salones para Eventos Sociales y Corporativos – María Paula",
+      "description": "Salones climatizados de arquitectura clásica en San Miguel para bodas, civiles, cumpleaños, coffee breaks y after office corporativos.",
+      "url": "https://mariapaulaconfiteria.com/eventos/",
+      "telephone": "+541146677707",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Consejal Tribulato 1148",
+        "addressLocality": "San Miguel",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "B1663",
+        "addressCountry": "AR"
+      },
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/5491135433031?text=Hola,%20escribo%20desde%20la%20web%20MariaPaulaConfiteria.com.%20Quisiera%20solicitar%20un%20presupuesto%20para%20realizar%20un%20Evento."
+        }
+      }
+    }
+    </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->

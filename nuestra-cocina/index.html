@@ -64,13 +64,23 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "María Paula Confitería",
-      "image": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "@type": ["Bakery", "CafeOrCoffeeShop", "Restaurant"],
+      "name": "María Paula Confitería – Nuestra Cocina",
+      "image": "https://mariapaulaconfiteria.com/assets/images/panaderia-medialunas-artesanales-cafeteria-desktop.webp",
+      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "url": "https://mariapaulaconfiteria.com/nuestra-cocina/",
       "telephone": "+541146677707",
       "email": "1301mpaula@gmail.com",
-      "url": "https://mariapaulaconfiteria.com/nuestra-cocina/",
-      "logo": "https://mariapaulaconfiteria.com/assets/images/logo-maria-paula-confiteria.png",
+      "hasMenu": "https://mariapaulaconfiteria.com/menu/",
+      "priceRange": "$3.000 - $22.000 ARS",
+      "currenciesAccepted": "ARS",
+      "paymentAccepted": "Efectivo, Tarjeta de Débito, Tarjeta de Crédito, Mercado Pago",
+      "servesCuisine": [
+        "Pastelería Artesanal",
+        "Cafetería de Especialidad",
+        "Panadería de Masa Madre",
+        "Platos de Autor Tradicionales"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Consejal Tribulato 1148",
@@ -79,6 +89,22 @@
         "postalCode": "B1663",
         "addressCountry": "AR"
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "22:00"
+        }
+      ],
       "sameAs": [
         "https://www.instagram.com/mariapaulaconfiteria/?hl=es",
         "https://www.facebook.com/profile.php?id=100048064763939",
@@ -90,16 +116,16 @@
     {
       "@context": "https://schema.org",
       "@type": "VideoObject",
-      "name": "Nuestra Cocina y Pastelería Artesanal - María Paula Confitería",
-      "description": "Proceso de elaboración artesanal diario de tortas, masas finas, sándwiches de miga y cocina tradicional en María Paula.",
-      "thumbnailUrl": "https://mariapaulaconfiteria.com/assets/images/video-demo-poster.webp",
-      "uploadDate": "2024-02-10T10:00:00-03:00",
-      "contentUrl": "https://mariapaulaconfiteria.com/assets/videos/VideoMariaPaula.mp4",
-      "embedUrl": "https://mariapaulaconfiteria.com/assets/videos/VideoMariaPaula.mp4"
+      "name": "Nuestra Cocina y Taller Artesanal - María Paula Confitería",
+      "description": "Descubra el proceso artesanal de elaboración de panadería, medialunas y cafetería de especialidad en María Paula.",
+      "thumbnailUrl": "https://mariapaulaconfiteria.com/assets/images/video-hero-poster.webp",
+      "uploadDate": "2024-01-15T08:00:00-03:00",
+      "contentUrl": "https://mariapaulaconfiteria.com/assets/videos/hero-loop.mp4",
+      "embedUrl": "https://mariapaulaconfiteria.com/assets/videos/hero-loop.mp4"
     }
     </script>
 
-    <!-- Main Project Styles -->
+<!-- Main Project Styles -->
     <link rel="stylesheet" href="/css/dist.css">
 
     <!-- JavaScript Vanilla Desacoplado -->
