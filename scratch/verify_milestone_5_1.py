@@ -7,9 +7,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-HTML_FILES = [
+ACTIVE_HTML_FILES = [
     'index.html',
-    '404.html',
     'catering/index.html',
     'contacto/index.html',
     'eventos/index.html',
@@ -137,13 +136,23 @@ def audit_html_file(rel_path):
 
     return errors
 
+def audit_404_file():
+    full_path = os.path.join(BASE_DIR, '404.html')
+    if not os.path.exists(full_path):
+        return ["404.html does not exist"]
+    with open(full_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    if 'application/ld+json' in content:
+        return ["404.html: Found application/ld+json Schema. Error pages must NOT contain structured data to avoid Google mismatch warnings."]
+    return []
+
 def main():
     print("=" * 60)
     print("AUDITING MILESTONE 5.1: SEO ESTRUCTURADO SCHEMA JSON-LD")
     print("=" * 60)
 
     total_errors = []
-    for rel_path in HTML_FILES:
+    for rel_path in ACTIVE_HTML_FILES:
         errs = audit_html_file(rel_path)
         if errs:
             print(f"❌ {rel_path}:")
@@ -154,13 +163,22 @@ def main():
             is_video = " [+VideoObject]" if rel_path in VIDEO_PAGES else ""
             print(f"✓ {rel_path}: Valid LocalBusiness Schema{is_video} inside <head>")
 
+    errs_404 = audit_404_file()
+    if errs_404:
+        for e in errs_404:
+            print(f"❌ 404.html: {e}")
+        total_errors.extend(errs_404)
+    else:
+        print("✓ 404.html: Verified NO Schema JSON-LD (clean error page, 0 mismatch risk)")
+
     print("\n" + "=" * 60)
     if total_errors:
         print(f"FAILED WITH {len(total_errors)} ERROR(S)!")
         sys.exit(1)
     else:
-        print("🎉 ALL 10 HTML FILES PASSED MILESTONE 5.1 AUDIT PERFECTLY!")
-        print("Schema JSON-LD LocalBusiness & VideoObject 100% compliant.")
+        print("🎉 ALL HTML FILES PASSED MILESTONE 5.1 AUDIT PERFECTLY!")
+        print("Schema JSON-LD LocalBusiness & VideoObject 100% compliant in <head>.")
+        print("404 page free of structured data.")
         sys.exit(0)
 
 if __name__ == '__main__':
