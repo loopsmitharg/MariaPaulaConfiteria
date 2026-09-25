@@ -47,16 +47,15 @@ def audit_html_file(rel_path):
     if not ld_json_blocks:
         return [f"{rel_path}: No application/ld+json script tags found"]
 
-    # 3. Verify they appear before </body> and after </footer>
-    body_idx = content.rfind('</body>')
-    footer_idx = content.rfind('</footer>')
+    # 3. Verify they appear inside <head> (before </head>)
+    head_idx = content.find('</head>')
+    if head_idx == -1:
+        return [f"{rel_path}: Missing </head> tag"]
 
     for match in re.finditer(r'<script\s+type=["\']application/ld\+json["\']\s*>', content):
         script_idx = match.start()
-        if script_idx > body_idx:
-            errors.append(f"{rel_path}: JSON-LD script appears AFTER </body> tag")
-        if footer_idx != -1 and script_idx < footer_idx:
-            errors.append(f"{rel_path}: JSON-LD script appears before </footer>, expected right before </body>")
+        if script_idx > head_idx:
+            errors.append(f"{rel_path}: JSON-LD script appears AFTER </head> tag, expected inside <head>")
 
     # 4. Parse JSON blocks
     schemas = []
@@ -153,7 +152,7 @@ def main():
             total_errors.extend(errs)
         else:
             is_video = " [+VideoObject]" if rel_path in VIDEO_PAGES else ""
-            print(f"✓ {rel_path}: Valid LocalBusiness Schema{is_video} before </body>")
+            print(f"✓ {rel_path}: Valid LocalBusiness Schema{is_video} inside <head>")
 
     print("\n" + "=" * 60)
     if total_errors:
