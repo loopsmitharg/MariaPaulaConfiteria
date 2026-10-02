@@ -1780,6 +1780,8 @@ body.no-scroll {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
     position: relative;
     transform: translate3d(0, 0, 0);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 280px;
 }
 
 .menu-card-rich:hover {
@@ -1821,12 +1823,27 @@ body.no-scroll {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
+}
+
+.card-img-container.placeholder-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/images/logo-maria-paula-confiteria.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
+    opacity: 0.15;
+    filter: grayscale(1);
+    pointer-events: none;
 }
 
 .card-img-container.placeholder-img img {
     opacity: 0.15;
     width: 60%;
     transform: grayscale(1);
+    display: none;
 }
 
 /* Section Headers */

@@ -189,28 +189,51 @@
     }
 
     // ─── 5. Lógica del Catálogo de la Carta y Filtros ────────────────────────
+    let filterRafId = null;
+
     function filterItems(categories) {
-        const allItems = document.querySelectorAll('.menu-card-rich');
-        allItems.forEach(item => {
-            let match = false;
-            categories.forEach(cat => {
-                if (cat === 'all') {
-                    match = true;
-                } else if (cat === 'bebidas') {
-                    if (item.classList.contains('category-bebidas') ||
-                        item.classList.contains('category-bebidas-calientes') ||
-                        item.classList.contains('category-bebidas-frias') ||
-                        item.classList.contains('category-bebidas-gaseosas') ||
-                        item.classList.contains('category-cafeteria') ||
-                        item.classList.contains('category-licuados')) {
+        if (filterRafId) {
+            cancelAnimationFrame(filterRafId);
+        }
+        filterRafId = requestAnimationFrame(() => {
+            const allItems = document.querySelectorAll('.menu-card-rich');
+            const isAll = categories.includes('all');
+            const hasBebidas = categories.includes('bebidas');
+
+            for (let i = 0; i < allItems.length; i++) {
+                const item = allItems[i];
+                if (isAll) {
+                    item.classList.remove('hidden');
+                    continue;
+                }
+                let match = false;
+                if (hasBebidas) {
+                    const cl = item.classList;
+                    if (cl.contains('category-bebidas') ||
+                        cl.contains('category-bebidas-calientes') ||
+                        cl.contains('category-bebidas-frias') ||
+                        cl.contains('category-bebidas-gaseosas') ||
+                        cl.contains('category-cafeteria') ||
+                        cl.contains('category-licuados')) {
                         match = true;
                     }
-                } else if (item.classList.contains('category-' + cat)) {
-                    match = true;
                 }
-            });
-            if (match) item.classList.remove('hidden');
-            else item.classList.add('hidden');
+                if (!match) {
+                    for (let j = 0; j < categories.length; j++) {
+                        const cat = categories[j];
+                        if (cat !== 'bebidas' && item.classList.contains('category-' + cat)) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+                if (match) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            }
+            filterRafId = null;
         });
     }
 
@@ -234,7 +257,6 @@
     }
 
     function filterMenu(category, isSubmenu = false, clickedBtn = null) {
-        const allItems      = document.querySelectorAll('.menu-card-rich');
         const mainFilters   = document.querySelectorAll('.main-filter');
         const subFilters    = document.querySelectorAll('.sub-filter');
 
@@ -311,7 +333,7 @@
 
         // Filtrado real
         if (category === 'all') {
-            allItems.forEach(item => item.classList.remove('hidden'));
+            filterItems(['all']);
         } else {
             filterItems([category]);
         }
